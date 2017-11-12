@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>立即参与</title>
+    <link rel="stylesheet" href="static/css/mui.min.css"/>
+    <link rel="stylesheet" href="static/css/activity.css"/>
+    <style>
+        .joinBtns{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div class="mui-content">
+        <h3>参与方式：</h3>
+        <p>1.如果您的作品库中已有参加活动的歌曲，请点击下方选择作品按钮，选择心仪歌曲加入活动。</p>
+        <p>2.如果您还没有歌曲，请选择下方录音按钮，跳转到录音区，制作歌曲成功后，再次回到本界面，点击选择作品按钮，选择刚刚合成的歌曲加入活动。</p>
+        <div class="joinBtns">
+            <a href="worksList.html"><input class="choose" type="button" value="选择作品"/></a>
+            <a href="javascript:demo.jumpToRecord()"><input  type="button" value="录音"/></a>
+        </div>
+    </div>
+</div>
+<script src="static/js/jquery.js"></script>
+<script src="static/js/mui.min.js"></script>
+<script>
+//    function luYin() {
+//        alert("点击录音按钮啦");
+//        var ua = navigator.userAgent;
+//        var isiOS = ua.match(/iPhone|iPod|iPad/i);
+//        var isAndroid = ua.match(/Android/i);
+//        var isPC = !isiOS && !isAndroid;
+//        if (isiOS) {
+//            alert("我是IPhone");
+//            setTimeout(function () {
+//                window.location = '';
+//            }, 3000);
+//            window.location = '';
+//        } else if (isAndroid) {
+//            alert("我是安卓");
+//            setTimeout(function () {
+//                window.location = '';
+//            }, 3000);
+//            window.location = '';
+//        } else {
+//            alert("出错啦");
+//        }
+//    }
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    function preson(age,name,sex){
+        var o= new Object();
+        o.name=name;
+        o.sex=sex;
+        o.age=age;
+        o.sum=function(){
+            alert(name);
+        }
+        return o;
+    }
+    var xiaoming = new preson(18,"xiaoming","nan");
+//    xiaoming.sum();
+    xiaoming.name="aaaaa";
+    alert(xiaoming.name);
+
+    xiaoming.sum()
+</script>
+</html>

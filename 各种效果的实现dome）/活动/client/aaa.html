@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title></title>
+    <style>
+        #bg{ display: none;  position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.7;  opacity:.70;  filter: alpha(opacity=70);}
+        #show{display: none;  position: absolute;  top: 25%;  left: 18%;  width: 63%;  height: 49%;  padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}
+    </style>
+</head>
+<body>
+<div id="show">
+    <div data-role="controlgroup" id="btnGroups" data-type="vertical" style="min-height:80px; max-height:237px;overflow-y:auto;">
+        <label for="1">1</label><input type="radio" name="a" id="1" value="1" />
+        <label for="2">2</label><input type="radio" name="a" id="2" value="2" />
+    </div>
+    <div class="ui-grid-a">
+        <div class="ui-block-a">
+            <a name="yes" data-role="button" style="display: block;font-size:16px;">同意</a>
+        </div>
+
+        <div class="ui-block-b">
+            <a data-role="button" id="cancelBtnPage"  style="display: block;font-size:16px;">取消</a>
+        </div>
+    </div>
+</div>
+<div id="bg"></div>
+
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<a href="#" data-role="button" id="yesNextBtn"  style="display: block;font-size:16px;">同意</a>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<p>1</p> <p>1</p> <p>1</p> <p>1</p>
+<script src="static/js/jquery.js"></script>
+<script>
+    $('#yesNextBtn').click(function(){
+        //消除radio按钮上的checked
+//        $('#btnGroups').find('input[type=radio]').each(function(){
+//            $(this).removeProp("checked").checkboxradio("refresh");
+//        })
+        document.getElementById("bg").style.display ="block";
+        document.getElementById("show").style.display ="block";
+        $('html,body').animate({scrollTop: '0px'}, 100);//因为页面很长，有纵向滚动条，先让页面滚动到最顶端，然后禁止滑动事件，这样可以使遮罩层锁住整个屏幕
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    })
+</script>
+</body>
+</html>

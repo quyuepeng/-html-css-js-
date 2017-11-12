@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>刷新测试</title>
+    <link rel="stylesheet" href="static/css/mui.min.css"/>
+    <script src="static/js/mui.min.js"></script>
+    <script src="static/js/mui.pullToRefresh.js"></script>
+    <script src="static/js/mui.pullToRefresh.material.js"></script>
+</head>
+<body>
+<div id="main">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">活动列表</h1>
+    </header>
+    <div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <ul id="newData" class="mui-table-view mui-table-view-chevron">
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+                <p>111111111111111111</p>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    mui.init({
+        pullRefresh : {
+            container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+            down : {
+                height:50,//可选,默认50.触发下拉刷新拖动距离,
+                auto: false,//可选,默认false.自动下拉刷新一次
+                contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+                contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+                contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+                callback :pullfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+            }
+        }
+    });
+    function pullfresh() {
+        document.getElementById('newData').innerHTML+='<p>2222222222222222</p>';
+        //注意，加载完新数据后，必须执行如下代码，注意：若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
+        mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+    }
+
+</script>
+</body>
+</html>

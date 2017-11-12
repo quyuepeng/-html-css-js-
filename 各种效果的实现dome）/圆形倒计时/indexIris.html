@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery+css3圆形倒数秒计时器代码 </title>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--<script type="text/javascript" src="js/time_js.js"></script>-->
+
+<link type="text/css" rel="stylesheet" href="css/time_css.css" />
+
+</head>
+
+<body>
+
+<div class="game_time">
+
+	<div class="hold">
+		<div class="pie pie1"></div>
+	</div>
+
+	<div class="hold">
+		<div class="pie pie2"></div>
+	</div>
+
+	<div class="bg"> </div>
+	<audio src="bye.mp3" autoplay="autoplay" id="song"></audio>
+	<div class="time"></div>
+	
+</div>
+
+<script type="text/javascript">
+//	function formatSeconds(timer){
+//		var theTime = parseInt(timer);// 秒
+//		var theTime1 = 0;// 分
+//		var theTimer=0;
+//		if(theTime > 60) {
+//			theTime1 = parseInt(theTime/60);
+//			theTime = parseInt(theTime%60);
+//			if(theTime1<10){theTime1="0"+theTime1;}
+//			if(theTime<10){theTime="0"+theTime;}
+//			theTimer=theTime1+":"+theTime;
+//		}else{
+//			if(theTime<10){theTime="0"+theTime;}
+//			theTimer="00"+":"+theTime;
+//		}
+//		return theTimer;
+//	}
+	var song = document.getElementById("song");
+	i = 0;
+	j = 0;
+	count = 0;
+	MM = 0;
+	SS = 60;  // 秒 90s
+	MS = 0;
+	totle = (MM+1)*600;
+	d = 180*(MM+1);
+	MM = "0" + MM;
+//	var gameTime = 0;
+alert(document.getElementById("song").duration)
+	var gameTime=song.duration;
+alert(gameTime)
+//	var gameTime = 20;
+	//count down
+	var showTime = function(){
+		totle = totle - 1;
+		if (totle == 0) {
+			clearInterval(s);
+			clearInterval(t1);
+			clearInterval(t2);
+			$(".pie2").css("-o-transform", "rotate(" + d + "deg)");
+			$(".pie2").css("-moz-transform", "rotate(" + d + "deg)");
+			$(".pie2").css("-webkit-transform", "rotate(" + d + "deg)");
+		} else {
+			if (totle > 0 && MS > 0) {
+				MS = MS - 1;
+				if (MS < 10) {
+					MS = "0" + MS
+				}
+				;
+			}
+			;
+			if (MS == 0 && SS > 0) {
+				MS = 10;
+				SS = SS - 1;
+				if (SS < 10) {
+					SS = "0" + SS
+				}
+				;
+			}
+			;
+			if (SS == 0 && MM > 0) {
+				SS = 60;
+				MM = MM - 1;
+				if (MM < 10) {
+					MM = "0" + MM
+				}
+				;
+			}
+			;
+		}
+		;
+		$(".time").html(SS + "s");
+
+	};
+
+	var start1 = function(){
+		//i = i + 0.6;
+		i = i + 360/((gameTime)*10);  //旋转的角度  90s 为 0.4  60s为0.6
+		count = count + 1;
+		if(count <= (gameTime/2*10)){  // 一半的角度  90s 为 450
+			$(".pie1").css("-o-transform","rotate(" + i + "deg)");
+			$(".pie1").css("-moz-transform","rotate(" + i + "deg)");
+			$(".pie1").css("-webkit-transform","rotate(" + i + "deg)");
+		}else{
+			$(".pie2").css("backgroundColor", "#d13c36");
+			$(".pie2").css("-o-transform","rotate(" + i + "deg)");
+			$(".pie2").css("-moz-transform","rotate(" + i + "deg)");
+			$(".pie2").css("-webkit-transform","rotate(" + i + "deg)");
+		}
+	};
+
+	var start2 = function(){
+		j = j + 0.6;
+		count = count + 1;
+		if (count == 300) {
+			count = 0;
+			clearInterval(t2);
+			t1 = setInterval("start1()", 100);
+		}
+		$(".pie2").css("-o-transform","rotate(" + j + "deg)");
+		$(".pie2").css("-moz-transform","rotate(" + j + "deg)");
+		$(".pie2").css("-webkit-transform","rotate(" + j + "deg)");
+	}
+
+	var countDown = function() {
+		//80*80px 时间进度条
+		i = 0;
+		j = 0;
+		count = 0;
+		MM = 0;
+		SS = gameTime;
+		MS = 0;
+		totle = (MM + 1) * gameTime * 10;
+		d = 180 * (MM + 1);
+		MM = "0" + MM;
+
+		showTime();
+
+		s = setInterval("showTime()", 100);
+		start1();
+		//start2();
+		t1 = setInterval("start1()", 100);
+	};
+	countDown();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Webview Example</title>
+	<script type="text/javascript">
+// H5 plus事件处理
+function plusReady(){
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+
+// 创建并显示新窗口
+function create(){
+	var w = plus.webview.create( "http://weibo.com/dhnetwork" );
+	w.show(); // 显示窗口
+}
+	</script>
+	</head>
+	<body>
+		创建新的Webview窗口<br/>
+		<button onclick="create()">Create</button>
+	</body>
+</html>

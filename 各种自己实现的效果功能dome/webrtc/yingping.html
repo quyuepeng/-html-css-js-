@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ddd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+<audio controls>
+    <source src="03_-_Bad_Indian_cut.mp3" type="audio/mpeg">
+    您的浏览器不支持 audio 元素。
+</audio>
+<!--<input type="number" id="shu">-->
+<!--<button id="aa">aaa</button>-->
+<!--<button id="start">start</button>-->
+<!--<button id="stop">stop</button>-->
+<!--<canvas id="canvas" style="width:400px;height: 100px;background-color: red">-->
+    <!--buzhichi-->
+<!--</canvas>-->
+<canvas id="canvas" style="width:600px;height: 300px;background-color: black">
+    buzhichi
+</canvas>
+</body>
+<script>
+
+//    var aa = document.getElementById('aa');
+//    var shu = document.getElementById('shu');
+//    var start = document.getElementById('start');
+//    var stop = document.getElementById('stop');
+    var oscillator;
+    var source;
+    var gainNode;
+    if (!navigator.getUserMedia)
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+    if (navigator.getUserMedia){
+        navigator.getUserMedia({audio:true}, success, function(e) {
+            alert('捕获失败！');
+        });
+    } else {
+        alert('不支持getUserMedia');
+    }
+//    ===========================显示波形=============
+var c=document.getElementById("canvas");
+var canvasCtx=c.getContext("2d");
+var audioCtx;
+var analyser;
+var bufferLength;
+var dataArray
+function success(e){
+
+    var myAudio = document.querySelector('audio');
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+
+        source= audioCtx.createMediaElementSource(myAudio);
+//    source = audioCtx.createMediaStreamSource(e);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+//    analyser.fftSize = 2048;
+//    bufferLength = analyser.frequencyBinCount;
+//    dataArray = new Uint8Array(bufferLength);
+//    analyser.getByteTimeDomainData(dataArray);
+//    canvasCtx.clearRect(0, 0, 400, 100);
+
+    audioCtx.onstatechange = function() {
+        console.log(audioCtx.sampleRate);
+    }
+
+    analyser.fftSize = 128;
+    bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
+    dataArray = new Uint8Array(bufferLength);
+    canvasCtx.clearRect(0, 0, 600, 300);
+    setInterval(function(){
+        draw();
+    },100)
+}
+function draw() {
+//    drawVisual = requestAnimationFrame(draw);
+
+    analyser.getByteTimeDomainData(dataArray);
+
+//    canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+    canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+//    canvasCtx.fillRect(0, 0,400,100);
+    canvasCtx.fillRect(0, 0,600,300);
+
+//    canvasCtx.lineWidth = 2;
+//    canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+//    canvasCtx.beginPath();
+//    var sliceWidth = 400 * 1.0 / bufferLength;
+//    var x = 0;
+//    for(var i = 0; i < bufferLength; i++) {
+//        var v = dataArray[i] / 128.0;
+//        var y = v * 100/2;
+//        if(i === 0) {
+//            canvasCtx.moveTo(x, y);
+//        } else {
+//            canvasCtx.lineTo(x, y);
+//        }
+//        x += sliceWidth;
+//    }
+//    canvasCtx.lineTo(canvas.width, canvas.height/2);
+//    canvasCtx.stroke();
+
+    var barWidth = (300 / bufferLength) * 2;
+    var barHeight;
+    var x = 0;
+    for(var i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i];
+
+        canvasCtx.fillStyle = 'rgb(' + (barHeight+200) + ',0,0)';
+        canvasCtx.fillRect(x,130-barHeight/2,barWidth,barHeight);
+
+        x += barWidth + 1;
+    }
+
+
+}
+//    =======================改变声音频率===============
+//    function success(){
+//        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+//         oscillator = audioCtx.createOscillator();
+//        gainNode = audioCtx.createGain();
+//        oscillator.connect(gainNode);
+//        gainNode.connect(audioCtx.destination);
+//
+//        oscillator.type = 'sine'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
+//        oscillator.frequency.value = 500; // value in hertz
+//        oscillator.start();
+//    }
+//    ==================改变音量=====================
+//    function success(){
+//        var myAudio = document.querySelector('audio');
+//        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+//        source= audioCtx.createMediaElementSource(myAudio);
+//        gainNode = audioCtx.createGain();
+//        gainNode.gain.value=10;
+//        source.connect(gainNode);
+//        gainNode.connect(audioCtx.destination);
+//    }
+//    aa.onclick=function(){
+////        oscillator.frequency.value=shu.value;
+//        gainNode.gain.value=shu.value;
+//    }
+//    start.onclick=function(){
+////        success();
+//        var myAudio = document.querySelector('audio');
+//        myAudio.play();
+//    }
+//    stop.onclick=function(){
+////        oscillator.stop();
+//        var myAudio = document.querySelector('audio');
+//        myAudio.pause();
+//    }
+</script>
+</html>

@@ -1,0 +1,82 @@
+//上传进度回调函数：
+function progressHandlingFunction(e) {
+    if (e.lengthComputable) {
+            console.log(e.loaded+" aaaaaaaaaaaaaaaa");
+        var x=(e.loaded/maxss).toFixed(2);
+        console.log(x);
+        jindu(x);
+    }
+}
+function jindu(obj){
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    var radius = 85;
+    var circ = Math.PI * 2;
+    context.beginPath();
+    context.arc(90, 90, radius, (circ)*(-0.25),(circ)*(obj-0.25),false);
+    context.lineWidth = 10;
+    context.strokeStyle = '#FE9827';
+    context.stroke();
+}
+//重置
+function resetPlayer() {
+
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0,0,canvas.width,canvas.height);
+}
+var maxss=0;
+$("#subadduear").click(function(){
+    $("#uploadjindu").css({"zIndex":"999","display":"block"});
+
+    var filelength=document.getElementsByName("file");
+    for(var i=0;i<filelength.length;i++){
+        maxss+=max[i];
+        console.log(maxss+" "+"sssssssssssss"+i)
+    }
+    console.log(maxss+" "+"dddddddddddd");
+    var newFormData = new FormData($("#fileUpload")[0]);
+
+    console.log($("#fileUpload")[0])
+    console.log(newFormData);
+    //////var newFormData="aaaa=11111";
+    $.ajax({
+        url: 'http://music-input-test-media-bucket.oss-cn-qingdao.aliyuncs.com',
+        type: 'POST',
+        cache: false,
+        data: newFormData,
+        xhr: function(){ //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
+
+            myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ //检查upload属性是否存在
+                //绑定progress事件的回调函数
+                myXhr.upload.addEventListener('progress',progressHandlingFunction, false);
+            }
+            return myXhr; //xhr对象返回给jQuery使用
+        },
+        processData: false,
+        contentType: false,
+
+        success:function(result){
+           alert(result);
+            maxss=0;
+            setTimeout(function(){
+                $("#uploadjindu").css({"zIndex":"-1","display":"none"});
+                $("#close").click();
+                resetPlayer()
+            },1000)
+        },
+        error:function(){
+            alert("上传失败！！！");
+            maxss=0;
+            setTimeout(function(){
+                $("#uploadjindu").css({"zIndex":"-1","display":"none"});
+                resetPlayer()
+            },1000)
+        }
+    })
+
+    //======================参数设定很重要===========
+
+});

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<style type="text/css">
+    #kanshi{
+        width: 100%;
+        height: 650px;
+        background-image:url("../image/背景.jpg");
+        background-size: 100%;
+    }
+    body{
+        margin: 0;
+    }
+    #kanshi>div:first-child{
+        height: 300px;
+        width: 500px;
+        border: 10px solid #ffffff;
+        float: left;
+        margin-top: 120px;
+        margin-left: 32%;
+        color: yellow;
+        font-size: 50px;
+        font-weight: 900;
+        text-align: center;
+        text-shadow: 3px 3px 1px  #ffffff;
+    }
+    #kanshi>div:nth-child(2){
+        color: #ffffff;
+        font-size: 12px;
+        float: right;
+        margin-right:30px;
+        margin-top:42%;
+    }
+    .anniu{
+        height: 50px;
+        width: 160px;
+        background-color: #ffffff;
+        float: left;
+        box-shadow:0px 0px 0px 4px #86faff inset;
+        margin-left:60px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #000000;
+        line-height: 50px;
+        margin-top: 10px;
+    }
+    .anniu:active{
+        box-shadow:0px 0px 0px 6px #86faff inset;
+    }
+</style>
+<body>
+<div id="kanshi">
+    <div><p>龙珠大战英雄联盟</p>
+        <div class="anniu" onclick="kaishiyouxi()">开始游戏</div>
+        <div class="anniu" onclick="likan()">离开页面</div>
+    </div>
+    <div>
+       <p>版权所有：屈玥鹏</p>
+       <p>如果您发现本游戏存在问题，请联系我</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    function kaishiyouxi(){
+        window.location.href="dafeiji.html";
+    }
+    function likan(){
+        var userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Presto") != -1) {
+            window.location.replace("about:blank");
+        } else {
+            window.opener = null;
+            window.open("", "_self");
+            window.close();
+        }
+    }
+</script>
+</html>

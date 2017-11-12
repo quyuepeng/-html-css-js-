@@ -1,0 +1,155 @@
+*{
+margin: 0;
+padding: 0;
+}
+html{
+	width: 100%;
+	font-size: 20px;
+	/*overflow-x: hidden;*/
+
+}
+body{
+	width: 100%;
+	height: 100%;
+}
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 25.6px;
+    !important;
+    }
+}
+
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 22.08px;
+    !important;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 21.33333333px;
+    !important;
+    }
+}
+body{
+	width: 100%;
+	/*overflow-x: hidden;*/
+	background-color: #F4F4F4;
+}
+header{
+	width: 100%;
+	background-color: black;
+	position: relative;
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 10px;
+	color: white;
+	box-sizing: border-box;
+}
+.change_cell_bd{
+	color: #333333;
+}
+.weui_cell_hd img{
+	height:1.5rem;
+	width:1.5rem;
+	margin-right:5px;
+	display:block;
+}
+.change_btn_bgd1{
+	background-color:#3884EB;
+}
+.change_btn_bgd2{
+	background-color:#FF3F5F;
+}
+.change_btn_bgd3{
+	background-color:green;
+}
+.bankCard-content{
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin: auto;
+	padding: 20px 20px 20px 20px;
+	color: #333333;
+	border-bottom: solid 1px #333333;
+	box-sizing: border-box;
+}
+.bankCard-content  img{
+	width: 2rem;
+	height: 2rem;
+}
+#findParssword{
+	position: absolute;
+}
+.fontSize{
+	float: left;
+	size: 0.6rem;
+}
+.ifInput{
+	border: none;
+	outline: none;
+	width: 70%;
+	height: 1.5rem;
+}
+textarea{
+	position: relative;
+	width: 100%;
+	height: 200px;
+	outline: none;
+	border: none;
+	resize:none;
+}
+.htmlBgm{
+	position: absolute;
+	width: 100%;
+	background-color: white;
+}
+.contentBgm{
+	position: relative;
+	width: 100%;
+	color: #333333;
+}
+.contentBgm > h4{
+	text-align: center;
+}
+.contentBgm > p{
+	padding: 10px 20px 10px 20px;
+	font-size: 0.8rem;
+	box-sizing: border-box;
+}
+.groundBgm{
+	background-color: #F4F4F4;
+}
+.serviceFlex{
+	display: -webkit-flex;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 20px 0 20px 0;
+}
+.serviceContent{
+	width: 30%;
+	color: #333333;
+}
+.serviceBoder{
+	border: .1px solid #333333;
+}
+.serviceContent img{
+	width: 3rem;
+	height: 3rem;
+}
+.serviceContent p{
+	white-space:nowrap; 
+	font-size: 0.7rem;
+	margin-top: -10px;
+}
+.promptBgm{
+	color: white;
+	background-color: #3884EB;
+	padding: 10px 0 10px 0;
+}

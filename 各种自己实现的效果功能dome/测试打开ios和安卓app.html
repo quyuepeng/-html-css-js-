@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title></title>
+    <script>
+
+
+function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'https://__bridge_loaded__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+}
+
+setupWebViewJavascriptBridge(function(bridge) {
+
+    /* Initialize your app here */
+
+    bridge.registerHandler('xxoo', function(data, responseCallback) {
+        document.getElementById("ssssss").innerHTML="JS Echo called with:"+data;
+        responseCallback(data)
+    })
+
+})
+function calloc(){
+    WebViewJavascriptBridge.callHandler('ObjC Echo', {'key':'value'}, function responseCallback(responseData) {
+        document.getElementById("ssssss").innerHTML+="JS received response:"+responseData
+    })
+}
+function openapp() {
+    var a=location.href;
+    if(a.indexOf("HeiPa_iOS")>-1){
+        document.getElementById("ssssss").innerHTML=navigator.userAgent;
+
+    }else{
+        document.getElementById("ssssss").innerHTML=navigator.userAgent+"TEXTTTTT";
+    }
+
+    WebViewJavascriptBridge.callHandler('opens',null,function(response) {
+        document.getElementById("ssssss").innerHTML = response;
+    });
+}
+    </script>
+</head>
+<body>
+
+</body>
+
+<button onclick="openapp()">打开ios</button>
+<button onclick="calloc()">callos</button>
+<div id="ssssss"></div>
+
+
+<a href="https://v2.rapself.com/report/suggestion">打开安卓</a>
+
+
+<a href="https://v2.rapself.com/playdetail?songid=100000027">播放歌曲</a>
+
+<a href="http://www.tuyabeat.com" id="openadApp">安卓</a>
+<script>
+    var openadApp=document.getElementById("openadApp")
+    openadApp.onclick=function(){
+        var ifr = document.createElement('iframe');
+        ifr.src = 'heipa://';
+        ifr.style.display = 'none';
+        document.body.appendChild(ifr);
+        window.setTimeout(function(){
+            document.body.removeChild(ifr);
+            window.location.href="http://www.tuyabeat.com";
+
+        },3000)
+    }
+        // 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为
+//        // 否则打开a标签的href链接
+
+</script>
+
+</html>

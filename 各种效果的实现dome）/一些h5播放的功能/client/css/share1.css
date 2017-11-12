@@ -1,0 +1,23 @@
+.controlicon{  
+	margin-left:1.25rem;}
+#progress-bar{
+	position:relative;
+	height:3rem;
+	width:100%;
+	background-color:rgba(51,51,51,0.5);
+	margin-top:1.25rem;}
+#move{
+    background-color:#fff;
+	border-radius:50%;
+	width:1.2rem;
+	height:1.2rem;
+	border:none;
+}
+.lrc-title{
+	height:2.2rem;
+	margin-top:0.625rem;
+	text-align:center;
+	background-color:#f2f2f2;
+	-webkit-box-shadow:0 5px 5px #CCC;
+	box-shadow:0 5px 5px #CCC;
+	}

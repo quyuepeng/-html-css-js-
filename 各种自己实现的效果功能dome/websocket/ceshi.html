@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+</head>
+<body>
+<button id="but">aaaaa</button>
+<video id="webcam"></video>
+<canvas id="canvas1" width="320" height="240"></canvas>
+</body>
+<script>
+    var but=document.getElementById("but");
+    var video = document.getElementById('webcam');
+    function scamera() {
+        alert("qaas")
+        var canvasObj = document.getElementById('canvas1');
+        alert("qaas")
+        var context1 = canvasObj.getContext('2d');
+        context1.fillStyle = "#ffffff";
+        alert("qaas2")
+        context1.fillRect(0, 0, 320, 240);
+        alert("qaas3")
+        context1.drawImage(video, 0, 0, 320, 240);
+        alert("qaas4")
+        alert("PaiZhaoSuccess");
+    }
+    function onSuccess(stream) {
+        alert(stream)
+        console.log(stream)
+        alert("111")
+        if (window.URL) {
+            alert("2222")
+            video.src = window.URL.createObjectURL(stream);
+        } else {
+            alert("3333")
+            video.src = stream;
+        }
+        video.autoplay = true;
+        //or video.play();
+        scamera();
+    }
+    function onError(e) {
+        alert(e)
+    }
+    but.onclick=function(){
+        alert("zzzzz")
+        navigator.getUserMedia ||
+        (navigator.getUserMedia = navigator.mozGetUserMedia ||  navigator.webkitGetUserMedia || navigator.msGetUserMedia);
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({
+                video: true,
+                audio: true
+            }, onSuccess, onError);
+
+        } else {
+            alert('your browser not support getUserMedia');
+          }
+    };
+
+</script>
+</html>

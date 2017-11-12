@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>串烧播放</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/monologue.css"/>
+    <script src="js/share.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/myfocus-2.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+        myFocus.set({
+            id:'myFocus',//ID
+            pattern:'mF_expo2010'//风格
+        });
+    </script>
+</head>
+<body>
+<!--导航栏-->
+<header id="header" class="mui-bar mui-bar-nav myNav">
+    <a class="mui-action-back mui-icon  mui-pull-left">
+        <img src="image/backIcon.png" alt="" />
+    </a>
+    <h1 class="mui-title myTitle">第一首鬼畜</h1>
+</header>
+<div class="mui-content">
+    <!--播放背景-->
+    <div class="playBg">
+        <img src="image/smallPhoto.png"/>
+        <img src="image/playBigIcon.png" alt="" id="plays"/>
+        <img src="image/pauseBigIcon.png" alt="" />
+        <!--播放进度条-->
+        <div class="barDiv">
+            <div class="bar" id="progress-bar">
+                <audio src="徐海俏 - 南下.mp3" preload="auto" id="song"></audio>
+                <span class="startTime bars" id="starttime">00:00</span>
+                <div class="move"><input type="button" id="move"></div>
+                <div class="mui-progressbar bars" id="bar">
+                    <div id="bars"></div>
+                </div>
+                <span class="endTime bars" id="stoptime"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="wrapper"></div>
+    <!--<div class="controlicon"><img src="image/暂停icon.png"  id="plays"/></div>-->
+    <!--<div id="progress-bar">-->
+        <!--<audio src="徐海俏 - 南下.mp3" preload="auto" id="song"></audio>-->
+        <!--<div class="starttime"><p id="starttime">00:00</p></div>-->
+        <!--<div class="move"><input type="button" id="move"></div>-->
+        <!--<div id="bar">-->
+            <!--<div id="bars"></div>-->
+        <!--</div>-->
+        <!--<div class="stoptime"><p id="stoptime"></p></div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+    <!--作者信息-->
+    <div class="author">
+        <div class="mui-pull-left authorMesg">
+            <div class="anthorPhoto">
+                <img src="image/smallPhoto.png"/>
+            </div>
+            <div class="authorText">
+                <p>德阳大胡子</p>
+                <img src="image/fans.png"/>
+                <span>97</span>
+            </div>
+        </div>
+        <div class="mui-pull-right time">
+            <span>昨天 12:28</span>
+        </div>
+    </div>
+    <!--作者签名-->
+    <div class="autograph">
+        <p class="mui-ellipsis-2">
+            成都好安逸，吃喝玩乐样样齐。成都，一座来了就不想走的城市。我爱成都！
+            成都好安逸，吃喝玩乐样样齐。成都，一座来了就不想走的城市。我爱成都！
+        </p>
+    </div>
+    <!--评论-->
+    <div class="comment">
+        <div class="commentTitle">
+            <img src="image/comment.png"/>
+            <span>评论</span>
+            <span>（36）</span>
+        </div>
+        <div class="commentContent">
+            <div class="commentContentDiv">
+                <div class="mui-pull-left commentMesg">
+                    <div class="commentPhoto">
+                        <img src="image/smallPhoto.png"/>
+                    </div>
+                    <h2 class="commentName">江源小卡</h2>
+                </div>
+                <div class="mui-pull-right time">
+                    <span class="commentTime">06-23 12:28</span>
+                </div>
+                <div class="commentText">
+                    <p>
+                        唱的很棒哦，支持！唱的很棒哦！唱的很棒哦！唱的很棒哦！唱的很棒哦！
+                        唱的很棒哦，支持！唱的很棒哦！唱的很棒哦！唱的很棒哦！唱的很棒哦！
+                    </p>
+                </div>
+                <div class="blankDiv"></div>
+            </div>
+        </div>
+        <div class="commentContent">
+            <div class="commentContentDiv">
+                <div class="mui-pull-left commentMesg">
+                    <div class="commentPhoto">
+                        <img src="image/smallPhoto.png"/>
+                    </div>
+                    <h2 class="commentName">江源小卡</h2>
+                </div>
+                <div class="mui-pull-right time">
+                    <span class="commentTime">06-23 12:28</span>
+                </div>
+                <div class="commentText">
+                    <p>
+                        唱的很棒哦，支持！唱的很棒哦！唱的很棒哦！
+                    </p>
+                </div>
+                <div class="blankDiv"></div>
+            </div>
+        </div>
+        <div class="commentContent">
+            <div class="commentContentDiv">
+                <div class="mui-pull-left commentMesg">
+                    <div class="commentPhoto">
+                        <img src="image/smallPhoto.png"/>
+                    </div>
+                    <h2 class="commentName">江源小卡</h2>
+                </div>
+                <div class="mui-pull-right time">
+                    <span class="commentTime">06-23 12:28</span>
+                </div>
+                <div class="commentText">
+                    <p>
+                        唱的很棒哦，支持！唱的很棒哦！唱的很棒哦！唱的很棒哦，支持！唱的很棒哦！唱的很棒哦！
+                    </p>
+                </div>
+                <div class="blankDiv"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div"></div>
+</div>
+<nav class="mui-bar mui-bar-tab">
+    <div class="footer">
+        <div class="container">
+            <div class="foot-img1"><img src="image/logo.png"/></div>
+            <p>你说</p>
+            <span>说的更动听</span>
+            <div class="down" onclick="window.location.href='http://www.baidu.com'">
+                <img src="image/downLoad.png" alt=""/>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

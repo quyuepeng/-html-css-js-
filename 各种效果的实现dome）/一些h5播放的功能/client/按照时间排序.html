@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>按照日期排序</title>
+    <script type="text/javascript">
+        window.onload=function(){
+            var oUl=document.getElementsByTagName('ul')[0];
+            var aLi=oUl.getElementsByTagName('li');
+            var aSort=[];
+            for(var i=0;i<aLi.length;i++){
+                aSort.push(aLi[i])
+            };
+            aSort.sort(function(li1,li2){
+                var a1 = li1.getElementsByTagName('span')[0].innerHTML.split('-');
+                var o1 = new Date().setFullYear(a1[0],a1[1],a1[2]);
+
+                var a2 = li2.getElementsByTagName('span')[0].innerHTML.split('-');
+                var o2 = new Date().setFullYear(a2[0],a2[1],a2[2]);
+                return o1-o2;
+            });
+            for(var i=0;i<aSort.length;i++){
+                oUl.appendChild(aSort[i]);
+            };
+        };
+    </script>
+    <style type="text/css">
+        html {
+            font-family: "微软雅黑", tahoma, arial, \5b8b\4f53, sans-serif;
+            font-size: 12px;
+        }
+        body {
+            color: #444;
+            line-height: 1.5;
+        }
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,menu,nav,section {
+            margin:0;padding:0;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>起止时间：<span>2014-04-10</span> ~ 2013-06-10</li>
+    <li>起止时间：<span>2014-04-20</span> ~ 2013-06-10</li>
+    <li>起止时间：<span>2014-11-20</span> ~ 2013-06-10</li>
+    <li>起止时间：<span>2012-10-20</span> ~ 2013-06-10</li>
+    <li>起止时间：<span>2013-07-15</span> ~ 2013-06-10</li>
+</ul>
+</body>
+</html>

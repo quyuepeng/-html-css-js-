@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="http://www.w3school.com.cn/jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $('.taskBox').delegate('.taskBoxLinks','mousemove',function(e){
+                var $mouse = e.pageX - $(this).offset().left;
+                var $span = Math.round($mouse/22.5)*10;
+                $(this).find('h4').stop().animate({width:$span+'%'},50);
+                $(this).next('span').text($span+'%');
+            }).delegate('.taskBoxLinks','mouseleave',function(){
+                $(this).find('h4').stop().animate({width:'10%'},50);
+                var $mousex = $(this).find('h3').width();
+                var $spanx = Math.round($mousex/22.5)*10;
+                if($spanx==100){
+                    $(this).next('span').text('进度完成')
+                }else{
+                    $(this).next('span').text($spanx+'%');
+                }
+            }).delegate('.taskBoxLinks','click',function(e){
+                var $mouse = e.pageX - $(this).offset().left;
+                var $span = Math.round($mouse/22.5)*10;
+                $(this).find('h3').stop().animate({width:$span+'%'},100);
+                if($span==100){
+                    $(this).next('span').text('进度完成')
+                }
+            });
+        });
+    </script>
+    <title>进度条</title>
+    <style type="text/css">
+        body,td,th {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 12px;
+        }
+        h1{ font-size:16px; color:#999; font-weight:normal; text-align:center; line-height:90px; border-top:1px dashed #ddd; margin-top:50px;}
+        *{ margin:0; padding:0;}
+        .taskBoxLinks { float:left; width:225px; height:7px; font-size:0; line-height:0; background:#f2f2f2; border:1px solid #dedede;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px; position:relative; margin-top:8px; margin-right:10px; cursor:pointer;}
+        .taskBoxLinks h3,.taskBoxLinks h4{ position:absolute; left:-1px; top:-1px; height:7px; font-size:0; line-height:0; width:10%; background:#a3d9f4; border:1px solid #187aab; -moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px; z-index:99;}
+        .taskBoxLinks h4 { border:1px solid #91cdea; background:#f5fafc; z-index:88;}
+        .taskBox { width:360px; margin:40px auto; color:#666;}
+    </style>
+</head>
+<body>
+<div class="taskBox">
+    <div class="taskBoxLinks"><h3 style="width:10%;"></h3><h4></h4></div>进度<span>10%</span>
+</div>
+<div class="taskBox" style="padding-left:100px;">
+    <div class="taskBoxLinks"><h3 style="width:60%;"></h3><h4></h4></div>进度<span>60%</span>
+</div>
+<div class="taskBox">
+    <div class="taskBoxLinks"><h3 style="width:20%;"></h3><h4></h4></div>进度<span>20%</span>
+</div>
+<h1>by <a href="http://www.wweya.com">www.wweya.com</a></h1>
+
+<progress max="100" value="50" id="pg" style="width: 300px;height: 50px;"></progress>
+</body>
+<script>
+    var a=6000;
+    b=1.0036;
+    t=840;
+    for(var i=0;i<t;i++){
+        a=a*b;
+        a=a+2000;
+    }
+    console.log(a)
+    console.log(a*1.0036-a)
+
+    var s;
+    s=2000*480+6000;
+    console.log(s)
+</script>
+</html>

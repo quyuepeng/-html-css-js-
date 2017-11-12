@@ -1,0 +1,671 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 20px;
+    overflow-x: hidden;
+}
+@font-face {
+    font-family: 'myFont1';
+    src: url('../font/happyFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'myFont2';
+    src: url('../font/SourceHanSansKNormal.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    font-family:"Microsoft YaHei" !important;
+    color: #050505;
+    font-size: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+a{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    float: left;
+}
+/*-----------------------头部------------------------*/
+.head{ /*头部*/
+    width: 100%;
+    height: 31em;
+    background-color: #FFD200;
+}
+.headContent{ /*头部内容*/
+    width: 62em;
+    height: 31em;
+    margin: 0 auto;
+    /*background-color: palegreen;*/
+    position: relative;
+}
+.nav{ /*导航栏*/
+    width:100%;
+    height: 6em;
+    /*background-color: plum;*/
+    line-height: 6em;
+}
+.logo img{ /*导航栏LOGO*/
+    width: 11.5em;
+    height: 1.2em;
+}
+.menu{ /*菜单*/
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.menu li{ /*菜单详细*/
+    width: auto;
+    height: 3.5em;
+    margin-left:4.4em;
+    font-size: 1.2em;
+    color: #050505;
+    font-family: myFont2;
+    cursor: pointer;
+}
+.menu li:hover{ /*菜单hover事件*/
+    color: #000;
+    border-bottom: 4px solid #000;
+    cursor: pointer !important;
+}
+.banner{ /*头部banner*/
+    position: relative;
+}
+.banner div{
+    float: left;
+}
+.leftBanner { /*左边部分banner*/
+    width: 39.06em;
+    height: 25em;
+    /*background-color: pink;*/
+    color: #050505;
+    position: relative;
+}
+.imgWanZhuan{ /*banner玩转图片*/
+    width: 4.1em;
+    height: 3em;
+    position: relative;
+    left: 25em;
+}
+.leftBanner h1{ /*banner大宣传语*/
+    font-family: myFont1;
+    font-size: 3.6em;
+    font-weight: inherit;
+}
+.leftBanner h3{ /*banner小宣传语*/
+    font-size: 1.5em;
+    font-family:"Microsoft YaHei" !important;
+    margin-top: 0.4em;
+    font-weight: inherit;
+}
+.bannerXiaoLian{ /*banner笑脸图片*/
+    position: relative;
+    top: -2.8em;
+    left: -2.8em;
+}
+.downBtn{ /*下载按钮*/
+    width: 8.5em;
+    height: 2.85em;
+    line-height: 2.85em;
+    background-color: #050505;
+    color: #FFF;
+    border-radius: 4px;
+    position: relative;
+    top: 4.2em;
+    cursor: pointer;
+}
+.downBtn span{ /*下载按钮文字*/
+    font-size: 1.2em;
+    margin-left: 0.4em;
+    font-weight: inherit;
+}
+.smallLogo{ /*下载按钮图标*/
+    width: 1.4em;
+    height: 1.7em;
+    position: relative;
+    top: 0.4em;
+    margin-left: 0.9em;
+}
+.downIphone{ /*iPhone下载*/
+    margin-left: 1em;
+}
+.bannerBingo{ /*banner bingo图片*/
+    width: 5.35em;
+    height: 6.2em;
+    position: absolute;
+    bottom: 0;
+    left: 0.65em;
+}
+.bannerPic{ /*banner两个小人图片*/
+    width: 12.8em;
+    height: 9.95em;
+    position: absolute;
+    right: 0.7em;
+    bottom: 0;
+}
+.rightBanner{ /*右边banner*/
+    width: 22.94em;
+    height: 32.6em;
+    /*background-color: yellow;*/
+    position: relative;
+}
+.rightBanner img:nth-child(1){ /*banner手机图*/
+    width: 16.9em;
+    height:32.6em;
+}
+.rightBanner img:nth-child(2){ /*banner手机旁边插画*/
+    width: 3.8em;
+    height: 4.95em;
+    position: absolute;
+    top: 1.95em;
+    left: 18.5em;
+}
+.div1{ /*内容与页脚之间的div*/
+    width: 100%;
+    height: 8em;
+    background: #FFFFFF;
+}
+/*-------------------------内容------------------------*/
+.content{ /*中间内容*/
+    width: 62em;
+    background-color: #FFF;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 8.8em;
+}
+.smallTitle{ /*功能介绍标题*/
+    width:100%;
+    height: 7em;
+    /*background-color: #bce8f1;*/
+    position: relative;
+}
+.functionIntro{ /*功能介绍背景*/
+    width: 8.5em;
+    height: 2.5em;
+    background: url("../image/functionBg.png");
+    background-size: 100% 100%;
+    text-align: center;
+    line-height: 2.5em;
+    font-family: myFont1;
+}
+.functionIntro span{ /*功能介绍文字*/
+    font-size: 1.8em;
+}
+.smallTitle img{ /*功能介绍图片*/
+    width: 13.85em;
+    height: 4.3em;
+    position: absolute;
+    top: 0.9em;
+    left: 8.95em;
+}
+.record{ /*功能介绍各个模块*/
+    width: 100%;
+    height: 37.45em;
+    /*background-color: orange;*/
+    margin-top: 0.5em;
+    position: relative;
+}
+.record div{
+    float: left;
+}
+.leftDiv{ /*功能介绍左边部分 */
+    width: 25.8em;
+    height: 37.45em;
+    /*background-color: green;*/
+}
+.record .leftDiv img{ /*功能介绍左边图片*/
+    width: 19.4em;
+    height: 37.45em;
+}
+.rightDiv{  /*功能介绍右边部分 */
+    width: 36.2em;
+    height: 37.45em;
+    /*background-color:deeppink;*/
+}
+.rightDiv h1{ /*功能介绍右边部分 大标题*/
+    font-family: myFont2;
+    font-size: 3.6em;
+    font-weight: bolder;
+    margin-top: 0.3em;
+}
+.rightDiv p{ /*功能介绍右边部分 文字描述*/
+    font-family: myFont1;
+    font-size: 2.4em;
+    text-shadow: 5px 1px 1px #fddd4e;
+    margin-top: 0.7em;
+}
+.imgs{ /*每部分的图片div*/
+    width: 27em;
+    height: 21em;
+    position: relative;
+    /*border: 2px solid #000000;*/
+}
+.imgs img{ /*独白主角周围的小插画*/
+    position: absolute;
+}
+.monoPicBg{ /*独白背景图*/
+    width: 18.65em;
+    height: 15.4em;
+    bottom: 0.7em;
+    left: 4.5em;
+}
+.monoRole{ /*独白主角*/
+    width: 9.15em;
+    height: 15.5em;
+    bottom: 2.25em;
+    left: 9em;
+    animation: monoAnimation3 2s linear infinite;
+}
+.monoBoxShadow{ /*独白主角阴影*/
+    width: 4.15em;
+    height: 1.45em;
+    bottom: 0;
+    left: 11.5em;
+}
+.monoMusic{ /*独白音乐符号*/
+    width: 1.25em;
+    height: 2.7em;
+    bottom: 2.25em;
+    animation: monoAnimation2 2s linear infinite;
+}
+.monoBoLang{ /*独白波浪线*/
+    width: 1.85em;
+    height: 1.35em;
+    left: 2.55em;
+    bottom: 1.95em;
+}
+.monoStarLB{ /*左下星星*/
+    width: 1.85em;
+    height: 2.55em;
+    left: 2.55em;
+    bottom: 6.5em;
+    animation: monoAnimation1 1s linear infinite;
+}
+.monoStarLT{ /*左上星星*/
+    width: 1.75em;
+    height: 2.6em;
+    top: 4.5em;
+    left: 6em;
+    animation: monoAnimation1 1s linear infinite;
+}
+.monoStarPoint{ /*头顶的星星点*/
+    width: 1.15em;
+    height: 1.2em;
+    top: 2em;
+    left: 9.5em;
+    animation: monoAnimation1 1s linear infinite;
+}
+.monoStarRT{ /*右上星星*/
+    width: 1.45em;
+    height: 1.8em;
+    top: 3em;
+    right: 8.5em;
+    animation: monoAnimation1 1s linear infinite;
+}
+.monoStarRB{ /*右下星星*/
+    width: 1.85em;
+    height: 2.55em;
+    top: 9em;
+    right: 4em;
+    animation: monoAnimation1 1s linear infinite;
+}
+.monoDecorateT{ /*独白装饰上*/
+    width: 1.35em;
+    height: 0.9em;
+    bottom: 7em;
+    right: 2em;
+
+}
+.monoDecorateB{ /*独白装饰下*/
+    width: 1.25em;
+    height: 0.6em;
+    bottom: 6em;
+    right: 2.1em;
+}
+.monoStarWhite{ /*白色星点*/
+    width:1.15em;
+    height: 1.2em;
+    animation: monoAnimation1 1s linear infinite;
+}
+.monoStarWhite1{ /*白色星点 左上*/
+    left: 7.5em;
+    top:9em;
+}
+.monoStarWhite2{ /*白色星点 左中*/
+    left: 10em;
+    top:12em;
+}
+.monoStarWhite3{ /*白色星点 左下*/
+    left: 8.5em;
+    top:16em;
+}
+.monoStarWhite4{ /*白色星点 右*/
+    right: 9em;
+    top:15.5em;
+}
+.skewer{ /*串烧 */
+    margin-top: 8.5em;
+}
+.skewerPic{ /*串烧装饰图 箭头 */
+    width: 12.5em;
+    height: 7.5em;
+    position: absolute;
+    top: -7.5em;
+    right: 0;
+}
+.imgs2{ /*串烧图片集*/
+    width: 31.9em;
+    height: 23.7em;
+    position: relative;
+}
+.imgs2 img{ /*串烧图片*/
+    position: absolute;
+}
+.imgs2 div{ /*串烧div*/
+    float: none;
+    position: absolute;
+}
+.skewerBg{ /*串烧背景图*/
+    width: 28.35em;
+    height: 23.4em;
+    left: 1em;
+    bottom: 0;
+}
+.skewerPics{ /*串烧装饰图*/
+    width: 29.15em;
+    height: 15.15em;
+    top: 4.55em;
+    animation: monoAnimation1 2s linear infinite;
+}
+.skewerRoleLeft{ /*串烧左边人物*/
+    width: 11.45em;
+    height: 7.55em;
+    top: 8.95em;
+    left: 0.2em;
+}
+.skewerRoleL1{ /*串烧人物左一*/
+    width: 5.8em;
+    height: 7.55em;
+}
+.skewerRoleL2{ /*串烧人物左二*/
+    width: 6.95em;
+    height: 7.1em;
+    right: 0;
+}
+.skewerRoleMiddle{ /*串烧主角*/
+    width: 11.6em;
+    height: 10.7em;
+    top: 11.35em;
+    left: 21.8em;
+    z-index: 99;
+}
+.skewerRoleMiddle img{/*串烧主角图片*/
+    width: 11.6em;
+    height: 10.7em;
+}
+.skewerRoleRight{ /*串烧右边人物*/
+    width: 13.35em;
+    height: 7.15em;
+    top: 8.95em;
+    right: 0;
+}
+.skewerRoleR1{ /*串烧人物右一*/
+    width: 5.35em;
+    height: 7.05em;
+}
+.skewerRoleR2{ /*串烧人物右二*/
+    width: 5.5em;
+    height: 6.95em;
+    left: 3.5em;
+    z-index: 9;
+}
+.skewerRoleR3{ /*串烧人物右三*/
+    width: 5.5em;
+    height: 6.95em;
+    right: 0;
+}
+.complain{ /*吐槽 */
+    margin-top: 8.5em;
+}
+.complainPic{ /*吐槽装饰图 箭头 */
+    width: 13.9em;
+    height: 4.45em;
+    position: absolute;
+    top: -2.5em;
+    right: 0;
+}
+.imgs3{ /*吐槽图片集*/
+    width: 24em;
+    height: 21em;
+    position: relative;
+    top: 2.5em;
+    left: 2em;
+}
+.imgs3 img{ /*吐槽图片*/
+    position: absolute;
+}
+.complain01{ /*吐槽 图片文字*/
+    width: 17.1em;
+    height: 9.35em;
+}
+.complainRole{ /*吐槽主角*/
+    width: 15.4em;
+    height: 12.35em;
+    bottom: 0;
+    left: 5.2em;
+}
+.complain02{ /*吐槽左边插画竖线*/
+    width: 0.6em;
+    height: 0.95em;
+    bottom: 6.5em;
+    left: 8em;
+}
+.complain03{ /*吐槽右边横杠上*/
+    width: 0.85em;
+    height: 0.8em;
+    bottom: 3em;
+    right: 3em;
+}
+.complain04{/*吐槽右边横杠下*/
+    width: 1.8em;
+    height: 1.15em;
+    bottom: 10em;
+    right: 1em;
+}
+.complain05{ /*吐槽右边竖线*/
+    width: 1.6em;
+    height: 0.9em;
+    bottom: 9em;
+    right: 0.5em;
+}
+/*----------------------页脚---------------------*/
+.foot{ /*页脚*/
+    width: 100%;
+    height: 11em;
+    background-color:#FFD200 ;
+    position: relative;
+}
+.footContent{ /*页脚内容*/
+    width: 615px;
+    height:11em;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+.footContent a img{ /*页脚QQ 微信 微博 图标*/
+    width: 3.2em;
+    height: 3.2em;
+    margin-top: 2.45em;
+    margin-left: 0.5em;
+}
+.footContent .QQ{ /*QQ*/
+    margin-left: 0;
+}
+.footContent #weixin{ /*微信*/
+    margin-left: 0.5em;
+}
+.footContent .erweima{ /*微信二维码*/
+    width: 5em;
+    height: 5em;
+    position: absolute;
+    top: 1em;
+    right: 4em;
+    display: none;
+}
+.footContent p{ /*页脚文字*/
+    font-size: 0.8em;
+    margin-top: 1.65em;
+}
+.footContent span{ /*页脚文字*/
+    display: inline-block;
+    font-size: 0.8em;
+    margin-top: 0.8em;
+}
+/*----------------------动画---------------------*/
+/*独白星星闪烁*/
+@keyframes monoAnimation1
+{
+    0% {opacity: 0.5;}
+    25% {opacity: 0.75;}
+    50%{opacity:1;}
+    75%{opacity:0.75;}
+    100%{opacity:0.5;}
+}
+
+@-moz-keyframes monoAnimation1 /* Firefox */
+{
+    0% {opacity: 0.5;}
+    25% {opacity: 0.75;}
+    50%{opacity:1;}
+    75%{opacity:0.75;}
+    100%{opacity:0.5;}
+}
+
+@-webkit-keyframes monoAnimation1 /* Safari 和 Chrome */
+{
+    0% {opacity: 0.5;}
+    25% {opacity: 0.75;}
+    50%{opacity:1;}
+    75%{opacity:0.75;}
+    100%{opacity:0.5;}
+}
+
+@-o-keyframes monoAnimation1 /* Opera */
+{
+    0% {opacity: 0.5;}
+    25% {opacity: 0.75;}
+    50%{opacity:1;}
+    75%{opacity:0.75;}
+    100%{opacity:0.5;}
+}
+@-ms-keyframes monoAnimation1 /* IE */
+{
+    0% {opacity: 0.5;}
+    25% {opacity: 0.75;}
+    50%{opacity:1;}
+    75%{opacity:0.75;}
+    100%{opacity:0.5;}
+}
+/*独白音乐符号摇摆*/
+@keyframes monoAnimation2
+{
+    0%{transform: rotate(-15deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(15deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-15deg);}
+}
+
+@-moz-keyframes monoAnimation2 /* Firefox */
+{
+    0%{transform: rotate(-15deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(15deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-15deg);}
+}
+
+@-webkit-keyframes monoAnimation2 /* Safari 和 Chrome */
+{
+    0%{transform: rotate(-15deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(15deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-15deg);}
+}
+
+@-o-keyframes monoAnimation2 /* Opera */
+{
+    0%{transform: rotate(-15deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(15deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-15deg);}
+}
+@-ms-keyframes monoAnimation2 /* IE */
+{
+    0%{transform: rotate(-15deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(15deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-15deg);}
+}
+/*独白主角*/
+@keyframes monoAnimation3
+{
+    0%{transform: rotate(-5deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(5deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-5deg);}
+}
+
+@-moz-keyframes monoAnimation3 /* Firefox */
+{
+    0%{transform: rotate(-5deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(5deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-5deg);}
+}
+
+@-webkit-keyframes monoAnimation3 /* Safari 和 Chrome */
+{
+    0%{transform: rotate(-5deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(5deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-5deg);}
+}
+
+@-o-keyframes monoAnimation3 /* Opera */
+{
+    0%{transform: rotate(-5deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(5deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-5deg);}
+}
+@-ms-keyframes monoAnimation3 /* IE */
+{
+    0%{transform: rotate(-5deg);}
+    25%{transform: rotate(0deg);}
+    50%{transform: rotate(5deg);}
+    75%{transform: rotate(0deg);}
+    100% {transform: rotate(-5deg);}
+}

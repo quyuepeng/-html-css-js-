@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ITandYT</title>
+    <style type="text/css">
+        #box{
+            /*background-color: black;*/
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            /*给父级设置3d空间*/
+            transform-style: preserve-3d;
+            /*设置景深*/
+            /*perspective: 800px;*/
+            transform: perspective(8000px) rotateY(-60deg) rotateX(30deg);
+        }
+
+        #box div{
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+            position: absolute;
+            opacity: 0.7;
+            text-align: center;
+            line-height: 200px;
+            font-size:60px;
+            color: black;
+            font-weight: 600;
+        }
+        /*前面*/
+        #box div:nth-child(1){
+            background: palegreen;
+            transform: translateZ(100px);
+        }
+        /*后面*/
+        #box div:nth-child(2){
+            background: palevioletred;
+            transform: translateZ(-100px);
+        }
+        /*左面*/
+        #box div:nth-child(3){
+            background: plum;
+            transform: translateX(-100px) rotateY(90deg);
+        }
+        /*右面*/
+        #box div:nth-child(4){
+            background: peru;
+            transform: translateX(100px) rotateY(90deg);
+        }
+        /*上面*/
+        #box div:nth-child(5){
+            background: palegoldenrod;
+            transform: translateY(-100px) rotateX(90deg);
+        }
+        /*下面*/
+        #box div:nth-child(6){
+            background: paleturquoise;
+            transform: translateY(100px) rotateX(90deg);
+        }
+        img{
+            width:200px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<input type="button" onclick="bianhuan()" value="点击"/>
+<div id="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+</div>
+
+<script type="text/javascript">
+
+    // 获取元素
+    var oDiv = document.querySelector('#box');
+    var x = 30;
+    var y = -60;
+    oDiv.onmousedown = function(ev){
+        var event = window.event || ev;
+        var disY = event.clientX - y;
+        var disX = event.clientY - x;
+
+        document.onmousemove = function(ev){
+            var event = window.event || ev;
+            // 计算偏移角度
+            x = event.clientY - disX;
+            y = event.clientX - disY;
+            oDiv.style.transform = 'perspective(800px) rotateY('+y+'deg) rotateX('+x+'deg)'
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        }
+        return false;
+    }
+function bianhuan(){
+    var x;
+    var y;
+    x=Math.random()*1000;
+    y=Math.random()*1000;
+//    alert(x+"=="+y)
+    oDiv.style.transition= "all 0.5s";
+    oDiv.style.transform = 'perspective(800px) rotateY('+y+3600+'deg) rotateX('+x+3600+'deg)'
+}
+</script>
+</body>
+</html>

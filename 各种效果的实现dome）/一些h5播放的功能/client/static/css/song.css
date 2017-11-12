@@ -1,0 +1,365 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 20px;
+    overflow-x: hidden;
+    background-color: #f8f8f8;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-color: #f8f8f8;
+    font-family:"Microsoft YaHei" !important;
+    color: #050505;
+    font-size: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+a{
+    color: #000;
+    text-decoration: none;
+}
+@media only screen and (min-width: 320px) {
+    html {
+        font-size: 17.0666666667px;
+    !important;
+    }
+}
+@media only screen and (min-width: 330px) {
+    html {
+        font-size: 17.6px;
+    !important;
+    }
+}
+@media only screen and (min-width: 340px) {
+    html {
+        font-size: 18.133333333px;
+    !important;
+    }
+}
+@media only screen and (min-width: 350px) {
+    html {
+        font-size: 18.666666667px;
+    !important;
+    }
+}
+@media only screen and (min-width: 360px) {
+    html {
+        font-size: 19.2px;
+    !important;
+    }
+}
+@media only screen and (min-width: 375px) {
+    html {
+        font-size: 20px;
+    !important;
+    }
+}
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 21.33333333px;
+    !important;
+    }
+}
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 22.08px;
+    !important;
+    }
+}
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 25.6px;
+    !important;
+    }
+}
+@media only screen and (min-width: 768px) {
+    html {
+        font-size: 40.96px;
+    !important;
+    }
+}
+/*头部*/
+.songHead{
+    width: 100%;
+    height: 3rem;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: none !important;
+    line-height: 3rem;
+    position: inherit;
+}
+.authorPhoto{
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 100%;
+    background: url("../image/authorPhotoBorder.png");
+    background-size: 100% 100%;
+    margin-top:0.2rem;
+}
+.authorPhoto img{
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-left: 0.225rem;
+    margin-top:0.15rem;
+    border-radius: 100%;
+}
+.authorName{
+    font-size: 0.8rem;
+    color: #fe5d3c;
+    margin-left: 0.5rem;
+}
+.fans{
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+}
+.fans img{
+    width: 0.9rem;
+    height: 0.9rem;
+}
+.fans span{
+    font-size: 0.6rem;
+}
+/*内容*/
+.mui-content{
+    width: 100%;
+    padding-top: 0.5rem !important;
+    background-color: #f8f8f8 !important;
+    position: relative;
+}
+.div{
+    width: 100%;
+    height: 3rem;
+    background-color: #FFFFFF;
+}
+#progress{
+    position: absolute;
+    top: 1.45rem;
+    left: 38.3%;
+
+}
+#progress {
+    z-index: 200;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+}
+.progress{
+    width: 4.2rem !important;
+    height: 4.2rem !important;
+    border-radius: 100%;
+}
+.playBg{
+    width: 96%;
+    height: 6.2rem;
+    overflow: hidden;
+    margin: auto;
+}
+.playBgPic{
+    width: 98%;
+    height: 6.2rem;
+    border-radius: 2px;
+    -moz-filter: blur(24px);
+    -webkit-filter: blur(24px);
+    -o-filter: blur(24px);
+    -ms-filter: blur(24px);
+    filter: blur(24px);
+}
+.play{
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 100%;
+    background: url("../image/playProgress.png");
+    background-size: 100% 100%;
+    margin:0.75rem auto;
+    position: absolute;
+    top: 0.8rem;
+    left: 39%;
+}
+.playPic{
+    width: 3.7rem;
+    height: 3.7rem;
+    border-radius: 100%;
+    margin-top: 0.2rem;
+    margin-left: 0.25rem;
+}
+.pauseIcon{
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    top: 1.35rem;
+    left: 1.35rem;
+    z-index: 999;
+}
+.hot{
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: left;
+}
+.hotContent{
+    width: 96%;
+    height: auto;
+    background-color: #FFFFFF;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content:space-around;
+    justify-content: space-around;
+    margin: auto;
+}
+.hotTitle{
+    display: inline-block;
+    width: 100%;
+    height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+}
+.hotDiv{
+    width: 5.6rem;
+    height: 8.5rem;
+
+}
+.hotContents{
+    width:5.6rem;
+    height: 5.6rem;
+    position: relative;
+}
+.hotPic{
+    width:5.6rem;
+    height: 5.6rem;
+    border: 2px;
+}
+.hotMesg{
+    width: 100%;
+    height: 2rem;
+    background:url("../image/hotMeng.png") ;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0;
+}
+.hotMesg img{
+    width: 0.5rem;
+    height: 0.5rem;
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0.5rem;
+}
+.hotMesg span{
+    font-size: 0.5rem;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: -0.2rem;
+    left: 1.25rem;
+}
+.hotDetail{
+    width: 4.9rem;
+    margin-left: 0.35rem;
+}
+.hotMusicName{
+    font-size: 0.6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.2;
+    margin-left: 0;
+}
+.hotMusicAuthor{
+    font-size: 0.55rem;
+    position: absolute;
+    bottom: -2.25rem;
+}
+.mui-bar-tab{
+    width: 100%;
+    height: 3rem !important;
+    background-color: #FFFFFF;
+    border-top: 0.5px solid #e2e2e2;
+}
+.startIcon{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: 0.25rem;
+    margin-left: 0.5rem;
+}
+.logo{
+    width: 6.35rem;
+    height: 0.75rem;
+    margin-top: 0.75rem;
+    margin-left: 0.5rem;
+}
+.container p{
+    font-size: 0.5rem;
+    color: #7b7b7b;
+    position: absolute;
+    left: 3.5rem;
+    bottom: -0.5rem;
+}
+.down{
+    width: 4rem;
+    height: 1.5rem;
+    background-color: #ffd400;
+    border: 2px;
+    font-size: 0.7rem;
+    text-align: center;
+    line-height: 1.5rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.75rem;
+}
+.lyric_con p.played{
+    display: none;
+}
+.lyric_con p.active{
+    color: black;
+}
+
+.lyric_con{
+    position: relative;
+    color: #fff;
+    font-size: 14px;
+    padding: 0px 50px ;
+    text-align: center;
+    height: 30px;
+}
+.lyric_txt{
+    width: 96%;
+    height: 30px;
+    margin: 2%;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-bottom-left-radius:2px;
+    border-bottom-right-radius: 2px;
+    font-size: 0.7rem;
+    overflow: hidden;
+}
+#lyric_txt{
+    position: absolute;
+    left: 0;
+    top:0;
+}
+/*弹出框*/
+.smallPic{
+    width: 168px;
+    height: auto;
+}
+.mui-popup-inner{
+    border-radius: 3px 3px 0 0;
+    background:rgba(255,255,255,1);
+}
+.mui-popup-title+.mui-popup-text{
+    font-size: 15px;
+    font-weight: bold;
+}
+.mui-popup-button{
+    color: #050505;
+    font-size: 12px;
+    background:rgba(255,255,255,1);
+}

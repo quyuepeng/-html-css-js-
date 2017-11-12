@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>排序测试</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            width: 100%;
+            font-size: 20px;
+        }
+        body{
+            width:100%;
+            height: 100%;
+        }
+        @media only screen and (min-width: 320px) {
+            html {
+                font-size: 17.0666666667px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 320px) and (max-width: 330px){
+            html {
+                font-size: 17.3333333333px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 331px) and (max-width: 340px){
+            html {
+                font-size: 17.8666666667px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 341px) and (max-width: 350px){
+            html {
+                font-size: 18.4px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 351px) and (max-width: 360px){
+            html {
+                font-size: 18.9333333333px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 361px) and (max-width: 375px){
+            html {
+                font-size: 19.4666666667px;
+            !important;
+            }
+        }
+        @media only screen and (min-width: 375px) {
+            html {
+                font-size: 20px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 376px) and (max-width: 380px){
+            html {
+                font-size: 19.26666666667px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 381px) and (max-width: 390px){
+            html {
+                font-size: 20.5333333333px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 391px) and (max-width: 400px){
+            html {
+                font-size: 21.0666666667px;
+            !important;
+            }
+        }
+        @media screen and (min-width: 401px) and (max-width: 414px){
+            html {
+                font-size: 22.08px;
+            !important;
+            }
+        }
+        @media only screen and (min-width: 480px) {
+            html {
+                font-size: 25.6px;
+            !important;
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            html {
+                font-size: 40.96px;
+            !important;
+            }
+        }
+        .div{
+            width: 80%;
+            height: 2rem;
+            background-color:plum;
+            border: 2px solid purple;
+            margin: 5px auto;
+            text-align: center;
+            line-height: 2rem;
+        }
+        .mySpan{
+            font-size: 1.25rem;
+            color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<div class='container' id="container"></div>
+<script src="js/jquery.js"></script>
+<script>
+    function autoDiv(){ //自动生成div
+        var container = document.getElementById("container");
+        for(var i = 0;i<30;i++ ){
+            container.innerHTML +="<div class='div'><span class='mySpan'>"+i+"</span></div>"
+        }
+    }
+    autoDiv();
+    $(function(){ //降序排列
+        var order = function(a,b){
+            return parseInt($(a).find(".mySpan").text() )> parseInt($(b).find(".mySpan").text()) ? -1 : 1;
+        };
+        var sortBySpan = function(sortBy){
+            var sortEle = $(".div").sort(sortBy);
+            $(".container").empty().append(sortEle);
+        };
+        sortBySpan(order);
+    });
+    var arr = new Array(11,20,45,110,3456,111,9);
+    function sortNumber(a, b)
+    {
+        return a - b
+    }
+    document.write(arr.sort(sortNumber))
+
+    Arr.sort(function(a, b){return a.Date() < b.Date()? 1 : -1})
+</script>
+</body>
+</html>

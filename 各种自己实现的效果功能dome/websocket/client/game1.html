@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .kuang{text-align: center;margin-top:200px;}
+        #mess{text-align: center}
+        .value{width: 200px;height:200px;border:1px solid;text-align: center;line-height: 200px;display: inline-block;}
+    </style>
+</head>
+<body>
+<input type="button" id="submit" value="链接"/>
+<div id="mess">正在连接...</div>
+<div class="kuang">
+    <div class="value" id="value1">我说话</div>
+    <div class="value" id="value2">测试实施</div>
+    <div class="value" id="value3">安安安</div>
+</div>
+<div id="closee">关闭</div>
+<script>
+    var mess = document.getElementById("mess");
+    var closee=document.getElementById("closee");
+    var ws;
+    var submit=document.getElementById("submit");
+    submit.onclick=function(){
+        if(window.WebSocket){
+            ws = new WebSocket('ws://localhost:8002');
+
+            ws.onopen = function(e){
+                console.log("连接服务器成功");
+                ws.send("game1");
+            }
+            ws.onclose = function(e){
+                console.log("服务器关闭");
+            }
+            ws.onerror = function(){
+                console.log("连接出错");
+            }
+
+            ws.onmessage = function(e){
+                mess.innerHTML = "连接成功"
+                document.querySelector(".kuang").onclick = function(e){
+                    var time = new Date();
+                    ws.send(time + "  game1点击了“" + e.target.innerHTML+"”");
+                }
+                alert(e.data)
+            }
+        }
+    }
+    closee.onclick=function(){
+        ws.close()
+    }
+</script>
+</body>
+</html>

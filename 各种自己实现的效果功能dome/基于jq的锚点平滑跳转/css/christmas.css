@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* CSS Document */
+
+.gray {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+/* reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p , form, fieldset, legend, input, button, textarea, th, td {
+    margin:0;
+    padding:0;    
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+fieldset, img {
+    border:0;
+}
+ul,li {
+    list-style:none;
+}
+body {
+    background: #f1f1f1;
+    color: #666;
+    font:12px/1.7 Helvetica,Arial,Tahoma,sans-serif,"\5B8B\4F53";
+}
+.row:after {
+    clear:both;
+    content:'\0020';
+    display:block;
+    height:0;    
+}
+.row {
+    zoom:1;
+}
+/*链接颜色*/
+a,button{outline:none; /*移除虚线框  IE8,FF有用*/ hide-focus: expression(this.hideFocus=true); /*IE6、IE7*/}
+a{
+    color:#999;
+    text-decoration:none;
+}
+a:hover{
+    color:#be0000;
+    text-decoration: underline;
+}
+.fst{
+    font-family: "\5B8B\4F53";
+}
+h1,h2,h3,h4,h5,h6{font-family:\5FAE\8F6F\96C5\9ED1; font-size: 16px;}
+
+/* end reset */
+.row{
+    width:1000px;
+    margin:0 auto;
+}
+.mainpage{width: 1000px; height:1000px;}
+h2{font-size: 24px; text-align: center; color: #333; font-weight: bold;}
+.mainpage p{width: 650px; margin: 0 auto; color: #fff; font-size: 16px; padding: 50px 0 50px;}
+.mainpage1{background: #fe6400;}
+.mainpage2{background: #be0000;}
+.mainpage3{background: #ccc;}
+.mainpage4{background: #0093dd;}
+ *html{background-image:url(about:blank);background-attachment:fixed;}/*低版本浏览器防止抖动的，必须有*/
+#tbox{width:30px; height:200px; float:right; position:fixed;
+_position:absolute;
+_bottom:auto;
+_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+_margin-bottom:50px;
+}/*这个只能改宽高其他的不要修改，需要滚动的内容都要放在这个div里面*/
+.taoba{display:block; background:#c2c2c2; width:30px; height:30px; margin-bottom:4px;text-align: center; color: #fff; line-height: 30px; overflow: hidden;cursor:pointer}
+.taoba:hover{background:#ff4200; text-decoration: none; color: #fff;}
+#gotop{display:block; width:30px; height:30px; text-indent:-9999px; overflow: hidden; color: #fff; background:url(../images/top_icon.gif) no-repeat;  position:absolute; cursor:pointer} /*这个样式随便改，必须有position:absolute; */
+#gotop:hover{background-position: 0 -30px;}

@@ -1,0 +1,50 @@
+{
+	"index.html": {
+		"resources": [
+			"css/common.css",
+			"js/update.js",
+			"js/shortcut.js",
+			"js/immersed.js"
+		],
+		"refer": [
+			"plus/audio.html",
+			"plus/barcode.html",
+			"plus/camera.html",
+			"plus/device.html",
+			"plus/downloader.html",
+			"plus/events.html"
+		]
+	},
+	"plus/audio.html": {
+		"resources": [
+			"js/common.js",
+			"img/astop.png",
+			"img/arecord.png"
+		]
+	},
+	"plus/barcode.html": {
+		"resources": [
+			"img/barcode.png"
+		],
+		"refer": [
+			"plus/barcode_scan.html"
+		]
+	},
+	"plus/camera.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/immersed.js"
+		],
+		"refer": [
+			"plus/camera_video.html"
+		]
+	},
+	"plus/device.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/immersed.js"
+		]
+	}
+}

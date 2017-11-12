@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>活动demo</title>
+    <link rel="stylesheet" href="static/css/mui.min.css"/>
+    <link rel="stylesheet" href="static/css/activity.css"/>
+    <style>
+        .mui-bar{
+            background-color: #FFD200;
+            box-shadow: 0 0 0 0 #FFFFFF;
+        }
+        .mui-title{
+            color: #050505;
+            font-weight: bold;
+        }
+        .mui-icon-left-nav{
+            color: #050505;
+        }
+        .listContent{
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+        }
+        .list{
+            width: 100%;
+            height: 8rem;
+            border-bottom: 1px solid lightgray;
+            position: relative;
+            padding: 0 15px;
+        }
+        .list img{
+            width: 100%;
+            height: 5rem;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+        }
+        .list p{
+            width: 100%;
+            font-size: 0.7rem;
+            color: #050505;
+            margin-bottom: 0;
+        }
+        .list span{
+            font-size: 0.6rem;
+            color: grey;
+            position: absolute;
+            bottom: 5px;
+        }
+        .smallPic{
+            width: 168px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">活动列表</h1>
+    </header>
+    <div class="mui-content">
+       <div class="listContent" id="listContent"></div>
+    </div>
+</div>
+<script src="static/js/jquery.js"></script>
+<script src="static/js/mui.min.js"></script>
+<script>
+    var listContent = document.getElementById("listContent");
+    var i;
+    function listcontent(){
+        for(i = 0; i<= 7;i++){
+            listContent.innerHTML += "<div class='list'>"
+            +"<img src='static/image/bg.jpg' alt=''/>"
+            +"<p>2016年1月22日</p>"
+            +"<span>12345人参与</span>"
+            +"</div>"
+        }
+    }listcontent();
+    var elem = document.getElementsByClassName("list");
+    for(var j = 0; j <= i; j++) {
+        (function (w) {
+            elem[w].onclick = function () {
+                var btnArray = ['残忍拒绝', '确定'];
+                mui.confirm('收听更多歌曲请下载你说app', '<img src="static/image/smallPic.png" class="smallPic">', btnArray, function (e) {
+                    if (e.index == 0) {
+                    } else {
+                        window.location.href = 'http://fir.im/8pe5';
+                    }
+                })
+            };
+        })(j);
+    }
+</script>
+</body>
+</html>

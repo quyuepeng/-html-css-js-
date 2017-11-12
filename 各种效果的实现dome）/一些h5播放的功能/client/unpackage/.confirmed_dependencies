@@ -1,0 +1,23 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"image/backIcon.png",
+			"image/smallPhoto.png",
+			"image/playBigIcon.png",
+			"image/pauseBigIcon.png",
+			"image/barBtn.png",
+			"image/mesgBg.png",
+			"image/fans.png",
+			"image/lyricBgClose.png",
+			"image/openIcon.png",
+			"image/comment.png",
+			"image/closeIcon.png",
+			"image/authorTouxiangkuang.png",
+			"image/logo.png",
+			"image/downLoad.png"
+		]
+	}
+}

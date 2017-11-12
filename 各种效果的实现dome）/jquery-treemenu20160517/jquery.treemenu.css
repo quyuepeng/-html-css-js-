@@ -1,0 +1,24 @@
+/* For treemenu.js */
+
+.treemenu li { list-style: none; }
+
+.treemenu .toggler {
+    cursor: pointer;
+}
+
+.treemenu .toggler:before {
+    display: inline-block;
+    margin-right: 2pt;
+}
+.treemenu{
+    padding-left: 0 !important;
+    width: 200px !important;
+    height: auto;
+    background-color: plum;
+    border-radius: 0;
+}
+
+li.tree-empty > .toggler { color: #aaa; }
+li.tree-empty > .toggler:before { content: "\2212"; }
+li.tree-closed > .toggler:before { content: "+"; }
+li.tree-opened > .toggler:before { content: "\2212"; }

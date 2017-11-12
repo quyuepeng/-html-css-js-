@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    function a() {
+        this.fieldA = "I'm a field";
+        var privateFieldA = "I'm a var";
+        return privateFieldA
+    }
+    a.prototype.ExtendMethod = function(str) {
+        alert(str + " : " + this.fieldA);
+        alert(privateFieldA);   //www.111cn.net出错
+    };
+    var b = new a();
+    b.ExtendMethod("From prototype");
+//    var b=a();
+//    console.log(b)
+</script>
+</html>

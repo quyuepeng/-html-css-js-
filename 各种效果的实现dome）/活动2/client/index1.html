@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="static/css/mui.min.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <title>活动</title>
+</head>
+<body>
+<div id="main" class="mui-content">
+    <div class="banner">
+        <img class="bannerBg" src="static/image/dibai.jpg" alt=""/>
+        <div class="joinInfo joinWay">
+            <p class="joinTitle">参与方式</p>
+            <div>录下一段你想说的话，可以是一个段子，可以念一首小诗，也可以说一句口诀，我们将赋予你所提供的的语音创作一首有伴奏和旋律的音乐，让你的语音变得生动起来。</div>
+        </div>
+        <div class="joinInfo joinTime">
+            <span class="joinTitle">参与时间</span>
+            <span>2017年1月13日00:00-1月17日24:00</span>
+        </div>
+    </div>
+    <div class="tab">
+        <div class="tabs tabs1" onclick="clickPic()">
+            TOP30
+        </div>
+        <div class="tabs tabs2"  onclick="clickDiv()">
+            NEW30
+        </div>
+    </div>
+    <ul class="mui-table-view" id="picList"></ul>
+    <ul class="mui-table-view" id="divList" style="display: none"></ul>
+    <div class="joinBtn" onClick="ToSignUp()"><span>立即<br>参与</span></div>
+</div>
+
+<script src="static/js/mui.min.js"></script>
+<script src="static/js/jquery.js"></script>
+<script>
+    var picList = document.getElementById("picList");
+    var divList = document.getElementById("divList");
+    var tabs1 = document.getElementsByClassName("tabs1")[0];
+    var tabs2 = document.getElementsByClassName("tabs2")[0];
+    var audio = document.getElementsByClassName("audio");
+    var playAudio = document.getElementsByClassName("Play");
+    var songSize = 30;
+
+//    var token = window.demo.getToken();
+
+    var token = 1;
+
+    function ToSignUp(){
+        if(token == ""){
+            alert("请先登录");
+            window.location.href="javascript:demo.jumpToLogin()";
+        }else{
+            window.location.href="joinActivity.html";
+        }
+    }
+
+//    var activity_id = window.demo.getActivityId();
+    var activity_id=1
+
+    function parseURL(url) {
+        var a =  document.createElement('a');
+        a.href = url;
+        return {
+            source: url,
+            protocol: a.protocol.replace(':',''),
+            host: a.hostname,
+            port: a.port,
+            query: a.search,
+            params: (function(){
+                var ret = {},
+                        seg = a.search.replace(/^\?/,'').split('&'),
+                        len = seg.length, i = 0, s;
+                for (;i<len;i++) {
+                    if (!seg[i]) { continue; }
+                    s = seg[i].split('=');
+                    ret[s[0]] = s[1];
+                }
+                return ret;
+            })(),
+            file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+            hash: a.hash.replace('#',''),
+            path: a.pathname.replace(/^([^\/])/,'/$1'),
+            relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+            segments: a.pathname.replace(/^\//,'').split('/')
+        };
+    }
+    url = parseURL(location.href);
+    var activity_detail_hot_api_url = 'http://' + url.host + ':' + url.port + '/api/activity/song/hot?activityId=' + activity_id+'&page=1&size='+songSize;
+
+    window.onload = function()
+    {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                respHotData = JSON.parse(xmlhttp.responseText);
+//                alert("respHotData:"+respHotData)
+//                alert("respHotData['status']: "+respHotData['status']);
+                if (0 == respHotData['status']){
+                   activityHotDetail = (respHotData['data']['songs']);
+//                    alert(activityHotDetail);
+                    function autoPic(activityHotDetail){
+                        for(var x=0;x<songSize;x++){
+                        picList.innerHTML += '<div class="rankingContent">'
+                        +'<audio src='+activityHotDetail['songUrl']+' class="audio"></audio>'
+                        +'<div class="rankingList">'
+                        +'<div class="rankingNumber"><img src="" alt=""/>'+(x+1)+'</div>'
+                        +'<div class="contentDetail">'
+                        +'<div class="songPic"><img src='+activityHotDetail['portrait']+' alt=""/></div>'
+                        +'<p class="songName">'+activityHotDetail['songName']+'</p>'
+                        +'<p class="author">'+activityHotDetail['userName']+'</p>'
+                        +'<div class="listenAndComment">'
+                        +'<img src="" alt=""/>'
+                        +'<span></span>'
+                        +'<img src="" alt=""/>'
+                        +'<span></span>'
+                        +'</div>'
+                        +'<div class="playBtn">'
+                        +'<img src="static/image/pauseIcon.png" alt="" class="play"/>'
+                        +'</div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</div>';
+
+
+//                            $(".play").toggle(function () {
+//                                        for(var j=0;j<i;j++){
+//                                            if(playAudio[j]== this){
+//                                                playAudio[j].src="static/image/playIconHot.png";
+//                                                audio[j].play();
+//                                            }else{
+//                                                playAudio[j].src="static/image/pauseIconHot.png";
+//                                                audio[j].pause();
+//                                            }
+//                                        }
+//                                    },function(){
+//                                        for(var j=0;j<i;j++){
+//                                            if(playAudio[j]== this){
+//                                                playAudio[j].src="static/image/pauseIconHot.png";
+//                                                audio[j].pause();
+//                                            }
+//                                        }
+//                                    }
+//                            );
+                        }
+                    }autoPic(activityHotDetail);
+                }else{
+                    document.getElementById("picList").innerHTML="TOP暂时没有排名哦！"
+                }
+            }
+        };
+        xmlhttp.open("GET",activity_detail_hot_api_url,true);
+        xmlhttp.send();
+    };
+
+    var activity_detail_new_api_url = 'http://' + url.host + ':' + url.port + '/api/activity/song?activityId=' + activity_id+'&page=1&size='+songSize;
+    function newContent(){
+        var http;
+        if (window.XMLHttpRequest) {
+            http = new XMLHttpRequest();
+        } else {
+            http = new ActiveXObject("Microsoft.XmlHttp");//IE
+        }
+        http.open("GET", activity_detail_new_api_url, true);
+        http.send();
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                respNewData = JSON.parse(http.responseText);
+                if (0 == respNewData['status']){
+                    var activityNewDetail = (respNewData['data']['songs']);
+                    function autoDiv(){
+                        for(var y=0;y<songSize;y++){
+                            divList.innerHTML +='<div class="rankingContent">'
+                            +'<audio src='+activityNewDetail['songUrl']+' class="audio"></audio>'
+                            +'<div class="rankingList">'
+                            +'<div class="rankingNumber"><img src="" alt=""/>'+(y+1)+'</div>'
+                            +'<div class="contentDetail">'
+                            +'<div class="songPic"><img src='+activityNewDetail['portrait']+' alt=""/></div>'
+                            +'<p class="songName">'+activityNewDetail['songName']+' </p>'
+                            +'<p class="author">'+activityNewDetail['userName']+' </p>'
+                            +'<div class="listenAndComment">'
+                            +'<img src="" alt=""/>'
+                            +'<span></span>'
+                            +'<img src="" alt=""/>'
+                            +'<span></span>'
+                            +'</div>'
+                            +'<div class="playBtn">'
+                            +'<img src="static/image/pauseIcon.png" alt="" class="play"/>'
+                            +'</div>'
+                            +'</div>'
+                            +'</div>'
+                            +'</div>';
+
+//                            $(".play").toggle(function () {
+//                                        for(var j=0;j<i;j++){
+//                                            if(playAudio[j]== this){
+//                                                playAudio[j].src="static/image/playIconHot.png";
+//                                                audio[j].play();
+//                                            }else{
+//                                                playAudio[j].src="static/image/pauseIconHot.png";
+//                                                audio[j].pause();
+//                                            }
+//                                        }
+//                                    },function(){
+//                                        for(var j=0;j<i;j++){
+//                                            if(playAudio[j]== this){
+//                                                playAudio[j].src="static/image/pauseIconHot.png";
+//                                                audio[j].pause();
+//                                            }
+//                                        }
+//                                    }
+//                            );
+                        }
+                    }autoDiv();
+                }else{
+                    document.getElementById("divList").innerHTML="NEW暂时没有排名哦！"
+                }
+            }
+        }
+    }newContent();
+    function clickPic(){
+        divList.style.display = "none";
+        picList.style.display = "block";
+        tabs1.style.backgroundColor = "black";
+        tabs1.style.color = "white";
+        tabs2.style.backgroundColor = "lightgray";
+        tabs2.style.color = "black";
+    }
+    function clickDiv(){
+        divList.style.display = "block";
+        picList.style.display = "none";
+        tabs2.style.backgroundColor = "black";
+        tabs2.style.color = "white";
+        tabs1.style.backgroundColor = "lightgray";
+        tabs1.style.color = "black";
+    }
+</script>
+</body>
+</html>

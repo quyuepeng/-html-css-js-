@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>题目2</title>
+</head>
+<body>
+<div>请输入x，y，z</div>
+<input type="text" id="x" placeholder="输入完整的年份">
+<input type="text" id="y" placeholder="输入月份">
+<input type="text" id="z" placeholder="输入第几周">
+<div onclick="dateoutput()">确定输入</div>
+<div id="outputbox"></div>
+</body>
+<script type="text/javascript">
+    var x=document.getElementById("x");
+    var y=document.getElementById("y");
+    var z=document.getElementById("z");
+    var outputbox=document.getElementById("outputbox")
+    function dateoutput(){
+
+        var time= x.value+"-"+y.value+"-"+1;
+        var timefrist= new Date(time).getDay();
+//        判断是周几
+        var timedate;
+        var timeend;
+        if(timefrist==1){
+            timedate= (z.value-1)*7+1;
+            timeend= z.value*7;
+
+        }else if(timefrist==0){
+            timedate= (z.value-1)*7+2;
+            timeend= z.value*7+1;
+        }else{
+//            alert(timefrist)
+            timedate= (z.value-1)*7+9-timefrist;
+            timeend= z.value*7+8-timefrist;
+        }
+//        根据周几判断开始结束的日期
+        var qita=Number(y.value);
+//        根据不同的年月判断每月最后一周是否到下一月
+        if(qita==1||qita==3||qita==5||qita==7||qita==8||qita==10||qita==12){
+            if(timedate>31){
+                outputbox.innerHTML="本月没有这么多周，请输入正确!!!"
+            }else{
+                if(timeend>31){
+                    outputbox.innerHTML="本周一是："+x.value+"-"+y.value+"-"+timedate+"</br>"+
+                            "本周末是："+x.value+"-"+(Number(y.value)+1)+"-"+(timeend-31);
+                }else{
+                    outputbox.innerHTML="本周一是："+x.value+"-"+y.value+"-"+timedate+"</br>"+
+                            "本周末是："+x.value+"-"+y.value+"-"+timeend;
+                }
+            }
+
+        }else if(qita==4||qita==6||qita==9||qita==11){
+            if(timedate>30){
+                outputbox.innerHTML="本月没有这么多周，请输入正确!!!"
+            }else{
+                if(timeend>30){
+                    outputbox.innerHTML="本周一是："+x.value+"-"+y.value+"-"+timedate+"</br>"+
+                            "本周末是："+x.value+"-"+(Number(y.value)+1)+"-"+(timeend-30);
+                }else{
+                    outputbox.innerHTML="本周一是："+x.value+"-"+y.value+"-"+timedate+"</br>"+
+                            "本周末是："+x.value+"-"+y.value+"-"+timeend;
+                }
+            }
+        }else if(qita==2){
+            var year=Number(x.value);
+            //判断是不是瑞年
+                if((year%4==0 && year%100!=0) || year%400==0){
+//                    alert("是瑞年");
+                    if(timedate>29){
+                        outputbox.innerHTML="本月没有这么多周，请输入正确!!!"
+                    }else {
+                        if (timeend > 29) {
+                            outputbox.innerHTML = "本周一是：" + x.value + "-" + y.value + "-" + timedate + "</br>" +
+                                    "本周末是：" + x.value + "-" + (Number(y.value) + 1) + "-" + (timeend - 29);
+                        } else {
+                            outputbox.innerHTML = "本周一是：" + x.value + "-" + y.value + "-" + timedate + "</br>" +
+                                    "本周末是：" + x.value + "-" + y.value + "-" + timeend;
+                        }
+                    }
+
+                }else{
+//                    alert("是平年");
+                    if(timedate>30){
+                        outputbox.innerHTML="本月没有这么多周，请输入正确!!!"
+                    }else {
+                        if (timeend > 28) {
+                            outputbox.innerHTML = "本周一是：" + x.value + "-" + y.value + "-" + timedate + "</br>" +
+                                    "本周末是：" + x.value + "-" + (Number(y.value) + 1) + "-" + (timeend - 28);
+                        } else {
+                            outputbox.innerHTML = "本周一是：" + x.value + "-" + y.value + "-" + timedate + "</br>" +
+                                    "本周末是：" + x.value + "-" + y.value + "-" + timeend;
+                        }
+                    }
+                }
+        }else{
+            outputbox.innerHTML="所输入的月份不对";
+        }
+
+
+    }
+
+</script>
+</html>
+

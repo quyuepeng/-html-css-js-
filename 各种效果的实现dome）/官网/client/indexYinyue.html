@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>HTML5环形音乐播放器</title>
+  <link rel="stylesheet" href="static/css/style.css" media="screen" type="text/css" />
+</head>
+<body>
+  <div id="container">
+	<canvas id="progress" width="320" height="320"></canvas><!-- progress bar -->
+	<div id="player">
+		<audio id="audio" controls>
+			<source src="Hello.mp3" type="audio/mpeg" codecs="mp3"/>
+		</audio>
+		<img src="1.300.jpg"><!-- album cover -->
+		<label class="to-lyrics-label" for="to-lyrics"><i class="fa fa-caret-down fa-lg"></i></label>
+		<input type="checkbox" id="to-lyrics"><!-- lyrics toggle -->
+		<div class="cover">
+			<div class="controls">
+				<button id="backward" title="Backward"><i class="fa fa-retweet fa-lg"></i></button>
+				<button id="backward" title="Backward"><i class="fa fa-backward fa-2x"></i></button>
+				<button id="play-pause" title="Play" onclick="togglePlayPause()"><i class="fa fa-play fa-3x"></i></button>
+				<button id="forward" title="Forward"><i class="fa fa-forward fa-2x"></i></button>
+				<button id="backward" title="Backward"><i class="fa fa-random fa-lg"></i></button>
+				<!--<input id="volume" name="volume" min="0" max="1" step="0.1" type="range" onchange="setVolume()" />-->
+			</div><!-- #controls -->
+			<!--<div class="lyrics"></div>&lt;!&ndash; #lyrics &ndash;&gt;-->
+			<!--<p class="scroll">scroll down</p>-->
+		</div><!-- #cover -->
+	</div><!-- #player -->
+</div><!-- #container -->
+  <script src="static/js/index.js"></script>
+</body>
+</html>

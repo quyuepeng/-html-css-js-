@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>JS和Android交互</title>
+    <style>
+        button {
+            height: 36px;
+            width: 100%;
+            background: #98bf21;
+        }
+    </style>
+</head>
+<body>
+<p>JS和Android交互</p>
+<button onclick="invokeAppMethod()">JS调用App方法(不带参数)</button>
+<br/>
+<br/>
+<button onclick="sendInfoToJava()">JS调用App方法(带参数)</button>
+<script>
+    $(button).attr("disabled", true);
+            // 发送消息到Android客户端
+                       function sendInfoToJava() {
+            // 调用android程序中的方法，并传递参数
+                           var name = '我是JS';
+                            window.AndroidWebView.showInfoFromJs(name);
+                        }
+            // 直接调用Android客户端中的showInfoFromJs方法
+                        function invokeAppMethod() {
+                           window.AndroidWebView.showInfoFromJs();
+                        }
+            //在Android代码中调用此方法
+                       function showInfoFromApp(msg) {
+                           alert("来自App的信息：" + msg);
+                        }
+            // 在Android代码中调用此方法,不传递信息
+                        function showInfoFromApp() {
+                            alert("通过App调用JS");
+                        }
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>二级城市联动</title>
+</head>
+<body>
+<select id="sheng" onchange="changeCity()">
+    <option value="1">云南省</option>
+    <option value="2">四川省</option>
+    <option value="3">广东省</option>
+</select>
+<select id="shi">
+</select>
+<script type="text/javascript">
+    var sheng = document.getElementById("sheng");
+    var shi = document.getElementById("shi");
+//    document.body.removeChild(shi);
+
+    function changeCity(){
+        var action = sheng.value;
+        shi.length = 0;
+//        var selectNode = document.createElement("select");
+        var selectNode = shi;
+//        selectNode.setAttribute("id","shi");
+        if(action == 1){
+            //新增选项
+            var optionNode1 = document.createElement("option");
+            optionNode1.setAttribute("value","11");
+            var textNode1 = document.createTextNode("丽江");
+            optionNode1.appendChild(textNode1);
+            selectNode.appendChild(optionNode1);
+
+            var optionNode2 = document.createElement("option");
+            optionNode2.setAttribute("value","12");
+            var textNode2 = document.createTextNode("大理");
+            optionNode2.appendChild(textNode2);
+            selectNode.appendChild(optionNode2);
+        }else if(action == 2){
+            var arry = ["成都","绵阳","乐山","德阳","南充","泸州","内江","广元","宜宾","自贡","眉山","雅安","峨眉山","西昌","阿坝州","马尔康","攀枝花"];
+            for(var i = 0 ; i < arry.length ;i++){
+                var optionNode = document.createElement("option");
+                optionNode.setAttribute("value","2"+(i+1));
+                var textNode = document.createTextNode(arry[i]);
+                optionNode.appendChild(textNode);
+                selectNode.appendChild(optionNode);
+            }
+        }else if(action == 3 ){//innerHTML 添加内容
+            selectNode.innerHTML = "<option>广州</option>";
+        }
+        document.body.appendChild(selectNode);
+    }
+</script>
+</body>
+</html>

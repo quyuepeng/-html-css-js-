@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>空白边距叠加demo@Mr.Think</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 2px solid salmon;
+            float: left;
+            margin-left: 5px;
+            margin-top: 5px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 20px;
+        }
+        /*body{width:300px; font-family:'微软雅黑'; font-size:1em; text-indent:10px; line-height:1.25}*/
+        /*/!*div{background:#a40000;margin:10px}*!/*/
+        /*/!*div p{background:#eee;margin:15px}*!/*/
+        /*.test{*/
+            /*width: 100px;*/
+            /*height: 50px;*/
+            /*border: 2px dashed #000;*/
+            /*background-color: #FFE667;*/
+        /*}*/
+        /*p*{vertical-align:middle}*/
+    </style>
+</head>
+<body>
+<div>0</div>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+
+<!--<div><p>空白边距叠加demo@Mr.Think</p></div>-->
+<!--<div class="test">功能介绍</div>-->
+<!--<select id="selectId">-->
+    <!--<optgroup label="GROUP ONE">-->
+        <!--<option value="1">one select</option>-->
+        <!--<option value="2">two select</option>-->
+    <!--</optgroup>-->
+    <!--<optgroup label="GROUP TWO">-->
+        <!--<option value="3">three select</option>-->
+        <!--<option value="4">four select</option>-->
+    <!--</optgroup>-->
+<!--</select>-->
+<!--<p>我要的坚强<img src="image/battleBG.png" /></p>-->
+<script>
+//    function test(){
+//        var i=1;
+//        console.log(i);
+//        console.log(j);
+//        var j=2;
+//    }
+//    test();
+//    console.log(i);
+
+//function test(){
+//    let i=1;
+//    console.log(i);
+//    console.log(j);
+//    let j=2;
+//}
+//test();
+//console.log(i);
+//var elem = document.getElementsByTagName('div'); // 如果页面上有5个div
+//
+//for(var i = 0; i < elem.length; i++) {
+//    elem[i].onclick = function () {
+//        alert(i); // 总是5
+//    };
+//}
+var elem = document.getElementsByTagName('div'); // 如果页面上有5个div
+
+for(var i = 0; i < elem.length; i++) {
+    (function (w) {
+        elem[w].onclick = function () {
+            alert(w); // 依次为0,1,2,3,4
+        };
+    })(i);
+}
+</script>
+</body>
+</html>

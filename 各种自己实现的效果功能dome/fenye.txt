@@ -1,0 +1,98 @@
+//===============================生成分页===============
+
+var fenye={
+    addfenyecaidan:function(obj,ns){
+        $("#tablebutten").html("")
+
+        if(obj<=5){
+            for(var i=1;i<obj+1;i++){
+                $("#tablebutten").append("<a onclick=dianjifenye(this) class='numberyema' href='#"+i+"' id='number"+i+"'>"+i+"</a>")
+            }
+        }else if(obj>5){
+            if(ns==1||ns==obj){
+                $("#tablebutten").append("<div>跳转至</div> <input type='number' id='tiaozhu'> <a id='go' onclick=dianjifenye2()>Go</a>")
+                for(var i=1;i<3;i++){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+i+"' id='number"+i+"'>"+i+"</a>")
+                }
+                $("#tablebutten").append("<div> ...</div>")
+                for(var i=1;i>=0;i--){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(obj-i)+"' id='number"+(obj-i)+"'>"+(obj-i)+"</a>")
+                }
+            }else if(ns==2||ns==(obj-1)){
+                $("#tablebutten").append("<div>跳转至</div> <input type='number' id='tiaozhu'> <a id='go' onclick=dianjifenye2()>Go</a>")
+                for(var i=1;i<4;i++){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+i+"' id='number"+i+"'>"+i+"</a>")
+                }
+                $("#tablebutten").append("<div> ...</div>")
+                for(var i=2;i>=0;i--){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(obj-i)+"' id='number"+(obj-i)+"'>"+(obj-i)+"</a>")
+                }
+            }else if(ns==3){
+                $("#tablebutten").append("<div>跳转至</div> <input type='number' id='tiaozhu'> <a id='go' onclick=dianjifenye2()>Go</a>")
+                for(var i=1;i<3;i++){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+i+"' id='number"+i+"'>"+i+"</a>")
+                }
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+ns+"' id='number"+ns+"'>"+ns+"</a>")
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(ns+1)+"' id='number"+(ns+1)+"'>"+(ns+1)+"</a>")
+                $("#tablebutten").append("<div> ...</div>")
+                for(var i=2;i>=0;i--){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(obj-i)+"' id='number"+(obj-i)+"'>"+(obj-i)+"</a>")
+                }
+            }else if(ns==(obj-2)){
+                $("#tablebutten").append(" <div>跳转至</div> <input type='number' id='tiaozhu' > <a id='go' onclick=dianjifenye2()>Go</a>")
+                for(var i=1;i<3;i++){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+i+"' id='number"+i+"'>"+i+"</a>")
+                }
+                $("#tablebutten").append("<div> ...</div>")
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(ns-1)+"' id='number"+(ns-1)+"'>"+(ns-1)+"</a>")
+
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+ns+"' id='number"+ns+"'>"+ns+"</a>")
+
+                for(var i=1;i>=0;i--){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(obj-i)+"' id='number"+(obj-i)+"'>"+(obj-i)+"</a>")
+                }
+            }else{
+                $("#tablebutten").append(" <div>跳转至</div> <input type='number' id='tiaozhu'> <a id='go' onclick=dianjifenye2()>Go</a>")
+                for(var i=1;i<3;i++){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+i+"' id='number"+i+"'>"+i+"</a>")
+                }
+                $("#tablebutten").append("<div> ...</div>")
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(ns-1)+"' id='number"+(ns-1)+"'>"+(ns-1)+"</a>")
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+ns+"' id='number"+ns+"'>"+ns+"</a>")
+                $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(ns+1)+"' id='number"+(ns+1)+"'>"+(ns+1)+"</a>")
+                $("#tablebutten").append("<div> ...</div>")
+                for(var i=1;i>=0;i--){
+                    $("#tablebutten").append("<a onclick=dianjifenye(this) href='#"+(obj-i)+"' id='number"+(obj-i)+"'>"+(obj-i)+"</a>")
+                }
+            }
+
+
+        }
+        $("#number"+ns).css({"border":"1px solid #008855","backgroundColor":"#008855","color":"white"});
+    }
+}
+
+window.fenye=fenye;
+
+
+
+var nt=15;
+var nd=1;
+function ass(){
+    console.log("22222222222222");
+}
+//====点击执行====
+function dianjifenye(obj){
+
+    var a=obj.id.split("number");
+    nd=Number(a[1]);
+
+    fenye.addfenyecaidan(nt,nd);
+
+    ass();
+}
+function dianjifenye2(){
+    alert($("#tiaozhu").val())
+}
+
+fenye.addfenyecaidan(nt,nd);

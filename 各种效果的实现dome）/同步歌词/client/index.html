@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音乐播放器</title>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0
+	}
+	@font-face {font-family: 'iconfont';
+    src: url('font/iconfont.eot'); /* IE9*/
+    src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('font/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+	html,body{
+		height: 100%;
+		background: linear-gradient(top,#fb3737,#3323fd);
+		background: -moz-linear-gradient(top,#fb3737,#3323fd),-moz-linear-gradient(top,#fb3737,#3323fd);
+		background: -webkit-linear-gradient(top,#fb3737,#3323fd),-webkit-radial-gradient(ellipse,#fff,#fff);
+	}
+	.clear{}
+	.clear::after{
+		content: "";
+		display: block;
+		width: 100%;
+		height: 0;
+		clear: both;
+	}
+	.container{
+		position: absolute;
+		top:50%;
+		left: 50%;
+		margin-left: -400px;
+		margin-top: -300px;
+		width: 800px;
+		height: 600px;
+		/*border: 1px solid rgba(255,255,255,0.5);*/
+		box-shadow: 0 0 10px rgba(255,255,255,0.5);
+		background: linear-gradient(top,#fb4b4b,#3f3ffb);
+		background: -moz-linear-gradient(top,#fb4b4b,#3f3ffb);
+		background: -webkit-linear-gradient(top,#fb4b4b,#3f3ffb);
+	}
+	.music{
+		width: 50%;
+		height: 100%;
+		border-right: 1px solid rgba(255,255,255,0.5);
+		box-sizing: border-box;
+		float: left;
+	}
+	.photo{
+		width: 100%;
+	}
+	.photo_pic{
+		position: relative;
+		width: 250px;
+		height: 250px;
+		margin: 75px auto 0;
+		border-radius: 50%;
+		background: url(img/photo1.jpg);
+		box-shadow:0 0 2px #666, 0 0 10px #666;
+	}
+	.choose{
+		height:150px;
+	}
+	.choose_obj{
+		width: 50%;
+		float: left;
+		text-align: center;
+		color: #fff
+	}
+	.icon{
+		margin-top: 40px;
+		height: 50px;
+		font-size:50px;
+		line-height: 50px;
+		font-family: "iconfont";
+		cursor: pointer;
+		text-shadow: 2px 2px 0px #666;
+	}
+	.icon.yellow+span{
+		color: yellow;
+	}
+	.icon.pink+span{
+		color: #f7759f;
+	}
+	.choose_obj span{
+		display: block;
+		height: 30px;
+		line-height: 30px;
+		font-family: "微软雅黑";
+		font-size: 14px;
+	}
+	.cd{
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		top:50%;
+		left: 50%;
+		margin-top: -15px;
+		margin-left: -15px;
+		background: #666;
+		border: 10px solid #fff;
+		box-shadow: 0 0 1px #000;
+		border-radius: 50%;
+	}
+	.progress{
+		font-family: "iconfont"
+	}
+	.lyric{
+		width: 50%;
+		height: 100%;
+		float: right;
+	}
+	time{
+		font-size: 12px;
+		width: 49px;
+		text-align: center;
+		color: #fff;
+		height: 50px;
+		line-height: 50px;
+		float: left;
+	}
+	.progress_bar{
+		position: relative;
+		width: 300px;
+		height: 2px;
+		margin-top: 23px;
+		background-color: #fff;
+		float: left;
+		cursor: pointer;
+	}
+	.progress_cube{
+		position: absolute;
+		left: 0;
+		top: -5px;
+		width: 4px;
+		height: 4px;
+		background-color: #000;
+		border:5px solid #fff;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+	.progress_obj{
+		line-height: 30px;
+		color: #fff;
+	}
+	.ctrl_btn{
+		width: 99px;
+		float: left;
+	}
+	
+	.ctrl_btn .btn{
+		width: 33.3%;
+		float: left;
+		text-align: center;
+		cursor: pointer;
+	}
+	.play_btn{
+		font-size: 24px;
+	}
+	.ctrl_info{
+		width: 300px;
+		float: left;
+	}
+	.vol{
+		padding-left: 100px;
+		width: 100px;
+		height: 100%;
+		float: left;
+	}
+	.vol_bar{
+		position: relative;
+		width: 70px;
+		float: right;
+		height: 2px;
+		background-color: #fff;
+		margin-top: 13px;
+	}
+	.vol_cube{
+		position: absolute;
+		left: 0;
+		top: -4px;
+		width: 3px;
+		height: 3px;
+		background-color: #000;
+		border:4px solid #fff;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+	.list{
+		width: 100px;
+		height: 100%;
+		float: right;
+		text-align: center;
+	}
+	.lyric_tit{
+		height: 50px;
+		line-height: 50px;
+		color: #fff;
+		text-align: center;
+		font-weight: 700;
+		margin-top: 30px;
+	}
+	.lyric_con{
+		position: relative;
+		line-height: 40px;
+		color: #fff;
+		font-size: 14px;
+		padding: 0px 50px ;
+		text-align: center;
+		height: 450px;
+		overflow: hidden;
+		margin-top: 20px;		
+	}
+	#lyric_txt{
+		position: absolute;
+		left: 0;
+		top:0;
+		width: 100%;
+		height: 100%;
+	}
+	/*.lyric_con p.played{*/
+		/*color: yellow;*/
+	/*}*/
+	.lyric_con p.active{
+		color: yellow;
+		font-size: 20px;
+		font-weight: 700;
+	}
+	.audio{
+		display: none;
+	}
+	#list{
+		position: relative;
+		cursor: pointer;
+	}
+	#list_con{
+		position: absolute;
+		bottom: 30px;
+		right: 40px;
+		width: 150px;
+		height: 100px;
+		color: #666;
+		padding: 10px 0;
+		border-radius: 5px;
+		background: rgba(255,255,255,.8);
+		font-family: "微软雅黑";
+		font-size: 14px;
+		cursor: pointer;
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="container" id="container">
+		<div class="music">
+			<div class="photo">
+				<div class="photo_pic" id="photo_pic"><div class="cd"></div></div>
+				<div class="choose">
+					<div class="choose_obj choose_like" >
+						<div class="icon" id="icon1">
+							&#xe607;
+						</div>
+						<span>喜欢</span>
+					</div>
+					<div class="choose_obj choose_share">
+						<div class="icon" id="icon2">
+							&#xe675;
+						</div>
+						<span>收藏</span>
+					</div>
+				</div>
+			</div>
+			<div class="progress">
+				<div class="progress_obj clear">
+					<time>00:00</time>
+					<div class="progress_bar" id="progress_bar"><div class="progress_cube" id="progress_cube"></div></div>
+					<time>00:00</time>
+				</div>
+				<div class="progress_obj clear">
+					<div class="ctrl_btn">
+						<!--<div id="prev_btn" class="prev_btn btn">&#xe60d;</div>-->
+						<div id="play_btn" class="play_btn btn">&#xe60e;</div>
+						<!--<div id="next_btn" class="next_btn btn">&#xe60b;</div>-->
+					</div>
+					<div class="ctrl_info">
+						<div class="vol">&#xe979;<div class="vol_bar" id="vol_bar"><div class="vol_cube" id="vol_cube"></div></div></div>
+						<div class="list" id="list">&#xe908;<div id="list_con"><p>fffffffff</p><p>fffffffff</p><p>fffffffff</p></div></div>
+					</div>
+					<audio src="song/王菲-笑忘书.mp3"></audio>
+				</div>
+			</div>
+		</div>
+		<div class="lyric">
+			<div class="lyric_tit" id="lyric_tit"></div>
+			<div class="lyric_con" id="lyric_con"><div id="lyric_txt"></div></div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+//data
+var lyric=[{'name':"笑忘书",'img':'img/photo1.jpg','audio_src':'song/王菲-笑忘书.mp3','content':"[00:00.00][00:01.00]笑忘书(国)[00:03.00]王菲[00:05.00][00:12.00]没 没有蜡烛 就不用勉强庆祝[00:17.00]没 没想到答案 就不用寻找题目[00:23.00]没 没有退路 问我也不要思路[00:29.00]没 没人去仰慕 那我就继续忙碌[00:34.00]lalala 思前想后[00:37.00]差一点忘记了怎么投诉[00:40.00]lalala 从此以后 不要犯同一个错误[00:46.00]将这样的感触 写一封情书送给我自己[00:51.00]感动得要哭 很久没哭[00:54.00]不失为天大的幸福 将这一份礼物[00:59.00]这一封情书 给自己祝福[01:02.00]可以不在乎 才能对别人在乎[01:20.00]有 一点帮助 就可以对谁倾诉[01:26.00]有 一个人保护 就不用自我保护[01:32.00]有 一点满足 就准备如何结束[01:37.00]有 一点点领悟 就可以往后回顾01:43.00]lalala 思前想后[01:46.00]差一点忘记了怎么投诉[01:49.00]lalala 从此以后 不要犯同一个错误[01:54.00]将这样的感触 写一封情书送给我自己[01:59.00]感动得要哭 很久没哭[02:03.00]不失为天大的幸福 将这一份礼物[02:08.00]这一封情书 给自己祝福[02:11.00]可以不在乎 才能对别人在乎[02:43.00]Lalalala....... Lalalala.......[02:55.00]从开始哭着忌妒 变成了笑着羡慕[03:00.00]时间是怎么样把握了我皮肤[03:03.00]只有我自己最清楚[03:06.00]将这样的感触 写一封情书送给我自己[03:11.00]感动得要哭 很久没哭[03:15.00]不失为天大的幸福 将这一份礼物[03:19.00]这一封情书 给自己祝福[03:22.00]可以不在乎 才能对别人在乎[03:28.00]让我亲手 将这样的感触[03:31.00]写一封情书送给我自己[03:34.00]感动得要哭 很久没哭[03:37.00]不失为天大的幸福[03:39.00]就好好将这一份礼物[03:42.00]这一封情书 给自己祝福[03:45.00]可以不在乎 才能对别人在乎 "
+},{'name':"化身孤岛的鲸",'img':'img/photo2.jpg','audio_src':'song/李逸朗-化身孤岛的鲸.mp3','content':"[00:00.00] 化身孤岛的鲸[00:03.00] 作词：沃特艾文儿[00:06.00] 作曲：徐浩[00:09.00] 编曲：伍昊予[00:12.00] 演唱：李逸朗[00:15.00] Lrc By：吉时雨[00:18.00] QQ：132 7269 041[00:21.00] www.cnLyric.com [00:25.64] 我是只化身孤岛的蓝鲸[00:28.94] 有着最巨大的身影[00:33.46] 鱼虾在身侧穿行[00:37.23] 也有飞鸟在背上停[00:42.48] 我路过太多太美的奇景[00:45.85] 如同伊甸般的仙境[00:50.11] 而大海太平太静[00:53.96] 多少故事无人倾听[00:58.91] 我爱地中海的天晴[01:02.55] 爱西伯利亚的雪景[01:06.30] 爱万丈高空的鹰[01:08.59] 爱肚皮下的藻荇[01:10.94] 我在尽心尽力地多情[01:14.20] 直到那一天[01:20.11] 你的衣衫破旧[01:22.19] 而歌声却温柔[01:24.19] 陪我漫无目的地四处漂流[01:28.24] 我的背脊如荒丘[01:30.49] 而你却微笑摆首[01:32.91] 把它当成整个宇宙[01:37.24] 你与太阳挥手[01:39.13] 也同海鸥问候[01:41.25] 陪我爱天爱地的四处风流[01:45.13] 只是遗憾你终究[01:47.33] 无法躺在我胸口[01:49.78] 欣赏夜空最辽阔的不朽[01:53.71] 把星子放入眸[02:03.33] 我是只化身孤岛的蓝鲸[02:06.98] 有着最巨大的身影[02:10.96] 鱼虾在身侧穿行[02:15.06] 也有飞鸟在背上停[02:20.18] 我有着太冷太清的天性[02:23.90] 对天上的她动过情[02:27.95] 而云朵太远太轻[02:32.21] 辗转之后各安天命[02:36.50] 我未入过繁华之境[02:40.35] 未听过喧嚣的声音[02:44.05] 未见过太多生灵[02:46.24] 未有过滚烫心情[02:48.77] 所以也未觉大洋正中[02:52.58] 有多么安静[02:57.10] 你的衣衫破旧[02:59.02] 而歌声却温柔[03:01.18] 陪我漫无目的四处漂流[03:05.32] 我的背脊如荒丘[03:07.34] 而你却微笑摆首[03:10.16] 把它当成整个宇宙03:13.96] 你与太阳挥手[03:15.97] 也同海鸥问候[03:18.13] 陪我爱天爱地的四处风流[03:22.12] 只是遗憾你终究[03:24.20] 无法躺在我胸口[03:27.06] 欣赏夜空最辽阔的不朽[03:30.54] 把星子放入眸[03:34.73] 你的指尖轻柔[03:36.91] 抚摸过我所有[03:39.15] 风浪冲撞出的丑陋疮口[03:43.03] 你眼中有春与秋[03:45.40] 胜过我见过爱过[03:47.78] 的一切山川与河流[03:51.98] 曾以为我肩头[03:53.90] 是那么的宽厚[03:55.92] 足够撑起海底那座琼楼[03:59.75] 而在你到来之后[04:02.09] 它显得如此清瘦[04:04.55] 我想给你能奔跑的岸头[04:08.20] 让你如同王后"},{'name':"被驯服的象",'img':'img/photo3.jpg','audio_src':'song/蔡健雅-被驯服的象.mp3','content':"[00:00.00]被驯服的象[00:04.64]蔡健雅[00:09.74][00:22.46]到底要笑得多虚伪　才能够融入这世界[00:28.13]每个人的脸上都像是贴了张一样的假面[00:33.71]想不起我在做什么　想不起我在想什么[00:39.12]想不起灵魂深处　到底发生了什么[00:43.95]迷雾 迷雾 在迷雾　我惊觉自己在原地踏步[00:49.03]到底是谁把我心蒙住　不想再糊涂[00:54.63]迷路 迷路 迷了路　我就彻底被这团迷雾困住[00:59.92]谁能够指引我一条路　带我走上正途[01:07.94][01:16.94]装不出融入的态度　空气里充斥着虚无[01:22.68]说什么都掩饰不了我这局外人的局促[01:28.21]想不通自己怎么了　想不通世界怎么了[01:33.61]想不通心灵深处　到底变成什么了[01:38.30]迷雾 迷雾 在迷雾　我惊觉自己在原地踏步[01:43.54]到底是谁把我心蒙住　不想再糊涂[01:49.24]迷路 迷路 迷了路　我就彻底被这团迷雾困住[01:54.46]谁能够指引我一条路　带我走上正途[02:00.34]掌声 若需要掌声　只要你愿当被驯服的象[02:08.16]这舞台你就可以上　荣耀 胜过被嘲笑[02:15.60]所以抛开自尊　咬紧牙根硬撑[02:21.92]迷雾 迷雾 在迷雾　我惊觉自己在原地踏步[02:27.11]到底是谁把我心蒙住　不想再糊涂[02:32.89]迷路 迷路 迷了路　我就彻底被这团迷雾困住[02:38.08]谁能够指引我一条路　带我走上正途[02:44.13]迷路 迷路 迷了路　我就彻底被这团迷雾困住[02:48.94]谁能够指引我一条路　带我走上正途[02:59.51]"}]
+	window.onload=function()
+	{
+		var play_btn=document.getElementById("play_btn");
+		var prev_btn=document.getElementById("prev_btn");
+		var next_btn=document.getElementById("next_btn");
+		var audio=document.getElementsByTagName("audio")[0];
+		var initTime=document.getElementsByTagName("time")[0];
+		var time=document.getElementsByTagName("time")[1];
+		var progress_bar=document.getElementById("progress_bar");
+		var progress_cube=document.getElementById("progress_cube");
+		var vol_bar=document.getElementById("vol_bar");
+		var vol_cube=document.getElementById("vol_cube");
+		var lyric_con=document.getElementById("lyric_con");
+		var lyric_txt=document.getElementById("lyric_txt");
+		var photo_pic=document.getElementById("photo_pic");
+		var icon1=document.getElementById("icon1");
+		var icon2=document.getElementById("icon2");
+		var lyric_tit=document.getElementById("lyric_tit");
+		var list_con=document.getElementById("list_con");
+		var list_item=list_con.getElementsByTagName("p");
+		var songIndex=0;
+		var container=document.getElementById("container");
+		var obj;		
+		function config()
+		{
+			this.play_mark=true;
+			this.duration=audio.duration;
+			this.play_btn="&#xe60e;";
+			this.vol=audio.volume;
+			this.timer=null;
+			this.rotateSum=0;
+			this.icon1=icon1.innerHTML;
+			this.icon2=icon2.innerHTML;
+			this.icon1_co=icon1.style.color;
+			this.endplay_btn="&#xe60c;";
+			this.endicon1=icon1.innerHTML;
+			this.endicon2="&#xe674;";
+		}
+
+		obj= new config();
+		//初始化总时长、音量等
+		function audioInit()
+		{
+			time.innerHTML=format(audio.duration);
+			audio.volume=0.5;
+			play_btn.innerHTML=obj.play_btn;
+			vol_cube.style.left=audio.volume*vol_bar.offsetWidth+"px";
+			lyric_tit.innerText=lyric[songIndex].name;
+			photo_pic.style.background="url("+lyric[songIndex].img+")";
+			audio.src=lyric[songIndex].audio_src;			
+			progress_cube.style.left=0;
+		}
+		audioInit();
+		//播放时间
+		audio.addEventListener("timeupdate",function()
+		{
+			playedTime();
+		})
+		function playedTime(){
+			if(audio.currentTime==audio.duration)
+			{
+				next_btn.onclick();
+				play_btn.onclick();
+			}
+			var n=audio.currentTime/audio.duration;
+			progress_cube.style.left=n*progress_bar.offsetWidth+"px";
+			initTime.innerHTML=format(audio.currentTime);
+			var id_num=parseInt(audio.currentTime);
+			var lyric_p=document.getElementsByTagName("p");
+			for(var i=0;i<lyric_p.length;i++)
+				{
+					lyric_p[i].index=i;
+				}
+			if(document.getElementById("lyric"+id_num))
+			{				
+				var obj=document.getElementById("lyric"+id_num);
+				for(var i=0;i<obj.index;i++)
+				{
+					lyric_p[i].className="played";
+				}
+				for(var j=obj.index;j<lyric_p.length;j++)
+				{
+					lyric_p[j].className="";
+				}
+				obj.className="yellow active";				
+				lyric_txt.style.top=lyric_con.offsetHeight/20-obj.offsetTop+"px";
+			}
+		}
+		function format(time)
+		{
+			var time=parseInt(time);
+			var m=parseInt(time/60);
+			var s=parseInt(time%60);
+			m=zero(m);
+			s=zero(s);
+			function zero(num)
+			{
+				if(num<10)
+				{
+					num="0"+num;
+				}
+				return num;
+			}
+			return m+":"+s;
+		}
+		//点击播放
+		play_btn.onclick=function()
+		{
+			clearInterval(obj.timer);
+			if(obj.play_mark)
+			{
+				this.innerHTML=obj.endplay_btn;
+				audio.play();
+				obj.timer=setInterval(function()
+				{	obj.rotateSum=obj.rotateSum+1;
+					photo_pic.style.transform="rotate("+obj.rotateSum+"deg)";
+				},30)
+			}
+			else{
+				this.innerHTML=obj.play_btn;
+				audio.pause();
+			}
+			obj.play_mark=!obj.play_mark;
+		}
+		//歌词处理
+		function lyric_ctrl()
+		{
+			var lyricObj=lyric[songIndex].content;
+			var temp=lyricObj.split("[");
+			var html="";
+			for(var i=0;i<temp.length;i++)
+			{
+				var arr=temp[i].split("]");
+				var text=(arr[1]);
+				var time=arr[0].split(",");
+				var temp2=time[0].split(".");
+				var ms=temp2[1];//毫秒
+				var temp3=temp2[0].split(":");			
+				var s=temp3[1];//秒
+				var m=temp3[0];//分
+				var s_sum=parseInt(m*60)+parseInt(s);
+				if(text)
+				{
+					html+="<p id='lyric"+s_sum+"'>"+text+"</p>";
+				}	
+			}
+			lyric_txt.innerHTML=html;
+		}
+		lyric_ctrl();
+		function iconinit(){
+			icon1.className="icon";
+			icon1.innerHTML=obj.icon1;
+			icon1.style.color="#fff";
+			icon2.className="icon";
+			icon2.style.color="#fff";
+		}
+	}
+</script>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        #myimages{
+            height:600px;
+            width:1300px;
+        }
+        .myimage{
+            border:1px solid gray;
+            width:400px;
+            height:300px;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+<h1>图片分类</h1>
+<input type="text" name="pic" id="picType" onkeyup="getImages()">
+<input type="button" id="query" value="查询" onclick="getImages()">
+<label>总数量：</label><input style="width: 30px;" disabled type="text" value="0" id="counts">
+<lable>当前页：</lable><input style="width: 30px;" type="text" id="index" value="1">
+<label>总页数：</label><input style="width: 30px;" disabled type="text" value="0" id="pages">
+<input type="button" value="上一页" id="top" onclick="getTop()">
+<input type="button" value="下一页" id="next" onclick="getNext()">
+<div id="myimages">
+    <div class="myimage">
+        <img src="images/1.png" height="250px" width="300px">
+        <h2>风景</h2>
+    </div>
+</div>
+<script type="text/javascript">
+    var index = document.getElementById("index");
+    var counts = document.getElementById("counts");
+    var pages = document.getElementById("pages");
+    var nums = 2;//50;
+
+    function getTop(){
+        if(Number(index.value)){
+            if(index.value == 1){
+                alert("已经是首页了！");
+            }else if(index.value < 1){
+                alert("不能输入负数");
+            }else{
+                index.value = Number(index.value) - 1;
+                getImages();
+            }
+        }else{
+            alert("输入信息有误");
+            index.value = "";
+            return;
+        }
+    }
+    function getNext(){
+        if(Number(index.value)+1){
+//            alert("输入正确");
+            if(Number(index.value)+1 >= counts.value){
+                alert("无法跳转到下一页");
+            }else if( Number(index.value)+1 >=1 && Number(index.value)+1 < counts.value){
+//                alert("数字有效");
+                index.value = Number(index.value) + 1;
+                getImages();
+            }
+        }else{
+            alert("输入的信息有误");
+            index.value = "";
+        }
+    }
+    var picType = document.getElementById("picType");
+    picType.onfocus = function(){
+        picType.onkeydown = function(){
+            var e = window.envent||arguments[0];
+            if(e.keyCode == 13){
+                getImages();
+                picType.value = "";
+            }
+        }
+    }
+
+    window.onload = function(){
+        getImages();
+    }
+    function getImages(){
+        //一、创建ajax对象
+        var http;
+        if(window.XMLHttpRequest){
+            http = new XMLHttpRequest();//DOM浏览器
+        }else{
+            http = new ActiveXObject("Microsoft.XmlHttp");//IE浏览器
+        }
+        //二、配置ajax
+        /*
+        get请求
+        http.open("get","queryPic.do?type=1&&name='名称'",true);
+        http.send(null)
+        */
+        http.open("post","queryPic.do",true);//true 异步 false  同步（等待回调函数执行完了，再执行下一步）
+        http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        //三、回调函数
+        http.onreadystatechange = function(){
+            //回调函数会被执行三次 2,3,4
+            //八、获取数据库的值
+            if(http.readyState == 4 && http.status == 200){
+                var data = JSON.parse(http.responseText);
+                var imgs = document.getElementById("myimages");
+                imgs.innerHTML = "";
+                //九、根据数据库返回的值，操作HTML
+                for(var i=0;i<data.length;i++){
+                    imgs.innerHTML = imgs.innerHTML +
+                    "<div class='myimage'>" +
+                        "<img src='"+ data[i].url +"' height='250px' width='300px'>" +
+                        "<h2>"+data[i].t_name +"</h2>" +
+                    "</div>"
+                }
+                if(data.length >= 1){
+                    counts.value = data[0].counts;
+                    pages.value = Math.ceil(data[0].counts/nums);
+                }
+            }
+        };
+        //四、发送请求
+        var type = document.getElementById("picType");
+        //<li>asdads</li>
+        //li.innerHTML
+        console.log(type);
+        console.log(type.value);
+        http.send("picType="+type.value+"&&index="+index.value+"&&nums="+nums);
+    }
+</script>
+</body>
+</html>

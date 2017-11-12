@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<link href="jquery.treemenu.css" rel="stylesheet" type="text/css">
+<style>
+*{list-style:none;border:none;
+    padding: 0;
+    margin: 0;}
+body{font-family:Arial;background-color:#050505;}
+ul{
+    padding: 0;
+}
+/*.tree {  color:#46CFB0;width:800px;}*/
+/*.tree li,*/
+/*.tree li > a,*/
+/*.tree li > span {*/
+    /*padding: 4pt;*/
+    /*border-radius: 4px;*/
+/*}*/
+.tree{
+    width: 200px;
+    height: auto;
+    background-color: plum;
+    border-radius: 0;
+    color: #46CFB0;
+}
+.tree li{
+    width: 200px;
+    height: auto;
+    background-color: whitesmoke;
+}
+.tree li a {
+   color:#46CFB0;
+    text-decoration: none;
+    line-height: 20pt;
+    border-radius: 4px;
+}
+
+.tree li a:hover {
+    background-color: #34BC9D;
+    color: #fff;
+}
+
+.active {
+    background-color: #34495E;
+    color: white;
+}
+
+.active a {
+    color: #fff;
+}
+
+.tree li a.active:hover {
+    background-color: #34BC9D;
+}
+</style>
+</head>
+
+<body>
+<ul class="tree">
+  <li><a href="">首页</a></li>
+  <li><span>网站管理</span>
+    <ul>
+      <li><a href="#">公共管理</a>
+        <ul>
+          <li><a href="#">公共管理一</a></li>
+          <li><a href="#">公共管理二</a></li>
+          <li><a href="#">公共管理三</a></li>
+        </ul>
+      </li>
+      <li><a href="#">权限管理</a>
+        <ul>
+          <li><a href="#">权限管理一</a></li>
+          <li><a href="#">权限管理二</a></li>
+          <li><a href="#">权限管理三</a></li>
+        </ul>
+      </li>
+      <li><a href="#suits">其他</a></li>
+    </ul>
+  </li>
+  <li><a href="#about">关于我们</a>
+    <ul>
+      <li><a href="#">联系我们</a></li>
+      <li><a href="#">博客</a></li>
+      <li><a href="#">工作内容</a>
+        <ul>
+          <li><a href="#jobs1">工作内容一</a></li>
+          <li><a href="#jobs2">工作内容二</a></li>
+          <li><a href="#jobs3">工作内容三</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<script src="jquery-1.11.2.min.js"></script> 
+<script src="jquery.treemenu.js"></script> 
+<script>
+$(function(){
+        $(".tree").treemenu({delay:300}).openActive();
+    });
+</script>
+
+
+</body>
+</html>

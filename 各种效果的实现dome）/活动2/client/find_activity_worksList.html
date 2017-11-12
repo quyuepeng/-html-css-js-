@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="static/css/mui.min.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <title>活动</title>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav workListNav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">我的作品</h1>
+    <input type="submit" value="确定" class="makeSure mui-pull-right" />
+</header>
+<div class="mui-content">
+    <ul class=" mui-table-view-radio"></ul>
+    <!--<a href="javascript:demo.jumpToRecord()"><input  type="button" value="录音"/></a>-->
+    <div class="mui-content-padded">
+        <p id="info"></p>
+    </div>
+</div>
+<script src="static/js/mui.min.js"></script>
+<script src="static/js/jquery-1.7.2.min.js"></script>
+<script>
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+    for(var i=0;i<10;i++){
+        $(".mui-table-view-radio").html($(".mui-table-view-radio").html()+'<li class="mui-table-view-cell">'
+        +'<a class="mui-navigate-right">'
+        +'<div class="songImg">'
+        +'<img src="static/image/qq.jpg" alt=""/>'
+        +'<span class="listSongName">我的第一首鬼畜</span>'
+        +'<div class="listenAndComment">'
+        +'<img src="static/image/home_icon_listen.png" alt=""/>'
+        +'<span>1314</span>'
+        +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+        +'<span>520</span>'
+        +'</div>'
+        +'</div>'
+        +'</a>'
+        +'</li>')
+    }
+    var info = document.getElementById("info");
+    document.querySelector('.mui-table-view-radio').addEventListener('selected',function(e){
+        info.innerHTML = "当前选中的为："+e.detail.el.innerText;
+        $(".makeSure").click(function(){
+                alert("已经成功参加活动");
+            window.location.href = "index.html";
+        });
+        return true;
+    });
+</script>
+</body>
+</html>

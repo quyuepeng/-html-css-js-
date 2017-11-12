@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>排序</title>
+</head>
+<body>
+<div>
+    <center>
+        <input type="button" value="增加一行" onclick="addMyRow()"/>
+        <table width="100%" id="mybody" style="color: #FF9933; border-collapse: collapse;" border="1" bordercolor="#FF9933">
+            <tr>
+                <td class="index" align="center">序号</td>
+                <td class="name" align="center">名称</td>
+                <td class="area" align="center">展区</td>
+                <td class="qty" align="center">展位数</td>
+                <td class="operation" align="center">操作</td>
+            </tr>
+            <tr id="tr0">
+                <td align="center" class="index">1</td>
+                <!-- 名称 -->
+                <td><input type="text" id="name0" name="name0" class="name" /></td>
+                <!-- 展区 -->
+                <td><input type="text" id="area0" name="area0" class="area"/></td>
+                <!-- 展位数 -->
+                <td><input type="text" id="qty0" name="qty0" class="qty" /></td>
+                <!--操作-->
+                <td class="operation" align=center><a href="#;return false;" onclick="delMyRow(0)">删除</a></td>
+            </tr>
+        </table>
+    </center>
+</div>
+<script>
+    function addMyRow(){
+        var mytable = document.getElementById("mybody");
+        var len=mytable.rows.length;
+        var i=len-1;
+        var mytr = mytable.insertRow(len);
+        mytr.setAttribute("id","tr"+i);
+        var mytd_1=mytr.insertCell(0);
+        mytd_1.align='center';
+        //mytd_1.setAttribute("class","index");
+        var mytd_2=mytr.insertCell(1);
+        var mytd_3=mytr.insertCell(2);
+        var mytd_4=mytr.insertCell(3);
+        var mytd_5=mytr.insertCell(4);
+
+        mytd_1.innerHTML=len;
+        mytd_2.innerHTML="<input type='text' id='name"+i+"'"+" name='name"+i+"'/>";
+        mytd_3.innerHTML="<input type='text' id='area"+i+"' name='area"+i+"'/>";
+        mytd_4.innerHTML="<input type='text' id='qty"+i+"' name='qty"+i+"'/>";
+        mytd_5.innerHTML="<a href='#;return false;' onclick='delMyRow("+i+")'><font color='#FF9933'>删除</font></a>";
+    }
+
+    // <!--删除当前行,然后实现重排序-->
+    function delMyRow(j){
+        var mytable = document.getElementById("mybody");
+        var len=mytable.rows.length;
+        var myrow = document.getElementById("tr"+j);
+        if(document.getElementById('name'+j).value!=''){
+            if(window.confirm('确定删除这条数据吗？')){
+                mytable.deleteRow(myrow.rowIndex);
+            }else{  return false;}
+        }else{
+            mytable.deleteRow(myrow.rowIndex);
+        }
+        //<!--如果不是删除最后一行，先将后面行输入的数据保存-->
+        if(j<len-2){
+            var name=new Array([len-j-2]);
+            var area=new Array([len-j-2]);
+            var qty=new Array([len-j-2]);
+
+            var k=0;
+            for(var i=j+1;i<=len-2;i++){
+                name[k]=document.getElementById('name'+i).value;
+                area[k]=document.getElementById('area'+i).value;
+                qty[k]=document.getElementById('qty'+i).value;
+                mytable.deleteRow(document.getElementById("tr"+i).rowIndex);
+                k++;
+            }
+            //	<!--删除以后重排序。-->
+            var h=j;
+            for(var i=0;i<len-2-j;i++){
+                addMyRow();
+                document.getElementById('name'+h).value=name[i];
+                document.getElementById('area'+h).value=area[i];
+                document.getElementById('qty'+h).value=qty[i];
+                h++;
+            }
+        }
+    }
+</script>
+</body>
+</html>

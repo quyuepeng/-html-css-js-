@@ -1,0 +1,267 @@
+{
+	"data":{
+		"page":[
+			{
+				"data":[
+					{
+						"bannerId":2,
+						"createTime":"2017-09-12 10:32:47",
+						"extra":"",
+						"image":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/img/20170324031419_100000001_8ba0898bce0101344a7cfb7c9588aa11.png",
+						"type":"activity",
+						"updateTime":"2017-09-12 10:32:47",
+						"url":"https://www.baidu.com/"
+					},
+					{
+						"bannerId":3,
+						"createTime":"2017-09-12 10:32:47",
+						"extra":"",
+						"image":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/img/20170324031419_100000001_8ba0898bce0101344a7cfb7c9588aa11.png",
+						"type":"ad",
+						"updateTime":"2017-09-12 10:32:47",
+						"url":"https://www.baidu.com/"
+					},
+					{
+						"bannerId":4,
+						"createTime":"2017-09-12 10:32:47",
+						"extra":"",
+						"image":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/img/20170324031419_100000001_8ba0898bce0101344a7cfb7c9588aa11.png",
+						"type":"func",
+						"updateTime":"2017-09-12 10:32:47",
+						"url":"https://www.baidu.com/"
+					},
+					{
+						"bannerId":5,
+						"createTime":"2017-09-12 10:32:47",
+						"extra":"",
+						"image":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/img/20170324031419_100000001_8ba0898bce0101344a7cfb7c9588aa11.png",
+						"type":"activity",
+						"updateTime":"2017-09-12 10:32:47",
+						"url":"https://www.baidu.com/"
+					},
+					{
+						"bannerId":1,
+						"createTime":"2017-09-12 10:31:57",
+						"extra":"",
+						"image":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/img/20170324031419_100000001_8ba0898bce0101344a7cfb7c9588aa11.png",
+						"type":"ad",
+						"updateTime":"2017-09-12 10:31:57",
+						"url":"https://www.baidu.com/"
+					}
+				],
+				"type":"banner"
+			},
+			{
+				"data":[
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":4,
+						"commentCount":5,
+						"createTime":"2017-09-30 18:03:58",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":9,
+						"listenCount":24,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":1,
+						"songDuration":123,
+						"songId":6301615031389782041,
+						"songName":"机器人",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":3,
+						"commentCount":2,
+						"createTime":"2017-09-30 18:03:58",
+						"creativeType":"singer",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":6,
+						"listenCount":20,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":0,
+						"songDuration":123,
+						"songId":6301612227149430807,
+						"songName":"卖炸弹的小行家",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":3,
+						"commentCount":15,
+						"createTime":"2017-09-30 18:03:58",
+						"description":"rap测试",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":4,
+						"listenCount":27,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":1,
+						"songDuration":123,
+						"songId":6301616143085862939,
+						"songName":"rap接龙",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/img/default/user/head.png",
+							"userId":6298120536261519455,
+							"userName":"测试微信账号"
+						},
+						"collectCount":6,
+						"commentCount":21,
+						"createTime":"2017-09-30 18:03:58",
+						"creativeType":"free",
+						"description":"你要咋滴！",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":5,
+						"listenCount":684,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":0,
+						"songDuration":0,
+						"songId":6311077702094815237,
+						"songName":"带你潇洒带你嗨，来来来",
+						"songUrl":"",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":1,
+						"commentCount":5,
+						"createTime":"2017-09-30 18:03:58",
+						"creativeType":"free",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":4,
+						"listenCount":10,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":0,
+						"songDuration":123,
+						"songId":6301615211627413530,
+						"songName":"freeStyle",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":5,
+						"commentCount":6,
+						"createTime":"2017-09-30 18:03:58",
+						"creativeType":"singer",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":6,
+						"listenCount":31,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":0,
+						"songDuration":123,
+						"songId":6301612159738576918,
+						"songName":"卖炸弹的小行家",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":1,
+						"commentCount":0,
+						"createTime":"2017-09-30 18:03:58",
+						"creativeType":"free",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":1,
+						"listenCount":18,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":0,
+						"songDuration":123,
+						"songId":6301614196219969560,
+						"songName":"freeStyle",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					},
+					{
+						"author":{
+							"avatar":"http://xxx",
+							"userId":6298101404421974110,
+							"userName":"陈龙"
+						},
+						"collectCount":1,
+						"commentCount":5,
+						"createTime":"2017-09-30 18:03:58",
+						"creativeType":"singer",
+						"genre":"rap",
+						"image":"http://heipa2-test.oss-cn-shanghai.aliyuncs.com/image/6306745825087193139/20170927104210_8791c9b328e0568ebc09f659693b835f.jpg",
+						"likeCount":4,
+						"listenCount":19,
+						"recommendTags":[],
+						"recommendTime":"2017-09-30 18:03:58",
+						"shareCount":0,
+						"songDuration":123,
+						"songId":6301606723438247952,
+						"songName":"卖炸弹的小行家",
+						"songUrl":"http://heipa-storage.oss-cn-shanghai.aliyuncs.com/song/20170323182411_100000004_d593bb1601823be7d47ff4119f88755c.mp3",
+						"status":0,
+						"tags":[],
+						"type":"song"
+					}
+				],
+				"next":"RecommendationListSort201709301",
+				"type":"opus"
+			}
+		]
+	},
+	"errorCode":0,
+	"message":"OK"
+}
+
+
+

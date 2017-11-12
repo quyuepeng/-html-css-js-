@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="/static/css/mui.min.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <title>活动</title>
+</head>
+<body>
+<div id="main" class="mui-content">
+    <div class="banner">
+        <header class="mui-bar mui-bar-nav indexNav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">几句话说说你心目中的男神/女神</h1>
+            <img class="mui-icon shareBtn" src="static/image/found_icon_transpond.png" alt=""/>
+        </header>
+        <img class="bannerBg" src="/static/image/dibai.jpg" alt=""/>
+        <div class="joinInfo joinWay">
+            <div class="wayDiv"></div>
+            <span class="joinTitle">参与方式</span>
+            <div class="joinDetail">点击下方“立即参与”按钮，描述你心中崇拜的一个人，他/她可以是明星，也可以是你暗恋的对象，或者是你尊敬的领导等。</div>
+        </div>
+        <div class="joinInfo joinTime">
+            <div class="timeDiv"></div>
+            <span class="joinTitle">参与时间</span>
+            <span class="joinTimeSpan">1月13日00:00-1月17日24:00</span>
+            <a class="find_activity_detail" href="find_activity_detail.html">活动详情 <span class="mui-icon mui-icon-arrowright"></span></a>
+        </div>
+    </div>
+    <!--选项卡-->
+    <div class="tab">
+        <a style="color: #fad58e" class="tabs tabs1" href="javascript:">
+            TOP 30
+        </a>
+        <a style="color: #fad58e" class="tabs tabs2" href="javascript:">
+            NEW 30
+        </a>
+    </div>
+    <!--top 30-->
+    <div class="newAndTopList" id="newAndTopList">
+        <ul id="picList" >
+            <div id="topFirst"></div>
+            <div id="topSecond"></div>
+            <div id="topThird"></div>
+        </ul>
+    </div>
+    <!--new 30-->
+    <div class="newAndTopList">
+        <ul  id="divList" style="display: none"></ul>
+    </div>
+    <!--若没参加活动，则显示立即参加的按钮-->
+    <div id="ifJoin">
+        <input type="button" class="joinBtn" onClick="ToSignUp()"/>
+        <img class="joinBtnBg" src="/static/image/find_activity_join.png" alt=""/>
+    </div>
+    <!--若参加了活动，则显示排名-->
+    <!--<div class="find_author_ranking">-->
+        <!--<div class="author_portrait">-->
+            <!--<img src="/static/image/hh.jpeg" alt=""/>-->
+        <!--</div>-->
+        <!--<div class="competing_songName">-->
+            <!--<span class="mui-ellipsis">总有刁民想害朕总有刁民想害朕</span>-->
+        <!--</div>-->
+        <!--<div class="ranking_detail">-->
+            <!--<span class="ranking_detail_text">排名</span>-->
+            <!--<span class="ranking_detail_number">47</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="find_activity_meng"></div>
+    <div class="find_activity_share">
+        <h5>分享至</h5>
+        <ul>
+            <li class="activity_share_rapsay">
+                <img src="/static/image/found_activity_rapsay.png" alt=""/>
+                <span>你说</span>
+            </li>
+            <li class="activity_share_pengyouquan">
+                <img src="/static/image/found_activity_wechat02.png" alt=""/>
+                <span>朋友圈</span>
+            </li>
+            <li class="activity_share_weixin">
+                <img src="/static/image/found_activity_wechat.png" alt=""/>
+                <span>微信</span>
+            </li>
+            <li class="activity_share_QQ">
+                <img src="/static/image/found_activity_QQ.png" alt=""/>
+                <span>QQ</span>
+            </li>
+            <li class="activity_share_weibo">
+                <img src="/static/image/found_activity_weibo.png" alt=""/>
+                <span>微博</span>
+            </li>
+            <li class="activity_share_douban">
+                <img src="/static/image/found_activity_douban.png" alt=""/>
+                <span>豆瓣</span>
+            </li>
+            <li class="activity_share_zhihu">
+                <img src="/static/image/found_activity_zhihu.png" alt=""/>
+                <span>知乎</span>
+            </li>
+            <li class="activity_share_tieba">
+                <img src="/static/image/found_activity_tieba.png" alt=""/>
+                <span>贴吧</span>
+            </li>
+        </ul>
+        <img class="find_activity_close" src="/static/image/find_activity_close.png" alt=""/>
+    </div>
+</div>
+<script src="/static/js/mui.min.js"></script>
+<script src="/static/js/jquery-1.7.2.min.js"></script>
+<script>
+    $(".tabs1").click(function(e){
+        e.preventDefault();
+        $(this).css("backgroundColor","#141414");
+        $(".tabs2").css("backgroundColor","#282828");
+        $("#picList").show();
+        $("#divList").hide();
+    });
+    $(".tabs2").click(function(e){
+        e.preventDefault();
+        $(this).css("backgroundColor","#141414");
+        $(".tabs1").css("backgroundColor","#282828");
+        $("#picList").hide();
+        $("#divList").show();
+    });
+</script>
+<script src="/static/js/find_activity.js"></script>
+</body>
+</html>

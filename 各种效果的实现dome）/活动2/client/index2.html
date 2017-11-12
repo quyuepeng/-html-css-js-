@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="static/css/mui.min.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <title>活动</title>
+</head>
+<body>
+<div id="main" class="mui-content">
+    <div class="banner">
+        <img class="bannerBg" src="static/image/dibai.jpg" alt=""/>
+        <div class="joinInfo joinWay">
+            <div class="wayDiv"></div>
+            <p class="joinTitle">参与方式</p>
+            <div class="joinDetail">录下一段你想说的话，可以是一个段子，可以念一首小诗，也可以说一句口诀，我们将赋予你所提供的的语音创作一首有伴奏和旋律的音乐，让你的语音变得生动起来。</div>
+        </div>
+        <div class="joinInfo joinTime">
+            <div class="timeDiv"></div>
+            <span class="joinTitle">参与时间</span>
+            <span class="joinTimeSpan">2017年1月13日00:00-1月17日24:00</span>
+        </div>
+    </div>
+    <div class="tab">
+        <a class="tabs tabs1" href="index.html">
+            TOP 30
+        </a>
+        <a class="tabs tabs2" href="index2.html">
+            NEW 30
+        </a>
+    </div>
+    <!--<div class="newAndTopList" >-->
+        <!--<ul class="mui-table-view" id="picList" >-->
+            <!--<div id="topFirst"></div>-->
+            <!--<div id="topSecond"></div>-->
+            <!--<div id="topThird"></div>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <div class="newAndTopList">
+    <ul  id="divList">
+        <div id="newFirst"></div>
+        <div id="newSecond"></div>
+        <div id="newThird"></div>
+    </ul>
+    </div>
+    <div id="ifJoin">
+        <input type="button" class="joinBtn" onClick="ToSignUp()"/>
+        <img class="joinBtnBg" src="static/image/find_activity_join.png" alt=""/>
+    </div>
+</div>
+<script src="static/js/mui.min.js"></script>
+<script src="static/js/jquery-1.7.2.min.js"></script>
+<script>
+//    $(".tabs1").click(function(e){
+//        e.preventDefault();
+//        $("#picList").show();
+//        $("#divList").hide();
+//    })
+//    $(".tabs2").click(function(e){
+//        e.preventDefault();
+//        $("#picList").hide();
+//        $("#divList").show();
+//    })
+        var picList = document.getElementById("picList");
+        var divList = document.getElementById("divList");
+        var tabs1 = document.getElementsByClassName("tabs1")[0];
+        var tabs2 = document.getElementsByClassName("tabs2")[0];
+        var audio = document.getElementsByClassName("audio");
+        var audio2 = document.getElementsByClassName("audio2");
+        var playAudio = document.getElementsByClassName("play");
+        var playAudio2 = document.getElementsByClassName("newPlay");
+        var songSize = 10;
+        var j;
+    //    var token = window.demo.getToken();
+        var token = 1;
+        function ToSignUp(){
+            if(token == ""){
+                mui.alert('你还未登录哦，请先登录！', '<img src="static/image/smallPic.png" class="smallPic">', function () {
+                    window.location.href="javascript:demo.jumpToLogin()";
+                });
+            }else{
+                window.location.href="find_activity_worksList.html";
+            }
+        }
+    //    var x;
+    //    function autoPic(){ //TOP 30
+    //        var topFirst = document.getElementById("topFirst");
+    //            for(x=0;x<1;x++){
+    //                topFirst.innerHTML = '<div class="rankingContent">'
+    //                +'<audio src="static/Hello.mp3" class="audio"></audio>'
+    //                +'<div class="rankingList">'
+    //                +'<div class="rankingNumber"><img src="static/image/find_ranking_number1.png" alt=""/></div>'
+    //                +'<div class="contentDetail">'
+    //                +'<div class="songPic"><img src="static/image/qq.jpg" alt=""/></div>'
+    //                +'<p class="songName">总有刁民想害朕</p>'
+    //                +'<p class="author">菲姐传奇</p>'
+    //                +'<div class="listenAndCommentIndex">'
+    //                +'<img src="static/image/home_icon_listen.png" alt=""/>'
+    //                +'<span>9999</span>'
+    //                +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+    //                +'<span>99</span>'
+    //                +'</div>'
+    //                +'<div class="playBtn">'
+    //                +'<img src="static/image/find_activity_stop.png" alt="" class="play"/>'
+    //                +'</div>'
+    //                +'</div>'
+    //                +'</div>'
+    //                +'</div>'
+    //            }
+    //        var topSecond = document.getElementById("topSecond");
+    //        for(x=1;x<2;x++){
+    //            topSecond.innerHTML = '<div class="rankingContent">'
+    //            +'<audio src="static/Hello.mp3" class="audio"></audio>'
+    //            +'<div class="rankingList">'
+    //            +'<div class="rankingNumber"><img src="static/image/find_ranking_number2.png" alt=""/></div>'
+    //            +'<div class="contentDetail">'
+    //            +'<div class="songPic"><img src="static/image/qq.jpg" alt=""/></div>'
+    //            +'<p class="songName">总有刁民想害朕</p>'
+    //            +'<p class="author">菲姐传奇</p>'
+    //            +'<div class="listenAndCommentIndex">'
+    //            +'<img src="static/image/home_icon_listen.png" alt=""/>'
+    //            +'<span>9999</span>'
+    //            +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+    //            +'<span>99</span>'
+    //            +'</div>'
+    //            +'<div class="playBtn">'
+    //            +'<img src="static/image/find_activity_stop.png" alt="" class="play"/>'
+    //            +'</div>'
+    //            +'</div>'
+    //            +'</div>'
+    //            +'</div>'
+    //        }
+    //        var topThird = document.getElementById("topThird");
+    //        for(x=2;x<3;x++){
+    //            topThird.innerHTML = '<div class="rankingContent">'
+    //            +'<audio src="static/Hello.mp3" class="audio"></audio>'
+    //            +'<div class="rankingList">'
+    //            +'<div class="rankingNumber"><img src="static/image/find_ranking_number3.png" alt=""/></div>'
+    //            +'<div class="contentDetail">'
+    //            +'<div class="songPic"><img src="static/image/qq.jpg" alt=""/></div>'
+    //            +'<p class="songName">总有刁民想害朕</p>'
+    //            +'<p class="author">菲姐传奇</p>'
+    //            +'<div class="listenAndCommentIndex">'
+    //            +'<img src="static/image/home_icon_listen.png" alt=""/>'
+    //            +'<span>9999</span>'
+    //            +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+    //            +'<span>99</span>'
+    //            +'</div>'
+    //            +'<div class="playBtn">'
+    //            +'<img src="static/image/find_activity_stop.png" alt="" class="play"/>'
+    //            +'</div>'
+    //            +'</div>'
+    //            +'</div>'
+    //            +'</div>'
+    //        }
+    //        for(x=3;x<5;x++){
+    //            picList.innerHTML += '<div class="rankingContent">'
+    //            +'<audio src="static/Hello.mp3" class="audio"></audio>'
+    //            +'<div class="rankingList">'
+    //            +'<div class="rankingNumber">'+(x+1)+'</div>'
+    //            +'<div class="contentDetail">'
+    //            +'<div class="songPic"><img src="static/image/qq.jpg" alt=""/></div>'
+    //            +'<p class="songName">总有刁民想害朕</p>'
+    //            +'<p class="author">菲姐传奇</p>'
+    //            +'<div class="listenAndCommentIndex">'
+    //            +'<img src="static/image/home_icon_listen.png" alt=""/>'
+    //            +'<span>9999</span>'
+    //            +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+    //            +'<span>99</span>'
+    //            +'</div>'
+    //            +'<div class="playBtn">'
+    //            +'<img src="static/image/find_activity_stop.png" alt="" class="play"/>'
+    //            +'</div>'
+    //            +'</div>'
+    //            +'</div>'
+    //            +'</div>';
+    //            $(".play").toggle(function () {
+    //                for(j=0;j<x;j++){
+    //                    if(playAudio[j]== this){
+    //                        playAudio[j].src="static/image/find_activity_play.png";
+    //                        audio[j].play();
+    //                        }else{
+    //                            playAudio[j].src="static/image/find_activity_stop.png";
+    //                            audio[j].pause();
+    //                        }
+    //                    }
+    //                },function(){
+    //                    for(j=0;j<x;j++){
+    //                        if(playAudio[j]== this){
+    //                            playAudio[j].src="static/image/find_activity_stop.png";
+    //                            audio[j].pause();
+    //                        }
+    //                    }
+    //                }
+    //            );
+    //        }
+    //    }autoPic();
+        var y;
+        function autoDiv(){ // NEW 30
+            var newFirst = document.getElementById("newFirst");
+            for(y=0;y<1;y++){
+                newFirst.innerHTML = '<div class="rankingContent">'
+                +'<audio src="static/Hello.mp3" class="audio2"></audio>'
+                +'<div class="rankingList">'
+                +'<div class="rankingNumber"><img src="static/image/find_ranking_number1.png" alt=""/></div>'
+                +'<div class="contentDetail">'
+                +'<div class="songPic"><img src="static/image/hh.jpeg" alt=""/></div>'
+                +'<p class="songName">总有刁民想害朕</p>'
+                +'<p class="author">菲姐传奇</p>'
+                +'<div class="listenAndCommentIndex">'
+                +'<img src="static/image/home_icon_listen.png" alt=""/>'
+                +'<span>9999</span>'
+                +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+                +'<span>99</span>'
+                +'</div>'
+                +'<div class="playBtn">'
+                +'<img src="static/image/find_activity_stop.png" alt="" class="newPlay"/>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+            }
+            var newSecond = document.getElementById("newSecond");
+            for(y=1;y<2;y++){
+                newSecond.innerHTML = '<div class="rankingContent">'
+                +'<audio src="static/Hello.mp3" class="audio2"></audio>'
+                +'<div class="rankingList">'
+                +'<div class="rankingNumber"><img src="static/image/find_ranking_number2.png" alt=""/></div>'
+                +'<div class="contentDetail">'
+                +'<div class="songPic"><img src="static/image/hh.jpeg" alt=""/></div>'
+                +'<p class="songName">总有刁民想害朕</p>'
+                +'<p class="author">菲姐传奇</p>'
+                +'<div class="listenAndCommentIndex">'
+                +'<img src="static/image/home_icon_listen.png" alt=""/>'
+                +'<span>9999</span>'
+                +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+                +'<span>99</span>'
+                +'</div>'
+                +'<div class="playBtn">'
+                +'<img src="static/image/find_activity_stop.png" alt="" class="newPlay"/>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+            }
+            var newThird = document.getElementById("newThird");
+            for(y=2;y<3;y++){
+                newThird.innerHTML = '<div class="rankingContent">'
+                +'<audio src="static/Hello.mp3" class="audio2"></audio>'
+                +'<div class="rankingList">'
+                +'<div class="rankingNumber"><img src="static/image/find_ranking_number3.png" alt=""/></div>'
+                +'<div class="contentDetail">'
+                +'<div class="songPic"><img src="static/image/hh.jpeg" alt=""/></div>'
+                +'<p class="songName">总有刁民想害朕</p>'
+                +'<p class="author">菲姐传奇</p>'
+                +'<div class="listenAndCommentIndex">'
+                +'<img src="static/image/home_icon_listen.png" alt=""/>'
+                +'<span>9999</span>'
+                +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+                +'<span>99</span>'
+                +'</div>'
+                +'<div class="playBtn">'
+                +'<img src="static/image/find_activity_stop.png" alt="" class="newPlay"/>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+            }
+            for(y=3;y<5;y++){
+                divList.innerHTML +='<div class="rankingContent">'
+                +'<audio src="static/bye.mp3" class="audio2"></audio>'
+                +'<div class="rankingList">'
+                +'<div class="rankingNumber">'+(y+1)+'</div>'
+                +'<div class="contentDetail">'
+                +'<div class="songPic"><img src="static/image/hh.jpeg" alt=""/></div>'
+                +'<p class="songName">我的第一首鬼畜</p>'
+                +'<p class="author">德阳大胡子</p>'
+                +'<div class="listenAndCommentIndex">'
+                +'<img src="static/image/home_icon_listen.png" alt=""/>'
+                +'<span>99</span>'
+                +'<img src="static/image/home_icon_comment.png" alt="" class="commentImg"/>'
+                +'<span>9999</span>'
+                +'</div>'
+                +'<div class="playBtn">'
+                +'<img src="static/image/find_activity_stop.png" alt="" class="newPlay"/>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+                +'</div>';
+                $(".newPlay").toggle(function () {
+                    for(j=0;j<y;j++){
+                        if(playAudio2[j]== this){
+                            playAudio2[j].src="static/image/find_activity_play.png";
+                                audio2[j].play();
+                            }else{
+                                playAudio2[j].src="static/image/find_activity_stop.png";
+                                audio2[j].pause();
+                            }
+                        }
+                    },function(){
+                        for(j=0;j<y;j++){
+                            if(playAudio2[j]== this){
+                                playAudio2[j].src="static/image/find_activity_stop.png";
+                                audio2[j].pause();
+                            }
+                        }
+                    }
+                );
+            }
+        }autoDiv();
+</script>
+<script src="static/js/find_activity.js"></script>
+<script src="static/js/mui.pullToRefresh.js"></script>
+</body>
+</html>

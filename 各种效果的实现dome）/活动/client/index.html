@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>你说</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="static/css/mui.min.css">
+    <link rel="stylesheet" href="static/css/activity.css"/>
+    <style>
+        .mui-content{
+            background-color: white !important;
+        }
+        .mui-bar~.mui-content .mui-fullscreen {
+            top: 44px;
+            height: auto;
+        }
+        .text{
+            width: 100%;
+            height: 13rem;
+            position: absolute;
+            position: fixed;
+            text-align: center;
+            z-index: 999;
+        }
+        .mui-pull-bottom-tips {
+            text-align: center;
+            background-color: #efeff4;
+            font-size: 15px;
+            line-height: 40px;
+            color: #777;
+        }
+        .mui-slider-indicator.mui-segmented-control {
+            background-color: lightgrey;
+        }
+        .mui-segmented-control.mui-scroll-wrapper .mui-scroll{
+            width: 100%;
+        }
+        .mui-segmented-control.mui-scroll-wrapper .mui-scroll .mui-control-item{
+            width: 50%;
+        }
+        #sliderSegmentedControl{
+            position: absolute;
+            top: 13rem;
+        }
+        .mui-fullscreen .mui-segmented-control~.mui-slider-group{
+            position: absolute;
+            top: 14.5rem;
+        }
+        .list img{
+            width: 100%;
+            height: 6rem;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+        }
+        .list p{
+            width: 100%;
+            font-size: 0.7rem;
+            color: #050505;
+            margin-bottom: 0;
+        }
+        .list span{
+            font-size: 0.6rem;
+            color: grey;
+        }
+        .joinBtn{
+            margin: 4rem;
+            display: inline-block;
+            width: 5rem;
+            height: 1.5rem;
+            background-color: #007aff;
+            border-radius: 5px;
+            line-height: 1.5rem;
+            text-align: center;
+        }
+        .myWork div{
+            width: 96%;
+            margin: auto;
+        }
+        .mui-table-view .mui-active{
+            background-color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div class="mui-content">
+        <div id="slider" class="mui-slider mui-fullscreen">
+            <div class="text">
+                <h1>活动文字介绍</h1>
+                <a href="activityDetail.html" class="mui-pull-right" style="width: 100%">活动简介</a>
+                <input type="button" class="joinBtn" value="我要报名" style="background-color:#007aff;color:white" onClick="ToSignUp()"/>
+            </div>
+            <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                <div class="mui-scroll">
+                    <a class="mui-control-item mui-active" href="#item1mobile">
+                        TOP30
+                    </a>
+                    <a class="mui-control-item" href="#item2mobile">
+                        NEW30
+                    </a>
+                </div>
+            </div>
+            <div class="mui-slider-group">
+                <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+                    <div id="scroll1" class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <ul class="mui-table-view" id="picList">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="item2mobile" class="mui-slider-item mui-control-content">
+                    <div class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <ul class="mui-table-view" id="divList">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>
+<script src="static/js/jquery.js"></script>
+<script src="static/js/mui.min.js"></script>
+<script src="static/js/mui.pullToRefresh.js"></script>
+<script>
+function request_get(url, ok_fn, fail_fn) {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            respData = JSON.parse(xmlhttp.responseText);
+            ok_fn(args);
+        }
+
+        fail_fn(args);
+
+    }
+    xmlhttp.open("GET","http://10.0.0.200:8080/api/activity/activity_id=1",true);
+    xmlhttp.send();
+}
+//function is_valid_token(token) {
+//    return token != "";
+//}
+
+
+//var qq = window.hasOwnProperty('demo');
+//document.getElementById("myspan").innerHTML = qq;
+
+//var demo = window.demo;
+//var oy = demo.hasOwnProperty('getToken');
+//document.getElementById("myspan").innerHTML = oy;
+//
+//var token = window.demo.getToken();
+////document.getElementById("token1").innerHTML=token;
+//
+//function ToSignUp(){
+//    if(token == ""){
+//        alert("请先登录");
+//        window.location.href="javascript:demo.jumpToLogin()";
+//    }else{
+//        window.location.href="joinActivity.html";
+//    }
+//}
+function autoPic(){
+    var picList = document.getElementById("picList");
+    for(var x=0;x<5;x++){
+       picList.innerHTML += "<li class='mui-table-view-cell'>"
+       + "<div class='list'>"
+       + "<img src='static/image/bg.jpg' alt=''/>"
+       + "<p>2016年1月22日</p>"
+       + "<span>12345人参与</span>"
+       + "</div>"
+       + "</li>"
+    }
+}autoPic();
+function autoDiv(){
+   var divList = document.getElementById("divList");
+   for(var y=0;y<5;y++){
+       divList.innerHTML +="<li class='mui-table-view-cell'>"
+       +"<div class='listDiv'>"
+       +"<img class='mui-media-object mui-pull-left' src='static/image/muwu.jpg'>"
+       +"<div class='mui-media-body'>"
+       +"木屋"
+       +"<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>"
+       +"</div>"
+       +"</div>"
+       +"</li>"
+   }
+}autoDiv();
+mui.init();
+(function($) {
+   //阻尼系数
+   var deceleration = mui.os.ios?0.003:0.0009;
+   $('.mui-scroll-wrapper').scroll({
+       bounce: false,
+       indicators: true, //是否显示滚动条
+       deceleration:deceleration
+   });
+   $.ready(function() {
+      //循环初始化上拉加载。
+      $.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+          $(pullRefreshEl).pullToRefresh({
+               up: {
+                    callback: function(){
+                         var self = this;
+                         setTimeout(function() {
+                              var ul = self.element.querySelector('.mui-table-view');
+                              ul.appendChild(createFragment(ul, index, 5));
+//                            alert(ul.querySelectorAll('li').length)
+                              self.endPullUpToRefresh(ul.querySelectorAll('li').length>=30);
+//                            alert(ul.querySelectorAll('li').length>=30)
+                         }, 1000);
+                    }
+               }
+          });
+      });
+       var createFragment = function(ul, index, count) {
+           var length = ul.querySelectorAll('li').length;
+           var fragment = document.createDocumentFragment();
+           var li;
+           for (var i = 0; i < count; i++) {
+                li = document.createElement('li');
+                li.className = 'mui-table-view-cell';
+                if(index == 0){
+                     li.innerHTML = "<div class='list'>"
+                     +"<img src='static/image/img1.jpg' alt=''/>"
+                     +"<p>2016年1月22日</p>"
+                     +"<span>12345人参与</span>"
+                     +"</div>";
+                     fragment.appendChild(li);
+                }
+                if(index == 1){
+                     li.innerHTML =
+                     "<div class='listDiv'>"
+                     +"<img class='mui-media-object mui-pull-left' src='static/image/shuijiao.jpg'>"
+                     +"<div class='mui-media-body'>"
+                     +"木屋"
+                     +"<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>"
+                     +"</div>"
+                     +"</div>";
+                     fragment.appendChild(li);
+                }
+           }
+           return fragment;
+       };
+    });
+})(mui);
+</script>
+</body>
+</html>

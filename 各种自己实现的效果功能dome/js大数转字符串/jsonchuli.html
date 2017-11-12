@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+
+            var a = xmlhttp.responseText;
+            var test=longjson(a,8,'"songId"');
+            console.log(test)
+        }
+
+    }
+    xmlhttp.open("GET","aaa.txt",true);
+    xmlhttp.send();
+
+    function longjson(obj,number,text){
+        var a=obj;
+        var jsonlongnumerArry=[];
+        var panduan=false;
+        var jsonhave=[":",",",0,1,2,3,4,5,6,7,8,9,'"'];
+        var linshiarry="";
+        for(var i=0;i< a.length;i++){
+            if(panduan==false){
+                if(a[i]==':'){
+                    if(i-number<0){
+                    }else{
+                        var c="";
+                        for(var j=0;j<number;j++){
+                            c=c+a[i-number+j]
+                        }
+//                         c=a[i-8]+a[i-7]+a[i-6]+a[i-5]+a[i-4]+a[i-3]+a[i-2]+a[i-1];
+                        if(c==text){
+                            panduan=true;
+                        }
+                    }
+                }
+            }else if(panduan==true){
+                if(a[i]==","){
+                    panduan=false;
+                    jsonlongnumerArry.push(linshiarry);
+                    linshiarry="";
+                }else{
+                    linshiarry+=a[i];
+                }
+            }
+        }
+       return jsonlongnumerArry;
+    }
+
+</script>
+</html>

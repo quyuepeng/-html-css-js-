@@ -1,0 +1,158 @@
+*{
+	margin:0;
+	padding:0;}
+html{
+	font-size:16px;}
+.battle{
+	padding-top:3.75rem;
+	/*background-color:#fbfcfd;*/
+	background: url("../image/battleBG.png");
+	background-size: 100% 100%;
+}
+.battleman{
+	margin:0 auto;
+	width:19.25rem;}
+.battlemanid{
+	position:relative;
+	display:inline-block;
+	width:6.875rem;
+	vertical-align:top;}
+.battlemanimg{
+	width:5.625rem;
+	height:5.625rem;
+	margin:0 auto;
+	}
+.battlemanimg1{
+	width:100%;
+	height:100%;
+	border-radius:50%;}
+.controlicon{
+	background-color:rgba(51,51,51,0.6);
+	position:absolute;
+	text-align:center;
+	top:0;
+	height:5.625rem;
+	width:5.625rem;
+	border-radius:50%;}
+.controlicon img{
+	margin-top:1.8rem;
+	}
+.battlemanname{
+	font-size:1rem;
+	font-weight:bolder;
+	color:#d43c33;
+	text-align:center;
+	margin-top:0.875rem;}
+.battlemanintro{
+	font-size:0.625rem;
+	color:#FFF;
+	margin-top:0.375rem;
+	text-align:center;
+	line-height:1rem;}
+.vs{
+	display:inline-block;
+	width:3.75rem;
+	height:3.125rem;
+	vertical-align:top;
+	margin-top:1.5rem;
+	margin-left:0.375rem;
+	margin-right:0.375rem;}
+.vs img{
+	width:100%;
+	height:100%;}
+.score{
+	margin:0 auto;
+	padding-top:1rem;
+	width:19.5rem;
+	}
+.support{
+	display:inline-block;
+	width:2.5rem;
+	height:2.5rem;
+	padding-bottom:1.875rem;
+	}
+.support img{
+	width:100%;
+	height:100%;}
+.proportion{
+	display:inline-block;
+	height:0.375rem;
+	width:12.5rem;
+	border-radius:0.5rem;
+	vertical-align:top;
+	margin-top:1rem;
+	margin-left:0.5rem;
+	margin-right:0.5rem;
+	background-color:#333;}
+.proportions{
+	height:100%;
+	background-color:#d43c33;}
+.man{
+	font-size:1rem;
+	color:#FFF;
+	margin-top:0.5rem;}
+.man1{
+	display:inline-block;}
+.man2{
+	display:inline-block;
+	float:right;}
+.progressbar{
+	position:relative;
+	width:100%;
+	height:3.125rem;}
+#move{
+    background-color:#d43c33;
+	border-radius:50%;
+	width:1rem;
+	height:1rem;
+	border:none;
+}
+.lrc-title{
+	height:2.2rem;
+	text-align:center;
+	background-color:#f2f2f2;
+	-webkit-box-shadow:0 5px 5px #CCC;
+	box-shadow:0 5px 5px #CCC;
+	}
+/*waitbattleµÄcss*/
+.waitjoin{
+	border:1px solid #d43c33;
+	width:5rem;
+	height:1.875rem;
+	text-align:center;
+	margin-top:1rem;
+	margin-left:0.875rem;
+	border-radius:0.375rem;
+}
+.waitjoin p{
+	color:#d43c33;
+	font-size:1rem;
+	font-weight:bold;
+	padding-top:0.375rem;
+}
+@media screen and (max-width:350px) and (min-width:320px){
+	.battleman{
+		margin:0 auto;
+		width:17.25rem;}
+	.battlemanid{
+		width: 6rem;}
+	.vs{
+		width:3rem;
+		height:2.375rem;}
+	.battlemanimg{
+		width:5rem;
+		height:5rem;}
+	.controlicon{
+		height:5rem;
+		width:5rem;}
+	.controlicon img{
+		margin-top:1.6rem;}
+	.score{
+		width:17.5rem;}
+	.proportion{
+		width:10.5rem;}
+}
+
+
+
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery锚点带动画跳转特效 - 站长素材</title>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<link href="css/christmas.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+   $(".index_nav li a").click(function(event) { 
+      var index=this.title
+      var id='#'+'index_'+index
+     $("html,body").animate({scrollTop: $(id).offset().top}, 1000);
+   });
+   $(".taoba").click(function(event) { 
+      var index=this.title
+      var id='#'+'index_'+index
+     $("html,body").animate({scrollTop: $(id).offset().top}, 1000);
+   });
+   function a(x,y){
+    l = $('#main').offset().left;
+    w = $('#main').width();
+    $('#tbox').css('left',(l + w + x) + 'px');
+    $('#tbox').css('bottom',y + 'px');
+}//获取#tbox的div距浏览器底部和页面内容区域右侧的距离函数#main为页面的可视宽度
+$(function() {  
+    $(window).scroll(function(){
+    t = $(document).scrollTop();
+      $('#tbox').show();
+})   
+    a(10,100);//#tbox的div距浏览器底部和页面内容区域右侧的距离
+    $('#gotop').click(function(){ 
+        $('body,html').animate({
+            scrollTop: 0
+        },
+        800);//点击回到顶部按钮，缓懂回到顶部,数字越小越快
+        return false;  
+    })
+});
+  });
+</script>
+</head>
+<body>
+
+<div class="h50"></div>
+<div class="row" id="main">
+  <h2 id="index_1"></h2>
+
+  <div class="mainpage mainpage1">
+    </div>
+
+
+
+</div>
+<div class="h15"></div>
+<div class="row">
+  <h2 id="index_2"></h2>
+
+  <div class="mainpage mainpage2">
+
+    </div>
+
+
+
+</div>
+<div class="h15"></div>
+<div class="row">
+  <h2 id="index_3"></h2>
+
+  <div class="mainpage mainpage3">
+
+    </div>
+
+
+
+</div>
+<div class="h15"></div>
+<div class="row">
+  <h2 id="index_4"></h2>
+
+  <div class="mainpage mainpage4">
+
+    </div>
+
+
+
+</div>
+
+<div id="tbox"><!-- 这个必须有  id="tbox"-->
+    <a class="taoba" href="javascript:void(0)" title="1">1</a>
+    <a class="taoba" href="javascript:void(0)" title="2">2</a>
+    <a class="taoba" href="javascript:void(0)" title="3">3</a>
+    <a class="taoba" href="javascript:void(0)" title="4">4</a>
+    <a id="gotop" href="javascript:void(0)" title="回到顶部">回到顶部</a> <!-- 这个也是id="gotop"  -->
+</div>
+
+</body>
+</html>

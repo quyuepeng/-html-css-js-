@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../字体图标/css/font-awesome.css">
+    <title></title>
+</head>
+<style type="text/css">
+    #main{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        background-image: url("../image/背景.jpg");
+        background-size: 100%;
+        background-position: 10%;
+    }
+    #main>div:nth-child(2), #main>div:nth-child(3), #main>div:nth-child(4), #main>div:nth-child(5){
+        color:yellow ;
+        float: right;
+        margin-right:50px;
+        font-size: 24px;
+        margin-top: 40px;
+        cursor: pointer;
+    }
+    body{
+        margin: 0;
+        font-family: "微软雅黑";
+    }
+
+    #jifenpai{
+        color: yellow;
+        font-size: 50px;
+        position: fixed;
+        left: 50px;
+        top:20px;
+        z-index: 99;
+        height: 60px;
+        width:800px;
+        float: left;
+    }
+    .anniu{
+        height: 50px;
+        width: 160px;
+        background-color: #ffffff;
+        float: left;
+        box-shadow:0px 0px 0px 4px #86faff inset;
+        margin-left:60px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #000000;
+        line-height: 50px;
+        margin-top: 10px;
+    }
+    .anniu:active{
+        box-shadow:0px 0px 0px 6px #86faff inset;
+    }
+    #jieshukuang{
+        height: 300px;
+        width: 500px;
+        border: 10px solid #ffffff;
+        float: left;
+        position: absolute;
+        top: 120px;
+        left: 32%;
+        color: yellow;
+        font-size: 50px;
+        font-weight: 900;
+        text-align: center;
+        display: none;
+        z-index: 999;
+        background-color: #000000;
+    }
+
+</style>
+<body id="youxi">
+<div id="main">
+    <div id="jifenpai">
+        <div id="ss">分数：0&nbsp;命：10&nbsp;大招：4</div>
+    </div>
+    <div id="tuichu" onclick="likan()">退出游戏</div>
+    <div id="zhanti" onclick="zhanting()">暂停游戏</div>
+    <div id="bofang" onclick="bofang()"><i class="fa fa-volume-up"></i></div>
+    <div id="stop" onclick="stop()"><i class="fa fa-volume-off"></i></div>
+    <div id="jieshukuang"><p id="ying">您已经输了</p>
+        <div class="anniu" onclick="kaishiyouxi()">重新开始</div>
+        <div class="anniu" onclick="likan()">返回首页</div>
+    </div>
+    <audio  loop="loop" autoplay="autoplay" id="yingxue">
+        <source src="../music/七龙珠 - 龙珠 - 不可思议宇宙魔神 第一部主题曲.mp3" type="audio/mpeg" />
+        您的浏览器不支持 audio 标签。
+    </audio>
+    <audio preload="auto" id="baozha">
+        <source src="../music/Explo_媒介_激烈的_破裂_爱给网_2gei_com.wav" type="audio/mpeg" />
+        您的浏览器不支持 audio 标签。
+    </audio>
+    <audio preload="auto" id="fangdazhao">
+        <source src="../music/龙珠龟派气功2.mp3" type="audio/mpeg" />
+        您的浏览器不支持 audio 标签。
+    </audio>
+    <audio preload="auto" id="fangzidan">
+        <source src="../music/射击游戏-怪物_小机枪_爱给网_2gei_com.wav" type="audio/mpeg" />
+        您的浏览器不支持 audio 标签。
+    </audio>
+</div>
+</body>
+<script type="text/javascript">
+    var mainobj=document.getElementById("main"); //    加地图
+    var xiaofeijisuzu=new Array();
+    var zhongfeijisuzu=new Array();
+    var xiaozidansuzu=new Array();
+    var dafeijisuzu=new Array();
+    var bosssuzu=new Array();
+    var yingz=document.getElementById("ying")
+    var jifenpai1=document.getElementById("jifenpai")
+    var youxi1=document.getElementById("youxi")
+    var fenshu=0;//分数
+    var daozhaoshu=4;//大招次数
+    var guangshu=1;//关数
+    var jinru=false;
+    var k=true;
+    var zhanti1=document.getElementById("zhanti")
+    var yingxue=document.getElementById("yingxue")
+    var jieshuyouxi=document.getElementById("jieshukuang")
+    var baozha=document.getElementById("baozha")
+    var fangdazhao=document.getElementById("fangdazhao")
+    var fangzidan=document.getElementById("fangzidan")
+    function zhanting(){//暂停
+       if(k==true){
+          k=false;
+           zhanti1.innerText="继续游戏"
+           zhangtinglie()
+       }else{
+           k=true;
+           zhanti1.innerText="暂停游戏"
+           zhangtinglie()
+       }
+    }//暂停
+    zhangtinglie()
+    function zhangtinglie(){
+        if(k==true){
+            q1=setInterval(chuangjianxiaofeiji,1000);
+            //    加飞机
+            q2=setInterval(chuangjianzhongfeiji,3000);
+            //    加中飞机
+            q3=setInterval(chuangjiandafeiji,5000);
+            //加大飞机
+            q4=setInterval(xiaofeijisudu,50);
+            //    飞机移动
+            q5=setInterval(zhongfeijisudu,50);
+            q6=setInterval(dafeijisudu,50);
+            q6=setInterval(bosssudu,50);
+            q7= setInterval(zijidefeiweizhi,50);
+            q8=setInterval(xiaozidanweizhi,50)//子弹
+            q9=setTimeout(zijidefeiji,1000);
+        }else{
+            clearInterval(q1)
+            clearInterval(q2)
+            clearInterval(q3)
+            clearInterval(q4)
+            clearInterval(q5)
+            clearInterval(q6)
+            clearInterval(q7)
+            clearInterval(q8)
+            clearInterval(q9)
+        }
+    }
+    function stop(){
+        yingxue.pause();
+    }//停止音乐
+    function bofang(){
+        yingxue.play();
+    }//开始音乐
+    function kaishiyouxi(){
+        window.location.href="dafeiji.html";
+    }
+    function likan(){
+        window.location.href="kaishi.html";
+    }
+    function tuichuyouxi(){
+        window.location.href="dafeiji.html";
+    }
+    q10=setInterval(xiaochu,10)
+    q11=setInterval(xiaochu2,10)
+    q12=setInterval(shu,10)
+    setInterval(shengji1,10)
+    sheng2=setInterval(g1,10)
+    setInterval(shengji2,10)
+    sheng3=setInterval(g2,10)
+    zx=setInterval(chuangboss,100);
+    //    建模板
+    function xiaofeijimoban(imgsrc,x,y,speed,xuelian){
+        this.imgnode=document.createElement("img");//创节点
+        this.imgsrc=imgsrc;//图片地址
+        this.x=x;
+        this.y=y;
+        this.speed=speed;//速度
+        this.xuelian=xuelian;//血量
+        this.isdead=false;
+        this.time=10;
+        this.move=function(){
+            this.imgnode.style.left=parseInt(this.imgnode.style.left)-this.speed+"px"
+        }//位移速度
+        this.move1=function(){
+            this.imgnode.style.top=parseInt(this.imgnode.style.top)+this.speed+"px"
+        }//位移速度
+        this.move2=function(){
+            this.imgnode.style.top=parseInt(this.imgnode.style.top)-this.speed+"px"
+        }//位移速度
+        this.move3=function(){
+            this.imgnode.style.left=parseInt(this.imgnode.style.left)+this.speed+"px"
+        }//位移速度
+        this.move4=function(){
+            this.imgnode.style.left=parseInt(this.imgnode.style.left)-this.speed+"px"
+        }//位移速度
+        this.chushihua=function(){//初始化
+            this.imgnode.src=imgsrc;
+            this.imgnode.style.position="absolute";
+            this.imgnode.style.left=x+"px";
+            this.imgnode.style.top=y+"px";
+            mainobj.appendChild(this.imgnode);
+        }
+        this.chushihua();
+        this.xiaozidan=function(){
+            var xiaozidan=new zidanmoban("../image/小子弹.png",
+                    parseInt(this.imgnode.style.left)+86,
+                    parseInt(this.imgnode.style.top)+30,10)
+            xiaozidansuzu.push(xiaozidan);
+        }
+    }
+    function zidanmoban(imgsrc,x,y,v1){//子弹模板
+        this.imgnode=document.createElement("img");//创节点
+        this.imgsrc=imgsrc;//图片地址
+        this.x=x;
+        this.y=y;
+        this.v1=v1;//速度
+        this.dandao=function(){
+            this.imgnode.style.left=parseInt(this.imgnode.style.left)+this.v1+"px"
+        }
+        this.chushihua=function(){//初始化
+            this.imgnode.src=imgsrc;
+            this.imgnode.style.position="absolute";
+            this.imgnode.style.left=x+"px";
+            this.imgnode.style.top=y+"px";
+            mainobj.appendChild(this.imgnode);
+        }
+        this.chushihua();
+    }
+    function feshus(){
+        var f=fenshu*100
+        document.getElementById("ss").innerHTML="分数："+f+"&nbsp;"+"命："+zijidefeiji.xuelian+"&nbsp;"+"大招："+daozhaoshu;;
+    }//积分
+    function chuangjianxiaofeiji(){//创建小飞机
+        var xiaofeiji=new xiaofeijimoban("../image/敌人一.png",1349,parseInt(Math.random()*460)+60,parseInt(Math.random()*10)+1,1);
+        xiaofeijisuzu.push(xiaofeiji);//创建小飞机的数组
+    }
+    function chuangjianzhongfeiji(){//创建中飞机
+        var zhongfeiji=new xiaofeijimoban("../image/敌人二.png",1349,parseInt(Math.random()*460)+60,parseInt(Math.random()*10)+1,5);
+        zhongfeijisuzu.push(zhongfeiji);//创建中飞机的数组
+    }
+    function chuangjiandafeiji(){//创建大飞机
+        var dafeiji=new xiaofeijimoban("../image/敌人三.png",1349,parseInt(Math.random()*460)+60,parseInt(Math.random()*8)+1,10);
+        dafeijisuzu.push(dafeiji);//创建大飞机的数组
+    }
+    function chuangboss(){//创建boss
+        if(fenshu>500){
+            var boss=new xiaofeijimoban("../image/boss.png",1349,parseInt(Math.random()*460)+60,2,200);
+            bosssuzu.push(boss);//创建大飞机的数组
+            clearInterval(zx)
+        }
+    }
+    var zijidefeiji=new xiaofeijimoban("../image/自己.png",0,200,30,10);//建立自己的飞机
+    //    获取键盘值
+    var shang=false;
+    var xia=false;
+    var zuo=false;
+    var you=false;
+    document.onkeydown = keyDown;
+    document.onkeyup = keyup;
+    function keyup(e){
+        var keycode = e.which;
+        var realkey = String.fromCharCode(e.which);
+        if(keycode=="37"){
+            shang=false;
+        }
+        if(keycode=="38"){
+            xia=false;
+        }
+        if(keycode=="39"){
+            zuo=false;
+        }
+        if(keycode=="40"){
+            you=false;
+        }
+    }
+    function keyDown(e) {
+        var keycode = e.which;
+        var realkey = String.fromCharCode(e.which);
+//        alert("按键码: " + keycode);
+//            zijidefeiji.move();
+        if(keycode=="37"){
+            shang=true;
+        }
+        if(keycode=="38"){
+            xia=true;
+        }
+        if(keycode=="39"){
+            zuo=true;
+        }
+        if(keycode=="40"){
+            you=true;
+        }
+        if(keycode=="32"){
+            dazhao()
+        }
+        if(keycode=="65"){
+            if(guangshu==1){
+                zijidefeiji.xiaozidan()
+                fangzidan.play();
+            }else if(guangshu==2){
+                for(var i=0;i<2;i++){
+                    zijidefeiji.xiaozidan()
+                    fangzidan.play();
+                }
+            }else if(guangshu==3){
+                for(var i=0;i<3;i++){
+                    zijidefeiji.xiaozidan()
+                    fangzidan.play();
+                }
+            }
+        }
+    }
+    function zijidefeiweizhi(){//飞机边界
+        if(shang==true){
+            zijidefeiji.move4();
+        }
+        if(xia==true){
+            zijidefeiji.move2();
+        }
+        if(zuo==true){
+            zijidefeiji.move3();
+        }
+        if(you==true){
+            zijidefeiji.move1();
+        }
+        var s=zijidefeiji.imgnode.style.top
+        var sl=zijidefeiji.imgnode.style.left
+//        alert(parseInt(s))
+        if(parseInt(sl)>1300||parseInt(sl)<0){
+            zijidefeiji.imgnode.style.left=0+"px";
+        }
+        if(parseInt(s)<-100){
+//            alert(zijidefeiji.imgnode.style.left)
+            zijidefeiji.imgnode.style.top=600+"px"
+        }
+        if(parseInt(s)>600){
+            zijidefeiji.imgnode.style.top=-100+"px"
+        }
+    }
+    function bosssudu(){
+        for(var i=0;i<bosssuzu.length;i++){
+            if(bosssuzu[i].isdead==false){
+                bosssuzu[i].move();
+                if(parseInt(bosssuzu[i].imgnode.style.left)<=-300){
+                    mainobj.removeChild(bosssuzu[i].imgnode);
+                    bosssuzu.splice(i,1);
+                }//删除小飞机
+            }else{
+                bosssuzu[i].time--;
+                if(bosssuzu[i].time==0){
+                    mainobj.removeChild(bosssuzu[i].imgnode);
+                    bosssuzu.splice(i,1);
+                    fenshu=fenshu+1000;
+                    feshus();
+                    zijidefeiji.xuelian=0;
+                    yingz.innerText="您赢了！！"
+                }
+            }
+
+        }
+    }//删除
+    function xiaofeijisudu(){
+        for(var i=0;i<xiaofeijisuzu.length;i++){
+            if(xiaofeijisuzu[i].isdead==false){
+                xiaofeijisuzu[i].move();
+                if(parseInt(xiaofeijisuzu[i].imgnode.style.left)<=-300){
+                    mainobj.removeChild(xiaofeijisuzu[i].imgnode);
+                    xiaofeijisuzu.splice(i,1);
+                }//删除小飞机
+                if(parseInt(xiaofeijisuzu[i].imgnode.style.top)>=350&&parseInt(xiaofeijisuzu[i].imgnode.style.left)<=120){
+                    mainobj.removeChild(xiaofeijisuzu[i].imgnode);
+                    xiaofeijisuzu.splice(i,1);
+                }
+            }else{
+                xiaofeijisuzu[i].time--;
+                if(xiaofeijisuzu[i].time==0){
+                     mainobj.removeChild(xiaofeijisuzu[i].imgnode);
+                     xiaofeijisuzu.splice(i,1);
+                    fenshu++;
+                    feshus();
+                }
+            }
+
+        }
+    }//删除
+    function zhongfeijisudu(){
+        for(var i=0;i<zhongfeijisuzu.length;i++){
+            if(zhongfeijisuzu[i].isdead==false){
+                zhongfeijisuzu[i].move();
+                if(parseInt(zhongfeijisuzu[i].imgnode.style.left)<=-300){
+                    mainobj.removeChild(zhongfeijisuzu[i].imgnode);
+                    zhongfeijisuzu.splice(i,1);
+                }//删除小飞机
+                if(parseInt(zhongfeijisuzu[i].imgnode.style.top)>=350&&parseInt(zhongfeijisuzu[i].imgnode.style.left)<=120){
+                    mainobj.removeChild(zhongfeijisuzu[i].imgnode);
+                    zhongfeijisuzu.splice(i,1);
+                }
+            }else{
+                zhongfeijisuzu[i].time--;
+                if(zhongfeijisuzu[i].time==0){
+                    mainobj.removeChild(zhongfeijisuzu[i].imgnode);
+                    zhongfeijisuzu.splice(i,1);
+                    fenshu=fenshu+3;
+                    feshus();
+                }
+            }
+
+        }
+    }//删除
+    function dafeijisudu(){
+        for(var i=0;i<dafeijisuzu.length;i++){
+            if(dafeijisuzu[i].isdead==false){
+                dafeijisuzu[i].move();
+                if(parseInt(dafeijisuzu[i].imgnode.style.left)<=-300){
+                    mainobj.removeChild(dafeijisuzu[i].imgnode);
+                    dafeijisuzu.splice(i,1);
+                }//删除小飞机
+                if(parseInt(dafeijisuzu[i].imgnode.style.top)>=350&&parseInt(dafeijisuzu[i].imgnode.style.left)<=120){
+                    mainobj.removeChild(dafeijisuzu[i].imgnode);
+                    dafeijisuzu.splice(i,1);
+                }
+            }else{
+                dafeijisuzu[i].time--;
+                if(dafeijisuzu[i].time==0){
+                    mainobj.removeChild(dafeijisuzu[i].imgnode);
+                    dafeijisuzu.splice(i,1);
+                    fenshu=fenshu+5;
+                    feshus();
+                }
+            }
+
+        }
+    }//删除
+    function dazhao(){
+        if(daozhaoshu>0){
+            as=setTimeout(daozhaosan,1200);
+            fangdazhao.play();
+            zijidefeiji.imgnode.style.left=600+"px"
+            zijidefeiji.imgnode.style.top=300+"px"
+            zijidefeiji.imgnode.src="../image/大招 .gif";
+            mainobj.style.backgroundImage="url(../image/0NzQwMDAvMjQ4MzkwNzgyMDUzLmdpZg==.gif)"
+            var k=xiaofeijisuzu.length;
+            var k2=zhongfeijisuzu.length;
+            var k3=dafeijisuzu.length;
+            fenshu=fenshu+k+k2+k3;
+            for(var i=0;i<k;i++){
+                xiaofeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+//                mainobj.removeChild(xiaofeijisuzu[0].imgnode);
+//                xiaofeijisuzu.splice(0,1);
+                baozha.play()
+            }
+            for(var i=0;i<k2;i++){
+                zhongfeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+//                mainobj.removeChild(zhongfeijisuzu[0].imgnode);
+//                zhongfeijisuzu.splice(0,1);
+                baozha.play()
+            }
+            for(var i=0;i<k3;i++){
+                dafeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                baozha.play()
+            }
+            bosssuzu[0].time= bosssuzu[0].time-10;
+            baozha.play()
+            //删除所有小飞机
+        }
+    } //放大招
+    function daozhaosan(){
+        zijidefeiji.imgnode.src="../image/自己.png";
+        zijidefeiji.xuelian++;
+        if(guangshu==1){
+            mainobj.style.backgroundImage="url(../image/背景.jpg)"
+        }
+        if(guangshu==2){
+            mainobj.style.backgroundImage="url(../image/背景2.jpg)"
+        }
+        if(guangshu==3){
+            mainobj.style.backgroundImage="url(../image/背景3.jpg)"
+        }
+        daozhaoshu--;
+        var k=xiaofeijisuzu.length;
+        var k2=zhongfeijisuzu.length;
+        var k3=dafeijisuzu.length;
+        for(var i=0;i<k;i++){
+                mainobj.removeChild(xiaofeijisuzu[0].imgnode);
+                xiaofeijisuzu.splice(0,1);
+        }
+        for(var i=0;i<k2;i++){
+                mainobj.removeChild(zhongfeijisuzu[0].imgnode);
+                zhongfeijisuzu.splice(0,1);
+        }
+        for(var i=0;i<k3;i++){
+            mainobj.removeChild(dafeijisuzu[0].imgnode);
+            dafeijisuzu.splice(0,1);
+        }
+
+        clearTimeout(as);
+
+    }
+    function xiaozidanweizhi(){
+        for(var i=0;i<xiaozidansuzu.length;i++){
+            xiaozidansuzu[i].dandao();
+            if(parseInt(xiaozidansuzu[i].imgnode.style.left)>=1349){
+                mainobj.removeChild(xiaozidansuzu[i].imgnode);
+                xiaozidansuzu.splice(i,1);
+            }//删除小子弹
+        }
+    }//删除小子弹
+    function xiaochu(){
+        for(var i=0;i<xiaofeijisuzu.length;i++){
+            for(var j=0;j<xiaozidansuzu.length;j++){
+                var xiaozidanleft=parseInt(xiaozidansuzu[j].imgnode.style.left);
+                //获取子弹的左边;
+                var xiaozidantop=parseInt(xiaozidansuzu[j].imgnode.style.top);
+                //获取子弹上边;
+                var xiaofeijileft=parseInt(xiaofeijisuzu[i].imgnode.style.left);
+                //获取小飞机的左边;
+                var xiaofeijitop=parseInt(xiaofeijisuzu[i].imgnode.style.top);
+//                alert("1")
+                //获取小飞机的上边;
+                if(xiaofeijisuzu[i].isdead==false){
+                    if(xiaozidanleft<=xiaofeijileft+150&&xiaozidanleft+86>=xiaofeijileft&&xiaozidantop+57>=xiaofeijitop&&xiaofeijitop+120>=xiaozidantop){
+                        mainobj.removeChild(xiaozidansuzu[j].imgnode);
+                        xiaozidansuzu.splice(j,1);
+                        xiaofeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                        xiaofeijisuzu[i].isdead=true;
+                        baozha.play()
+                    }
+                }
+
+            }
+        }
+        for(var i=0;i<zhongfeijisuzu.length;i++){
+            for(var j=0;j<zhongfeijisuzu.length;j++){
+                var xiaozidanleft=parseInt(xiaozidansuzu[j].imgnode.style.left);
+                //获取子弹的左边;
+                var xiaozidantop=parseInt(xiaozidansuzu[j].imgnode.style.top);
+                //获取子弹上边;
+                var zhongfeijileft=parseInt(zhongfeijisuzu[i].imgnode.style.left);
+                //获取小飞机的左边;
+                var zhongfeijitop=parseInt(zhongfeijisuzu[i].imgnode.style.top);
+//
+                //获取小飞机的上边;
+                if(zhongfeijisuzu[i].isdead==false){
+                    if(xiaozidanleft<=zhongfeijileft+150&&xiaozidanleft+86>=zhongfeijileft&&xiaozidantop+57>=zhongfeijitop&&zhongfeijitop+88>=xiaozidantop){
+                        zhongfeijisuzu[i].xuelian--;
+                        mainobj.removeChild(xiaozidansuzu[j].imgnode);
+                        xiaozidansuzu.splice(j,1);
+                        if(zhongfeijisuzu[i].xuelian==0){
+                            zhongfeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                            zhongfeijisuzu[i].isdead=true;
+                            baozha.play()
+                        }
+                    }
+                }
+
+            }
+        }
+        for(var i=0;i<dafeijisuzu.length;i++){
+            for(var j=0;j<dafeijisuzu.length;j++){
+                var xiaozidanleft=parseInt(xiaozidansuzu[j].imgnode.style.left);
+                //获取子弹的左边;
+                var xiaozidantop=parseInt(xiaozidansuzu[j].imgnode.style.top);
+                //获取子弹上边;
+                var dafeijileft=parseInt(dafeijisuzu[i].imgnode.style.left);
+                //获取小飞机的左边;
+                var dafeijitop=parseInt(dafeijisuzu[i].imgnode.style.top);
+//
+                //获取小飞机的上边;
+                if(dafeijisuzu[i].isdead==false){
+                    if(xiaozidanleft<=dafeijileft+180&&xiaozidanleft+86>=dafeijileft&&xiaozidantop+57>=dafeijitop&&dafeijitop+120>=xiaozidantop){
+                        dafeijisuzu[i].xuelian--;
+                        mainobj.removeChild(xiaozidansuzu[j].imgnode);
+                        xiaozidansuzu.splice(j,1);
+                        if(dafeijisuzu[i].xuelian==0){
+                            dafeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                            dafeijisuzu[i].isdead=true;
+                            baozha.play()
+                        }
+                    }
+                }
+
+            }
+        }
+        for(var i=0;i<bosssuzu.length;i++){
+            for(var j=0;j<dafeijisuzu.length;j++){
+                var xiaozidanleft=parseInt(xiaozidansuzu[j].imgnode.style.left);
+                //获取子弹的左边;
+                var xiaozidantop=parseInt(xiaozidansuzu[j].imgnode.style.top);
+                //获取子弹上边;
+                var bossleft=parseInt(bosssuzu[i].imgnode.style.left);
+                //获取小飞机的左边;
+                var bossjitop=parseInt(bosssuzu[i].imgnode.style.top);
+//
+                //获取小飞机的上边;
+                if(bosssuzu[i].isdead==false){
+                    if(xiaozidanleft<=bossleft+420&&xiaozidanleft+86>=bossleft&&xiaozidantop+57>=bossjitop&&bossjitop+240>=xiaozidantop){
+                        bosssuzu[i].xuelian--;
+                        mainobj.removeChild(xiaozidansuzu[j].imgnode);
+                        xiaozidansuzu.splice(j,1);
+                        if(bosssuzu[i].xuelian==0){
+                            bosssuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                            bosssuzu[i].isdead=true;
+                            baozha.play()
+                        }
+                    }
+                }
+
+            }
+        }
+    }//碰撞
+    function shu(){
+        if(zijidefeiji.xuelian<=0){
+            zijidefeiji.imgnode.src="../image/敌人爆炸.gif";
+            jieshuyouxi.style.display="list-item"
+            clearInterval(q1)
+            clearInterval(q2)
+            clearInterval(q3)
+            clearInterval(q4)
+            clearInterval(q5)
+            clearInterval(q6)
+            clearInterval(q7)
+            clearInterval(q8)
+            clearInterval(q9)
+            clearInterval(q10)
+            clearInterval(q11)
+            clearInterval(q12)
+        }else{
+            if(zijidefeiji.isdead==true){
+                zijidefeiji.xuelian=zijidefeiji.xuelian-1;
+                zijidefeiji.imgnode.style.left=0+"px"
+                zijidefeiji.imgnode.style.top=500+"px"
+                zijidefeiji.isdead=false;
+            }
+        }
+    }//自己死亡
+    function xiaochu2(){
+        var zijidefeijileft=parseInt(zijidefeiji.imgnode.style.left);//获取自己的左边;
+        var zijidefeijitop=parseInt(zijidefeiji.imgnode.style.top);   //获取自己的上边;
+        for(var i=0;i<xiaofeijisuzu.length;i++){
+                var xiaofeijileft=parseInt(xiaofeijisuzu[i].imgnode.style.left);
+                //获取小飞机的左边;
+                var xiaofeijitop=parseInt(xiaofeijisuzu[i].imgnode.style.top);
+//                alert("1")
+                //获取小飞机的上边;
+                if(zijidefeijileft<=xiaofeijileft+150&&zijidefeijileft+80>=xiaofeijileft&&zijidefeijitop+120>=xiaofeijitop&&xiaofeijitop+120>=zijidefeijitop){
+
+                    xiaofeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                    xiaofeijisuzu[i].isdead=true;
+                    zijidefeiji.isdead=true;
+                }
+          }
+        for(var i=0;i<zhongfeijisuzu.length;i++){
+            var zhongfeijileft=parseInt(zhongfeijisuzu[i].imgnode.style.left);
+            //获取小飞机的左边;
+            var zhongfeijitop=parseInt(zhongfeijisuzu[i].imgnode.style.top);
+//                alert("1")
+            //获取小飞机的上边;
+            if(zijidefeijileft<=zhongfeijileft+150&&zijidefeijileft+80>=zhongfeijileft&&zijidefeijitop+88>=zhongfeijitop&&zhongfeijitop+88>=zijidefeijitop){
+                zhongfeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                zhongfeijisuzu[i].isdead=true;
+                zijidefeiji.isdead=true;
+            }
+        }
+        for(var i=0;i<dafeijisuzu.length;i++){
+            var dafeijileft=parseInt(dafeijisuzu[i].imgnode.style.left);
+            //获取小飞机的左边;
+            var dafeijitop=parseInt(dafeijisuzu[i].imgnode.style.top);
+//                alert("1")
+            //获取小飞机的上边;
+            if(zijidefeijileft<=dafeijileft+180&&zijidefeijileft+80>=dafeijileft&&zijidefeijitop+120>=dafeijitop&&dafeijitop+120>=zijidefeijitop){
+                dafeijisuzu[i].imgnode.src="../image/敌人爆炸.gif";
+                dafeijisuzu[i].isdead=true;
+                zijidefeiji.isdead=true;
+            }
+        }
+        for(var i=0;i<bosssuzu.length;i++){
+            var bossleft=parseInt(bosssuzu[i].imgnode.style.left);
+            //获取小飞机的左边;
+            var bosstop=parseInt(bosssuzu[i].imgnode.style.top);
+//                alert("1")
+            //获取小飞机的上边;
+            if(zijidefeijileft<=bossleft+420&&zijidefeijileft+80>=bossleft&&zijidefeijitop+240>=bosstop&&bosstop+240>=zijidefeijitop){
+                zijidefeiji.xuelian=0;
+            }
+        }
+
+    }//碰撞
+    function shengji1(){
+        if(fenshu>=100&&fenshu<200){
+            zijidefeiji.imgnode.src="../image/自己二.png";
+            for(var i=0;i<xiaozidansuzu.length;i++){
+                xiaozidansuzu[i].imgnode.src="../image/中子弹.png";
+            }
+            mainobj.style.backgroundSize="100%"
+            mainobj.style.backgroundRepeat="no-repeat"
+            guangshu=2;
+        }
+    }//升级
+    function g1(){
+        if(guangshu==2){
+        daozhaoshu=daozhaoshu+2;
+        zijidefeiji.xuelian=zijidefeiji.xuelian+2;
+        mainobj.style.backgroundImage="url(../image/背景2.jpg)"
+            clearInterval(sheng2)
+        }
+    }
+    function shengji2(){
+        if(fenshu>=200){
+            zijidefeiji.imgnode.src="../image/自己三.png";
+            for(var i=0;i<xiaozidansuzu.length;i++){
+                xiaozidansuzu[i].imgnode.src="../image/大子弹.png";
+            }
+            mainobj.style.backgroundSize="100%"
+            mainobj.style.backgroundRepeat="no-repeat"
+            guangshu=3;
+        }
+    }//升级
+    function g2(){
+        if(guangshu==3){
+            daozhaoshu=daozhaoshu+4;
+            zijidefeiji.xuelian=zijidefeiji.xuelian+4;
+            mainobj.style.backgroundImage="url(../image/背景3.jpg)"
+            clearInterval(sheng3)
+        }
+    }
+</script>
+</html>

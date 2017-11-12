@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Tencent-TGideas">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>测试</title>
+    <style>
+        body,dl,dd,ul,li,p{margin: 0;padding: 0;font-size: 12px;line-height: 22px;font-family: arial}
+        body{width: 100%;overflow-x: hidden;}
+        h2,h3{margin: 0;padding: 0;}
+        h1{text-align: center;}
+        h2{margin-top: 10px;}
+        table{width: 100%;}
+        table td, table th{padding: 3px;}
+        table th{background-color: #cee;}
+        dl{margin-top: 10px;}
+        dl{padding: 3px;}
+        dt{font-weight: bold;}
+        dl dt{padding: 5px;background-color: #cee;}
+        video{display: block;height: 100px;margin: 10px auto;}
+        .fuc{padding: 10px;background-color: #eee;overflow: hidden;}
+        .fuc button{float: left;padding: 10px;}
+        .fuc .btn-end{float: right;}
+        .output{padding: 10px;text-align: center;}
+
+
+
+
+    </style>
+    <!-- 设计：brucewan | 重构：brucewan | 创建：2015-05-12 10:04:45 | 更新：| 团队博客：http://tgideas.qq.com/ -->
+</head>
+<body>
+<h1>捕捉用户麦克风getUserMedia</h1>
+<div class="fuc">
+    <button class="btn-start">开始录制 </button>
+    <button class="btn-end">结束录制 </button>
+</div>
+<p class="output">点击“开始录制”按钮开始录音</p>
+
+<div class="my-audio"></div>
+<h2>测试结果：</h2>
+
+<table>
+    <tr><th>系统支持：</th><td>android chrome，且有数据丢失</td></tr>
+    <tr><th>其它问题：</th><td>android audio不支持blob</td></tr>
+</table>
+<script>
+    // lib
+    var $ = function(className){return document.querySelector(className)};
+
+    // variables
+    var leftchannel = [];
+    var rightchannel = [];
+    var recorder = null;
+    var recording = false;
+    var recordingLength = 0;
+    var volume = null;
+    var audioInput = null;
+    var sampleRate = null;
+    var audioContext = null;
+    var context = null;
+    var outputElement = document.querySelector('.output');
+    var myAudio = document.querySelector('.my-audio');
+    var outputString;
+
+
+    // feature detection
+    if (!navigator.getUserMedia)
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+    if (navigator.getUserMedia){
+        navigator.getUserMedia({audio:true}, success, function(e) {
+            alert('捕获失败！');
+        });
+    } else alert('不支持getUserMedia');
+
+
+    // if R is pressed, we start recording
+
+    $('.btn-start').addEventListener('touchend', function(e){
+        recording = true;
+        // reset the buffers for the new recording
+        leftchannel.length = rightchannel.length = 0;
+        recordingLength = 0;
+        outputElement.innerHTML = '正在录制...';
+    });
+
+    $('.btn-end').addEventListener('touchend', function(e){
+        // we stop recording
+        recording = false;
+
+        outputElement.innerHTML = '录制完成！';
+
+        // we flat the left and right channels down
+        var leftBuffer = mergeBuffers ( leftchannel, recordingLength );
+        var rightBuffer = mergeBuffers ( rightchannel, recordingLength );
+        // we interleave both channels together
+        var interleaved = interleave ( leftBuffer, rightBuffer );
+
+        // we create our wav file
+        var buffer = new ArrayBuffer(44 + interleaved.length * 2);
+
+
+        var view = new DataView(buffer);
+
+        /* 资源交换文件标识符 */
+        writeUTFBytes(view, 0, 'RIFF');
+        /* 下个地址开始到文件尾总字节数,即文件大小-8 */
+        view.setUint32(4, 44 + interleaved.length * 2, true);
+        /* WAV文件标志 */
+        writeUTFBytes(view, 8, 'WAVE');
+        /* 波形格式标志 */
+        writeUTFBytes(view, 12, 'fmt ');
+        /* 过滤字节,一般为 0x10 = 16 */
+        view.setUint32(16, 16, true);
+        /* 格式类别 (PCM形式采样数据) */
+        view.setUint16(20, 1, true);
+        /* 通道数 */
+        view.setUint16(22, 2, true);
+        /* 采样率,每秒样本数,表示每个通道的播放速度 */
+        view.setUint32(24, sampleRate, true);
+        /* 波形数据传输率 (每秒平均字节数) 通道数×每秒数据位数×每样本数据位/8 */
+        view.setUint32(28, sampleRate * 4, true);
+        /* 快数据调整数 采样一次占用字节数 通道数×每样本的数据位数/8 */
+        view.setUint16(32, 4, true);
+        /* 每样本数据位数 */
+        view.setUint16(34, 16, true);
+        /* 数据标识符 */
+        writeUTFBytes(view, 36, 'data');
+        /* 采样数据总数,即数据总大小-44 */
+        view.setUint32(40, interleaved.length * 2, true);
+        /* 采样数据 */
+        var lng = interleaved.length;
+        var index = 44;
+        var volume = 1;
+        for (var i = 0; i < lng; i++){
+            view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
+            index += 2;
+        }
+
+        var blob = new Blob ( [ view ], { type : 'audio/mpeg' } );
+
+        // android chrome audio不支持blob
+        var reader = new FileReader();
+        reader.onload = function(event){
+            var audio = window.document.createElement('audio');
+            var a=window.document.createElement("a");
+            audio.src = event.target.result;
+            audio.controls = true;
+            myAudio.appendChild(audio);
+            a.href=event.target.result;
+            a.download="tees";
+            a.innerHTML="下载";
+            myAudio.appendChild(a);
+        };
+        // 转换base64
+        reader.readAsDataURL(blob);
+
+    });
+
+
+    function interleave(leftChannel, rightChannel){
+        var length = leftChannel.length + rightChannel.length;
+        var result = new Float32Array(length);
+
+        var inputIndex = 0;
+
+        for (var index = 0; index < length; ){
+            result[index++] = leftChannel[inputIndex];
+            result[index++] = rightChannel[inputIndex];
+            inputIndex++;
+        }
+        return result;
+    }
+
+    function mergeBuffers(channelBuffer, recordingLength){
+        var result = new Float32Array(recordingLength);
+        var offset = 0;
+        var lng = channelBuffer.length;
+        for (var i = 0; i < lng; i++){
+            var buffer = channelBuffer[i];
+            result.set(buffer, offset);
+            offset += buffer.length;
+        }
+        return result;
+    }
+
+    function writeUTFBytes(view, offset, string){
+        var lng = string.length;
+        for (var i = 0; i < lng; i++){
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    }
+
+    function success(e){
+        // creates the audio context
+        audioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
+        context = new audioContext();
+        analyser = context.createAnalyser();
+
+        // we query the context sample rate (根据平台 variés)
+        sampleRate = context.sampleRate;
+        console.log('succcess');
+
+        // 创建一个gain节点
+        volume = context.createGain();
+
+        // creates an audio node from the microphone incoming stream
+        audioInput = context.createMediaStreamSource(e);
+        audioInput.connect(analyser);
+
+        // connect the stream to the gain node
+        analyser.connect(volume);
+
+        /* 规范: 这个值控制audioproevent事件的频率 分派和每个调用需要处理多少个采样帧。.
+         缓冲区大小的低值将导致较低的(更好的)延迟.
+         为了避免音频的破裂和故障，需要有更高的值 */
+        var bufferSize = 2048;
+        recorder = context.createScriptProcessor(bufferSize, 2, 2);
+
+        recorder.onaudioprocess = function(e){
+            if (!recording) return;
+            var left = e.inputBuffer.getChannelData (0);
+            var right = e.inputBuffer.getChannelData (1);
+            // we clone the samples
+            leftchannel.push (new Float32Array (left));
+            rightchannel.push (new Float32Array (right));
+            recordingLength += bufferSize;
+            console.log('recording');
+        }
+
+        // we connect the recorder
+        volume.connect (recorder);
+        recorder.connect (context.destination);
+
+    }
+
+
+</script>
+</body>
+</html>

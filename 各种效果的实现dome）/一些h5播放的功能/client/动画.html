@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>动画</title>
+    <style>
+        .div1{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            overflow: hidden;
+            margin: auto;
+        }
+        .pic1{
+            width: 300px;
+            height: 300px;
+            animation: donghua 10s linear infinite;
+        }
+        @keyframes donghua{
+            0%{transform: scale(1,1)}
+            50%{transform: scale(1.1,1.1)}
+            100%{transform: scale(1,1)}
+        }
+        .div{
+            width: 300px;
+            height: 300px;
+            background: url("static/image/dibai.jpg");
+            background-size: 100% 100%;
+            margin: auto;
+        }
+        .show{
+            width: 300px;
+            height: 300px;
+            background: url("static/image/dibai.jpg");
+            background-size: 100% 100%;
+            margin: auto;
+            /*transform: scale(1.3,1.3);*/
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="div test" id="div"></div>
+    <div class="div1">
+        <img class="pic1" src="static/image/dibai.jpg" alt=""/>
+    </div>
+</div>
+<script src="static/js/jquery.js"></script>
+<!--<script>-->
+    <!--var bannerHeight = document.getElementsByClassName("div")[0].offsetHeight;-->
+    <!--var div = document.getElementById("div");-->
+    <!--div.addEventListener('touchstart',function(e){-->
+        <!--if($(window).scrollTop()<=0){-->
+            <!--direction = 'up'-->
+        <!--}-->
+        <!--if(direction){-->
+            <!--isTouchStart = isScale = true;-->
+            <!--startX = e.changedTouches[0].pageX;-->
+            <!--startY = e.changedTouches[0].pageY;-->
+        <!--}-->
+    <!--});-->
+    <!--div.addEventListener('touchmove',function(e){-->
+        <!--if(isTouchStart){-->
+            <!--var dDis = Math.abs(e.touches[0].pageX-startX)-Math.abs(e.touches[0].pageY - startY);-->
+            <!--if(dDis > 0) return false;-->
+            <!--if(e.changedTouches[0].pageY - startY >0 && isScale && direction == 'up'){-->
+                <!--e.preventDefault();-->
+                <!--var scale = (1+(e.changedTouches[0].pageY - startY)/(2*bannerHeight)).toFixed(2);-->
+                <!--div.setAttribute('class','show');-->
+                <!--div.scaleX = div.scaleY = scale;-->
+<!--//                alert(bannerHeight*(scale - 1))-->
+                <!--moveLength= bannerHeight*(scale - 1);-->
+            <!--}-->
+
+            <!--div.addEventListener('touchend',function(e){-->
+                <!--if(isTouchStart && isScale){-->
+                    <!--var distanceY = e.changedTouches[0].pageY - startY;-->
+                    <!--var time = distanceY;-->
+                    <!--if(time<150){-->
+                        <!--time = 150;-->
+                    <!--}else if(time > 250){-->
+                        <!--time = 250;-->
+                    <!--}-->
+                    <!--to(moveLength,'translateY',0,time,iosEase,onChange,function(){-->
+                        <!--div.removeAttribute('class','show');-->
+                        <!--isScale = false;-->
+                    <!--});-->
+                <!--}-->
+            <!--});-->
+<!--//        曲线运动函数-->
+            <!--function iosEase(x){-->
+                <!--return Math.sqrt(1 - Math.pow(x-1,2));-->
+            <!--}-->
+            <!--var tickID = 0;-->
+            <!--function to(el,property,value,time,ease,onChange,onEnd){-->
+                <!--var current = el[property];-->
+                <!--var dv = value - current;-->
+                <!--var beginTime = new Date();-->
+                <!--var toTick = function(){-->
+                    <!--var dt = new Date() - beginTime;-->
+                    <!--if(dt >= time){-->
+                        <!--el[property] = value;-->
+                        <!--onChange && onChange(value);-->
+                        <!--return;-->
+                    <!--}-->
+                    <!--el[property] = dv * ease(dt/time) + current;-->
+                    <!--tickID = requestAnimationFrame(toTick);-->
+                    <!--onChange &&　onChange(el[property])-->
+                <!--};-->
+                <!--toTick();-->
+            <!--}-->
+        <!--}-->
+    <!--});-->
+        <!--var el = document.querySelector('.main');-->
+        <!--var startPosition, endPosition, deltaX, deltaY, moveLength;-->
+        <!--el.addEventListener('touchstart', function (e) {-->
+            <!--var touch = e.touches[0];-->
+            <!--startPosition = {-->
+                <!--x: touch.pageX,-->
+                <!--y: touch.pageY-->
+            <!--}-->
+        <!--});-->
+        <!--el.addEventListener('touchmove', function (e) {-->
+            <!--var touch = e.touches[0];-->
+            <!--endPosition = {-->
+                <!--x: touch.pageX,-->
+                <!--y: touch.pageY-->
+            <!--};-->
+            <!--deltaX = endPosition.x - startPosition.x;-->
+            <!--deltaY = endPosition.y - startPosition.y;-->
+            <!--moveLength = Math.sqrt(Math.pow(Math.abs(deltaX), 2) + Math.pow(Math.abs(deltaY), 2));-->
+        <!--});-->
+
+    <!--function onChange(){-->
+        <!--div.style.transform = "scale(1.3,1.3)";-->
+        <!--div.style.animation = "5s linear";-->
+    <!--}-->
+<!--</script>-->
+</body>
+</html>

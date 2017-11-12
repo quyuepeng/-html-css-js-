@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>题目一</title>
+</head>
+<body>
+<input id="a">
+<div id="b">
+点击
+</div>
+<!--以上代码调用主函数即观察者；-->
+
+</body>
+<script type="text/javascript">
+    var n="";
+//    现在状态
+    var s="";
+//    记录状态
+    var a=document.getElementById("a");
+    var b=document.getElementById("b");
+    b.onclick=function(){
+        observer(a.value)
+    };
+    function observer(x){
+        n=x;
+        if(s==n){
+            console.log("函数未改变");
+        }else{
+            var f1=n+1;
+            var f2=n+2;
+            var f3=n+3;
+            console.log("n======="+n);
+            dependent1(f1);
+            dependent2(f2);
+            dependent3(f3);
+//            这三个函数的执行依赖于主函数的改变
+        }
+        s=n;
+    }
+//    主函数
+
+    function dependent1(a){
+        console.log("a===="+a);
+    }
+
+    function dependent2(b){
+        console.log("b===="+b);
+    }
+
+    function dependent3(c){
+        console.log("c===="+c);
+    }
+
+//    依赖函数
+</script>
+</html>

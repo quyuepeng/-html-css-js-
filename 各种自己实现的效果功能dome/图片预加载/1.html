@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <img src="" id="a">
+</div>
+</body>
+
+<script>
+    var a=["blog1.jpg","blog2.jpg","blog3.jpg","blog4.jpg"];
+
+    function loadImage(url, callback) {
+
+        for(var i=0;i< a.length;i++){
+            var img = new Image(); //创建一个Image对象，实现图片的预下载
+            img.src = url[i];
+        }
+        if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数
+            callback.call(img);
+            return; // 直接返回，不用再处理onload事件
+        }
+
+        img.onload = function () { //图片下载完毕时异步调用callback函数。
+            console.log(img);
+            callback.call(img);//将回调函数的this替换为Image对象
+        };
+    };
+    function aaa(){
+        console.log("1111");
+        console.log(this.src);
+    }
+    loadImage(a,aaa);
+</script>
+</html>

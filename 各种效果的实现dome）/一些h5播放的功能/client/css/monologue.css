@@ -1,0 +1,308 @@
+		*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	html{
+    		font-size: 20px;
+    	}
+    	body{
+    		width: 100%;
+    		height: 100%;
+    		position: relative;
+			background-color: #fafafa;
+    	}
+    	/*导航*/
+    	.myNav{
+    		width: 100%;
+    		background-color: #FFFFFF;
+    	}
+    	.myNav img{
+    		width: 1rem;
+    		height:0.9rem;
+    	}
+    	.myTitle{
+    		font-size: 0.9rem;
+    		font-weight: bold;
+    		color: #050505;
+    	}
+    	/*内容*/
+    	/*播放背景*/
+    	.playBg{
+    		width: 100%;
+    		height: 14.35rem;
+    		position: relative;
+    	}
+    	.playBg img:nth-child(1){ /*背景图片*/
+    		width: 100%;
+    		height: 100%;
+    	}
+    	.playBg img:nth-child(2){ /*播放按钮*/
+    		display: inline-block;
+    		width: 2rem;
+    		height: 2rem;
+    		position: absolute;
+    		left: 45%;
+    		top: 45%;
+    	}
+    	.playBg img:nth-child(3){ /*暂停按钮*/
+    		display: inline-block;
+    		width: 2rem;
+    		height: 2rem;
+    		position: absolute;
+    		left: 45%;
+    		top: 45%;
+    		display: none;
+    	}
+    	.barDiv{ /*歌曲播放进度条div*/
+    		width: 100%;
+    		height:2rem;
+    		background-color: rgba(255,255,255,0.6);
+    		position: absolute;
+    		bottom: 0;
+    	}
+    	.bar{
+    		width: 90%;
+    		margin: 0.5rem 5%;
+    	}
+    	.bars{
+    		float: left;
+    	}
+    	.startTime,.endTime{ /*开始时间，结束时间*/
+    		color: #5a5a5a;
+    		font-size: 0.6rem;
+    	}
+    	.mui-progressbar{/*进度条*/
+    		width: 70%;
+    		background-color: #FFFFFF;
+    		position: relative;
+    		left: 0.6rem;
+    		top: 0.4rem;
+    	}
+    	.endTime{
+			position: absolute;
+			right: 0.5rem;
+    	}
+		#bars{
+			background-color:#d43c33;
+			height:0.2rem;
+			width:0rem;
+			max-width:90%}
+    	.barBtn{ /*播放时的小球*/
+    		width: 0.5rem !important;
+    		height: 0.5rem !important;
+    		position: absolute;
+    		left: 3rem !important;
+    		top: 0.7rem !important;
+    		z-index: 9;
+    	}
+    	.author{/*作者信息*/
+    		width: 100%;
+    		height: 7.1rem;
+    		background: url("../image/mesgBg.png");
+    		background-size: 100% 100%;
+    		position: relative;
+    	}
+    	.anthorPhoto{/*作者头像背景框*/
+    		width: 2.7rem;
+    		height: 2.7rem;
+    		border-radius: 100%;
+    		background: url("../image/authorTouxiangkuang.png");
+    		background-size: 100% 100%;
+    		margin-left: 0.8rem;
+    		margin-top: 0.3rem;
+    	}
+    	.anthorPhoto img:nth-child(1){ /*作者头像*/
+    		width: 2.5rem;
+    		height: 2.5rem;
+    		border-radius: 100%;
+    		margin: auto;
+    	}
+    	.authorText{ /*作者详细信息*/
+    		width: 4rem;
+    		height: 2rem;
+    		position: absolute;
+    		left: 3.9rem;
+    		top: 0.65rem;
+    		line-height: 0.8rem;
+    	}
+    	.authorText p{ /*作者名*/
+    		font-size: 0.8rem;
+    		color: #fe5d3c;
+    	}
+    	.authorText img{ /*粉丝图标*/
+    		width: 0.7rem;
+    		height: 0.7rem;
+    	}
+    	.authorText span{ /*粉丝数*/
+    		font-size: 0.6rem;
+    		color: #050505;
+    		margin-left: 0.25rem;
+    	}
+    	.time{ /*时间*/
+    		margin-right: 0.9rem;
+    		margin-top: 0.65rem;
+    		font-size: 0.6rem;
+    		color: #b4b4b4;
+    	}
+    	.autograph{
+    		position: relative;
+    	}
+    	.autograph p{ /*个性签名*/
+    		width: 90%;
+    		margin-left: 5%;
+    		position: absolute;
+    		bottom: 0.3rem;
+    		font-size: 0.7rem;
+    		color: #4a4a4a;
+    	}
+    	.lyric{
+    		width: 98%;
+    		background: url(../image/lyricBgClose.png);
+    		margin-left: 1%;
+    		text-align: center;
+    	}
+    	.lyric img{ /*展开歌词按钮*/
+    		width: 0.6rem;
+    		height: 0.6rem;
+    		margin-top: 0.5rem;
+    	}
+    	.lyric span{ /*展开歌词*/
+    		font-size: 0.7rem;
+    		font-weight: bold;
+    		color: #050505;
+    	}
+    	.lyricContent{
+    		text-align: left;
+    	}
+    	.lyricContent p{
+    		width: 90%;
+    		margin: auto;
+    		font-size: 0.65rem;
+    		color: #4a4a4a;
+    	}
+    	.mui-active{
+    		background-color: #FFFFFF !important;
+    	}
+    	.mui-table-view-cell>a:not(.mui-btn){
+    		padding: 0;
+    	}
+    	.mui-collapse-content{
+    		padding: 0 !important;
+    	}
+    	/*评论*/
+    	.comment{
+    		width: 96%;
+    		margin-left: 2.5%;
+    		margin-top: 0.5rem;
+    		position: relative;
+    	}
+    	.commentTitle img{
+    		width: 0.9rem;
+    		height: 0.9rem;
+    	}
+    	.commentTitle span:nth-child(2){
+    		font-size: 0.7rem;
+    		color: #050505;
+    		margin-left: 0.5rem;
+    	}
+    	.commentTitle span:nth-child(3){
+    		font-size: 0.6rem;
+    		color: #b4b4b4;
+    	}
+    	/*评论内容*/
+    	.commentContentDiv{
+    		width: 100%;
+    		height: 100%;
+    		background-color: #FFFFFF;
+    		position: relative;
+    		margin-top: 0.5rem;
+    	}
+    	.commentPhoto{/*评论头像背景框*/
+    		width: 2.2rem;
+    		height: 2.2rem;
+    		margin-left: 0.4rem;
+    		margin-top: 0.3rem;
+    		border-radius: 100%;
+    		background: url(../image/authorTouxiangkuang.png);
+    		background-size: 100% 100%;
+    		position: absolute;
+    	}
+    	.commentPhoto img{/*评论者头像*/
+    		width: 2rem;
+    		height: 2rem;
+    		border-radius: 100%;
+    		margin: 0.05rem 0.05rem;
+    	}
+    	.commentName{/*评论者名称*/
+    		font-size: 0.65rem;
+    		color: #ff9825;
+    		position: absolute;
+    		left: 3rem;
+    		top:0.3rem;
+    	}
+    	.commentText{/*评论语框*/
+    		width: 80%;
+    		height: auto;
+    		position: relative;
+    		left: 3rem;
+    		top: 1.5rem;
+    	}
+    	.commentText P{/*评论语*/
+    		font-size: 0.6rem;
+    		color: #4b4b4b;
+    	}
+    	.blankDiv{
+    		width: 100%;
+    		height: 1.5rem;
+    		background-color: #FFFFFF;
+    	}
+    	.commentTime{/*评论 时间*/
+    		position: relative;
+    		top: -0.3rem;
+    	}
+    	.div{
+    		width: 100%;
+    		height: 3rem;
+    	}
+    	/*页脚*/
+		.footer{
+		    position:fixed;
+		    z-index:2;
+		    bottom:0;
+		    height:3rem;
+		    width:100%;
+		    background-color:#FFF;
+		    border-top: 1px solid gainsboro;
+		}
+		.footer .container p{
+		    font-size: 0.8rem;
+		    color: #050505;
+		    position: absolute;
+		    top: 0.4rem;
+		    left: 3.6rem;
+		}
+		.footer .container span{
+		    font-size: 0.55rem;
+		    color: #8d8d8d;
+		    position: absolute;
+		    bottom:0.3rem;
+		    left: 3.6rem;
+		}
+		.foot-img1{
+		    display:inline-block;
+		    margin-left:0.6rem;
+		    width:2rem;
+		    height:2rem;
+		    margin-top: 0.5rem;
+		}
+		.foot-img1 img{
+		    width:100%;
+		    height:100%;
+		}
+		.down img{
+		    width: 4.2rem;
+		    height: 1.5rem;
+		    position: absolute;
+		    right: 0.8rem;
+		    bottom: 0.75rem;
+		}

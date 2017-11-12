@@ -1,0 +1,46 @@
+function youda(){
+    console.log("                               ____"                                  );
+    console.log("                            _.' :  `._"                               );
+    console.log("                       .-.'`.  ;   .'`.-."                            );
+    console.log("               __      / : ___\\ ;  /___ ; \\      __"               );
+    console.log("             ,'_ ¡±¡±=-.:__;¡±.-.¡±;: :¡±.-.¡±:__;.-=¡±¡± _`,"       );
+    console.log("             :' `.t¡±¡±=-.. '<@.`;_  ',@:` ..-=¡±¡±j.' `;"           );
+    console.log("                  `:-.._J '-.-'L__ `-.-' L_..-;'"                    );
+    console.log("                    ¡±-.__ ;  .-¡±  ¡±-.  : __.-¡±"                  );
+    console.log("                       L ' /.======.\\ '   J"                        );
+    console.log('                         "-.   "__"   .-"'                          );
+    console.log('                        __.l"-:_JL_;-";.__'                    );
+    console.log("                     .-j/'.;  ;¡±¡±¡±¡±  / .'\\¡±-."                );
+    console.log("                   .' /:`. ¡±-.:     .-¡± .';  `."                       );
+    console.log('                 .-"  / ;  "-. "-..-" .-"  :    "-.'                   );
+    console.log('              .+¡±-.  £º£º      ¡±-.__.-¡±      £»-._  \\'                 );
+    console.log('               ; \\  `.; ;                    : : "+. ;'                    );
+    console.log("               :  ;   ; ;                    : ;  : \\:"                    );
+    console.log("               ;  :   ; :                    ;:   ;  :"                  );
+    console.log("              : \\  ;  :  ;                  : ;  /  ::"                    );
+    console.log("              ;  ; :   ; :                  ;   :   ;:"                 );
+    console.log("              :  :  ;  :  ;                : :  ;  : ;"                   );
+    console.log("               ;\\    :   ; :                ; ;     ; ;"                    );
+    console.log('               : `."-;   :  ;              :  ;    /  ;'                  );
+    console.log('                ;    -:   ; :              ;  : .-"   :'                   );
+    console.log('                :\\     \\  :  ;            : \\.-"     :'                );
+    console.log("                 ;`.    \\  ; :            ;.'_..-=  /  ;"                          );
+    console.log("                  : ¡±-. ¡±-:  ;             :/.¡±     .¡¯  :"                 );
+    console.log("                   \\         \\ :          ;/  __         :"                          );
+    console.log('                    \\       .-`.\\        /t-""  ":-+.   :'                       );
+    console.log('                     `.  .-"   `l    __/ /`. :  ; ; \\  ;'                      );
+    console.log('                      \\   .-" .-"-.-"  .¡¯ .¡¯j \\  /  ;/'                   );
+    console.log("                       \\ / .-¡±   /.     .'.' ;_:'    ;"              );
+    console.log("                        :-¡±¡±-.`./-.'     /    `.___.'"                 );
+    console.log("                               \\ `t  ._  /"                         );
+    console.log("                                ¡±-.t-._:'"                         );
+    console.log("  ");
+    console.log("  ");
+    console.log("  ");
+    console.log("  ");
+    console.log("  ");
+    console.log("                                                              =========quyuepeng");
+}
+
+
+youda();

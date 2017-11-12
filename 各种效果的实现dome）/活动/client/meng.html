@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>遮罩测试</title>
+    <link rel="stylesheet" href="static/css/mui.min.css">
+</head>
+<body>
+<div class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+    <h1 class="mui-title" id="cityResult" class="" type='button'>xxx</h1>
+</div>
+<div class="mui-content">
+    <!--体，省略-->
+</div>
+<!--右上角弹出菜单-->
+<div id="topPopover" class="mui-popover">
+    <div class="mui-popover-arrow"></div>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell">
+                    <a href="#c1">行政区划简介</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="#c2">扶贫开发基本情况</a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a href="#c3">贫困户地域分布情况</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    function setPopOverMenu() {
+        var uip = document.getElementById("topPopover");
+        uip.style.position = "absolute";
+        $(".mui-backdrop").click(function () {
+            $("#topPopover").hide();
+            $(".mui-backdrop").hide();
+        });
+        $(".mui-table-view-cell").click(function () {
+            $("#topPopover").hide();
+            $(".mui-backdrop").hide();
+        });
+    }
+</script>
+</body>
+</html>
